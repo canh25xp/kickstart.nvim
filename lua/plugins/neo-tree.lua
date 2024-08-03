@@ -9,7 +9,14 @@ return {
   },
   cmd = 'Neotree',
   keys = {
-    { '<leader>e', ':Neotree reveal<CR>', desc = 'NeoTree reveal' },
+    { '<leader>e', ':Neotree reveal<CR>', desc = 'NeoTree Reveal' },
+    {
+      '<c-n>',
+      function()
+        require('neo-tree.command').execute { toggle = true }
+      end,
+      desc = 'NeoTree Toggle',
+    },
   },
   opts = {
     close_if_last_window = true,
