@@ -1,13 +1,13 @@
---[[
-:help vim.opt
-:help option-list
---]]
-
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
-vim.opt.shiftwidth = 4
 vim.opt.linebreak = true
+vim.opt.wrap = false
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.confirm = true -- Ask to save changes before exiting modified buffer
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -78,5 +78,3 @@ if vim.fn.has 'win32' or vim.fn.has 'win64' then
   vim.opt.shellquote = ''
   vim.opt.shellxquote = ''
 end
-
--- vim: ts=2 sts=2 sw=2 et
