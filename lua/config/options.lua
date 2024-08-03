@@ -1,6 +1,6 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 vim.opt.linebreak = true
 vim.opt.wrap = false
 vim.opt.expandtab = true
@@ -17,7 +17,7 @@ vim.opt.showmode = false
 -- Remove this option if you want your OS clipboard to remain independent.
 --  :help 'clipboard'
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+  vim.opt.clipboard = "unnamedplus"
 end)
 
 vim.opt.breakindent = true
@@ -30,7 +30,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -46,13 +46,13 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 
 vim.opt.listchars = {
-  tab = '» ',
-  trail = '·',
-  nbsp = '␣',
+  tab = "» ",
+  trail = "·",
+  nbsp = "␣",
 }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
@@ -64,17 +64,17 @@ if vim.g.neovide then
   -- vim.o.guifont = "CaskaydiaCove Nerd Font:h12"
   vim.g.neovide_fullscreen = false
   vim.g.neovide_scroll_animation_length = 0.3
-  vim.g.neovide_cursor_vfx_mode = 'sonicboom'
+  vim.g.neovide_cursor_vfx_mode = "sonicboom"
   vim.g.neovide_hide_mouse_when_typing = true
   -- vim.g.neovide_transparency = 0.8
 end
 
-if vim.fn.has 'win32' or vim.fn.has 'win64' then
-  vim.opt.shell = 'pwsh'
+if vim.fn.has("win32") or vim.fn.has("win64") then
+  vim.opt.shell = "pwsh"
   vim.opt.shellcmdflag =
-    '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-  vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
-  vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-  vim.opt.shellquote = ''
-  vim.opt.shellxquote = ''
+    "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+  vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = ""
 end
