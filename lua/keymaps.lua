@@ -1,26 +1,46 @@
 vim.keymap.set('i', 'jk', '<ESC>', { desc = 'Escape insert mode' })
 
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear highlights on search' })
 
--- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Exit terminal mode in the builtin terminal.
 -- NOTE: This won't work in all terminal emulators/tmux/etc.
 -- Try your own mapping or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
-vim.keymap.set('n', '<left>', '<zh>')
-vim.keymap.set('n', '<right>', '<zl>')
+-- vim.keymap.set('n', '<left>', '<zh>')
+-- vim.keymap.set('n', '<right>', '<zl>')
 vim.keymap.set('n', '<up>', '<C-y>')
 vim.keymap.set('n', '<down>', '<C-e>')
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '<tab>', '<cmd>e #<cr>', { desc = 'Switch to Other Buffer' })
+
+if vim.g.vscode then
+  -- Load nvim vscode specific key bindings
+  local vscode = require 'vscode'
+  vim.keymap.set('n', '<leader>cf', function()
+    vscode.action 'editor.action.formatDocument'
+  end)
+
+  vim.keymap.set('n', '<leader>gg', function()
+    vscode.action 'workbench.view.scm'
+  end)
+
+  vim.keymap.set('n', '<leader>e', function()
+    vscode.action 'workbench.view.explorer'
+  end)
+
+  vim.keymap.set('n', '<leader>E', function()
+    vscode.action 'workbench.files.action.showActiveFileInExplorer'
+  end)
+
+  vim.keymap.set('n', '<leader>j', function()
+    vscode.action 'workbench.action.togglePanel'
+  end)
+end
