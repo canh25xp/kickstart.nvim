@@ -1,6 +1,6 @@
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape insert mode" })
-
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+vim.keymap.set({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 
 -- better up/down
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
@@ -8,23 +8,21 @@ vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Do
 vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
-vim.keymap.set("n", "<left>", "zh")
-vim.keymap.set("n", "<right>", "zl")
-vim.keymap.set("n", "<up>", "<C-y>")
-vim.keymap.set("n", "<down>", "<C-e>")
+vim.keymap.set("n", "<left>", "zh", { desc = "Scroll left" })
+vim.keymap.set("n", "<right>", "zl", { desc = "Scroll right" })
+vim.keymap.set("n", "<up>", "<C-y>", { desc = "Scroll up" })
+vim.keymap.set("n", "<down>", "<C-e>", { desc = "Scroll down" })
 
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
--- Resize window using <ctrl> arrow keys
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +1<cr>", { desc = "Increase Window Height" })
 vim.keymap.set("n", "<C-Down>", "<cmd>resize -1<cr>", { desc = "Decrease Window Height" })
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -1<cr>", { desc = "Decrease Window Width" })
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +1<cr>", { desc = "Increase Window Width" })
 
--- buffers
 vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 vim.keymap.set("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
