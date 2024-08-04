@@ -11,12 +11,12 @@ local DiagnosticGoto = function(next, severity)
   end
 end
 
-vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape insert mode" })
+vim.keymap.set("i", "jk", "<esc>", { desc = "Escape insert mode" })
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-vim.keymap.set("n", "<leader><CR>", ReloadConfig, { desc = "Reload Config" })
+vim.keymap.set("n", "<leader><cr>", ReloadConfig, { desc = "Reload Config" })
 
 -- better up/down
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
@@ -51,8 +51,8 @@ vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -1<cr>", { desc = "Decreas
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +1<cr>", { desc = "Increase Window Width" })
 
 -- buffers
-vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+vim.keymap.set("n", "H", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+vim.keymap.set("n", "L", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 vim.keymap.set("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- Terminal Mappings
