@@ -12,6 +12,7 @@ local DiagnosticGoto = function(next, severity)
 end
 
 vim.keymap.set("i", "jk", "<ESC>", { desc = "Escape insert mode" })
+vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
@@ -23,17 +24,27 @@ vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Do
 vim.keymap.set({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
+-- Move Lines
+vim.keymap.set("n", "<A-u>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
+vim.keymap.set("i", "<A-u>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+vim.keymap.set("v", "<A-u>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
+vim.keymap.set("n", "<A-d>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
+vim.keymap.set("i", "<A-d>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+vim.keymap.set("v", "<A-d>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
+
+-- Srolling
 vim.keymap.set("n", "<left>", "zh", { desc = "Scroll left" })
 vim.keymap.set("n", "<right>", "zl", { desc = "Scroll right" })
 vim.keymap.set("n", "<up>", "<C-y>", { desc = "Scroll up" })
 vim.keymap.set("n", "<down>", "<C-e>", { desc = "Scroll down" })
 
+-- Move focus
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
--- Resize window using <ctrl> arrow keys
+-- Resizing
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +1<cr>", { desc = "Increase Window Height" })
 vim.keymap.set("n", "<C-Down>", "<cmd>resize -1<cr>", { desc = "Decrease Window Height" })
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -1<cr>", { desc = "Decrease Window Width" })
