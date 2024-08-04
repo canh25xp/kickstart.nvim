@@ -22,9 +22,8 @@ return {
         statusline = false,
       },
       config = {
-
-        -- header = ascii.art.text.neovim.dos_rebel,
-        header = vim.split(logo, "\n"),
+        header = require("ascii").art.text.neovim.sharp,
+        -- header = vim.split(logo, "\n"),
           -- stylua: ignore
           center = {
             { action = 'lua LazyVim.pick()()',                                desc = " Find File",       icon = " ", key = "f" },
