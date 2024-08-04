@@ -3,7 +3,7 @@ return {
   version = "*",
   opts = {
     size = 20,
-    open_mapping = [[<C-\>]],
+    open_mapping = [[<C-_>]],
     hide_numbers = true,
     shade_terminals = false,
     start_in_insert = true,
@@ -13,7 +13,7 @@ return {
   },
   cmd = "ToggleTerm",
   keys = {
-    { [[<C-\>]] },
+    { [[<C-_>]] },
     { "<leader>2", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
     { "<leader>t", "<Cmd>ToggleTerm direction=tab<Cr>", desc = "Terminal in new tab" },
   },
