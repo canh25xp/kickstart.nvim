@@ -24,6 +24,8 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = false },
 
+  install = { colorscheme = { "tokyonight" } },
+
   performance = {
     cache = {
       enabled = true,
