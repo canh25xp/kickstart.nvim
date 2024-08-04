@@ -22,7 +22,7 @@ return {
         statusline = false,
       },
       config = {
-        header = require("ascii").art.text.neovim.sharp,
+        header = require("ascii").get_random_global(),
         -- header = vim.split(logo, "\n"),
           -- stylua: ignore
           center = {
