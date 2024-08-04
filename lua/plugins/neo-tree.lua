@@ -1,4 +1,6 @@
--- https://github.com/nvim-neo-tree/neo-tree.nvim
+function NeoTreeToggle()
+  require("neo-tree.command").execute({ toggle = true })
+end
 return {
   "nvim-neo-tree/neo-tree.nvim",
   version = "*",
@@ -10,13 +12,7 @@ return {
   cmd = "Neotree",
   keys = {
     { "<leader>e", ":Neotree reveal<CR>", desc = "NeoTree Reveal" },
-    {
-      "<c-n>",
-      function()
-        require("neo-tree.command").execute({ toggle = true })
-      end,
-      desc = "NeoTree Toggle",
-    },
+    { "<c-n>", NeoTreeToggle, desc = "NeoTree Toggle" },
   },
   opts = {
     close_if_last_window = true,
