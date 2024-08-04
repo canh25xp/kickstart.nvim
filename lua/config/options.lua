@@ -8,6 +8,7 @@ vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.confirm = true -- Ask to save changes before exiting modified buffer
+vim.opt.laststatus = 3 -- global statusline
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -49,6 +50,16 @@ vim.opt.listchars = {
   tab = "» ",
   trail = "·",
   nbsp = "␣",
+}
+
+vim.opt.fillchars = {
+  horiz = "━",
+  horizup = "┻",
+  horizdown = "┳",
+  vert = "┃",
+  vertleft = "┫",
+  vertright = "┣",
+  verthoriz = "╋",
 }
 
 -- Preview substitutions live, as you type!
