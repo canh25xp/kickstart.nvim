@@ -1,12 +1,12 @@
 -- stylua: ignore
 local colors = {
-  blue   = '#89b4fa',
-  cyan   = '#94e2d5',
-  black  = '#45475a',
-  white  = '#eff1f5',
-  red    = '#f38ba8',
-  violet = '#cba6f7',
-  grey   = '#303446',
+  blue      = '#89b4fa',
+  cyan      = '#94e2d5',
+  black     = '#45475a',
+  white     = '#eff1f5',
+  red       = '#f38ba8',
+  violet    = '#cba6f7',
+  grey      = '#303446',
 }
 
 local catppuccin = {
@@ -19,8 +19,14 @@ local catppuccin = {
   insert = {
     a = { fg = colors.black, bg = colors.blue },
   },
-  visual = { a = { fg = colors.black, bg = colors.cyan } },
-  replace = { a = { fg = colors.black, bg = colors.red } },
+
+  visual = {
+    a = { fg = colors.black, bg = colors.cyan },
+  },
+
+  replace = {
+    a = { fg = colors.black, bg = colors.red },
+  },
 
   inactive = {
     a = { fg = colors.white, bg = colors.black },
@@ -36,15 +42,15 @@ return {
       theme = catppuccin,
       globalstatus = vim.o.laststatus == 3,
       disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter" } },
-      component_separators = { left = "|", right = "|" },
+      component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
     },
     sections = {
       lualine_a = { "mode" },
-      lualine_b = { "branch", "diff" },
-      lualine_c = { "filename", "diagnostics" },
+      lualine_b = { "branch", "diff", "diagnostics" },
+      lualine_c = { "filename" },
 
-      lualine_x = { "hostname" },
+      lualine_x = { "selectioncount" },
       lualine_y = {
         { "progress", separator = " ", padding = { left = 1, right = 0 } },
         { "location", padding = { left = 0, right = 1 } },
