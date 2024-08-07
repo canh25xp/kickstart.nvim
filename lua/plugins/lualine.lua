@@ -117,7 +117,9 @@ return {
       section_separators = { left = "", right = "" },
     },
     sections = {
-      lualine_a = { "mode" },
+      lualine_a = {
+        "mode",
+      },
       lualine_b = {
         {
           "branch",
@@ -142,6 +144,7 @@ return {
           },
         },
       },
+
       lualine_x = {
         -- stylua: ignore
         {
@@ -162,7 +165,7 @@ return {
       lualine_z = {
         { "encoding" },
         { "filesize" },
-        { "filetype" },
+        { "filetype", icon_only = true },
         { "fileformat" },
       },
     },
