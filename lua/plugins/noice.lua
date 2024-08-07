@@ -1,6 +1,6 @@
 return {
   "folke/noice.nvim",
-  enabal = false,
+  enabled = true,
   event = "VeryLazy",
   opts = {
     lsp = {
@@ -13,16 +13,38 @@ return {
         ["cmp.entry.get_documentation"] = true,
       },
     },
+    routes = {
+      {
+        filter = {
+          event = "msg_show",
+          any = {
+            { find = "%d+L, %d+B" },
+            { find = "; after #%d+" },
+            { find = "; before #%d+" },
+          },
+        },
+        view = "mini",
+      },
+    },
     cmdline = {
       view = "cmdline",
     },
     presets = {
-      command_palette = false,
+      command_palette = true,
       lsp_doc_border = true,
       bottom_search = true,
       long_message_to_split = true,
     },
   },
+  config = function(_, opts)
+    -- HACK: noice shows messages from before it was enabled,
+    -- but this is not ideal when Lazy is installing plugins,
+    -- so clear the messages in this case.
+    if vim.o.filetype == "lazy" then
+      vim.cmd([[messages clear]])
+    end
+    require("noice").setup(opts)
+  end,
   dependencies = {
     -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
     -- "MunifTanjim/nui.nvim",
