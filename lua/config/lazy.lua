@@ -18,16 +18,13 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    -- essential plugins, must enable
-    { import = "plugins/catppuccin" },
-    { import = "plugins/treesitter" },
-    { import = "plugins/telescope" },
+    -- essential plugins
+    { import = "kickstart/plugins" },
     -- Other plugins
-    { import = "plugins/neo-tree" },
-    { import = "plugins/vim-tmux-navigator" },
-    -- { import = "plugins" },
+    { import = "custom/plugins" },
+    -- { import = "plugins/vim-tmux-navigator" },
   },
-  checker = { enabled = false }, -- automatically check for plugin updates
+  checker = { enabled = false }, -- Don't automatically check for plugin updates
 
   install = { colorscheme = { "catppuccin-mocha" } },
 
