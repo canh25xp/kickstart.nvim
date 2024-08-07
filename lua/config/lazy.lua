@@ -24,7 +24,7 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = false },
 
-  install = { colorscheme = { "tokyonight" } },
+  install = { colorscheme = { "catppuccin-mocha" } },
 
   performance = {
     cache = {
