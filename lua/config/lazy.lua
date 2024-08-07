@@ -18,7 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    -- import your plugins
     { import = "plugins" },
   },
   -- automatically check for plugin updates
@@ -48,6 +47,21 @@ require("lazy").setup({
     size = {
       width = 0.9,
       height = 0.9,
+    },
+    icons = vim.g.have_nerd_font and {} or {
+      cmd = "⌘",
+      config = "🛠",
+      event = "📅",
+      ft = "📂",
+      init = "⚙",
+      keys = "🗝",
+      plugin = "🔌",
+      runtime = "💻",
+      require = "🌙",
+      source = "📄",
+      start = "🚀",
+      task = "📌",
+      lazy = "💤 ",
     },
   },
 })
