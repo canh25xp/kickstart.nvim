@@ -81,6 +81,15 @@ vim.keymap.set("n", "[e", DiagnosticGoto(false, "ERROR"), { desc = "Prev Error" 
 vim.keymap.set("n", "]w", DiagnosticGoto(true, "WARN"), { desc = "Next Warning" })
 vim.keymap.set("n", "[w", DiagnosticGoto(false, "WARN"), { desc = "Prev Warning" })
 
+-- tabs
+vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+vim.keymap.set("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
+vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+vim.keymap.set("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+vim.keymap.set("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
 if vim.g.vscode then
   -- Load nvim vscode specific key bindings
   local vscode = require("vscode")
