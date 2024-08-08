@@ -85,6 +85,17 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- lazy
 map("n", "<leader>l", ":Lazy<cr>", { desc = "Lazy" })
 
+-- Lazygit
+map("n", "<leader>gg", function()
+  local term = require("toggleterm.terminal").Terminal
+  local lazygit = term:new({
+    cmd = "lazygit",
+    dir = "git_dir",
+    direction = "tab",
+  })
+  lazygit:toggle()
+end, { desc = "Lazygit" })
+
 if vim.g.vscode then
   -- Load nvim vscode specific key bindings
   local vscode = require("vscode")
