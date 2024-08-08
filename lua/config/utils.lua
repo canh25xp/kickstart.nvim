@@ -1,5 +1,15 @@
 local M = {}
 
+function M.LazyGit()
+  local term = require("toggleterm.terminal").Terminal
+  local lazygit = term:new({
+    cmd = "lazygit",
+    dir = "git_dir",
+    direction = "tab",
+  })
+  lazygit:toggle()
+end
+
 function M.ReloadConfig()
   vim.notify("Nvim configuration reloaded", vim.log.levels.INFO)
   vim.cmd("luafile %")
