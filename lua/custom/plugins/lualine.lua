@@ -135,6 +135,9 @@ return {
       },
       lualine_c = {
         {
+          "filename",
+        },
+        {
           "diagnostics",
           symbols = {
             error = icons.diagnostics.Error,
