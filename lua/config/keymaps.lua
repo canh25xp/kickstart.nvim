@@ -55,6 +55,7 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +1<cr>", { desc = "Increa
 vim.keymap.set("n", "H", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 vim.keymap.set("n", "L", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 vim.keymap.set("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>bp | bd #<cr>", { desc = "Delete Current Buffer" })
 
 -- Terminal Mappings
 vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
