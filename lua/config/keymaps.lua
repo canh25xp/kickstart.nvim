@@ -1,22 +1,11 @@
-local function ReloadConfig()
-  vim.notify("Nvim configuration reloaded", vim.log.levels.INFO)
-  vim.cmd("luafile %")
-end
-
-local DiagnosticGoto = function(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
-  end
-end
+local utils = require("config/utils")
 
 vim.keymap.set("i", "jk", "<esc>", { desc = "Escape insert mode" })
 vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 vim.keymap.set("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-vim.keymap.set("n", "<leader><cr>", ReloadConfig, { desc = "Reload Config" })
+vim.keymap.set("n", "<leader><cr>", utils.ReloadConfig, { desc = "Reload Config" })
 vim.keymap.set("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
 
 -- better up/down
@@ -74,12 +63,12 @@ vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = tr
 
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-vim.keymap.set("n", "]d", DiagnosticGoto(true), { desc = "Next Diagnostic" })
-vim.keymap.set("n", "[d", DiagnosticGoto(false), { desc = "Prev Diagnostic" })
-vim.keymap.set("n", "]e", DiagnosticGoto(true, "ERROR"), { desc = "Next Error" })
-vim.keymap.set("n", "[e", DiagnosticGoto(false, "ERROR"), { desc = "Prev Error" })
-vim.keymap.set("n", "]w", DiagnosticGoto(true, "WARN"), { desc = "Next Warning" })
-vim.keymap.set("n", "[w", DiagnosticGoto(false, "WARN"), { desc = "Prev Warning" })
+vim.keymap.set("n", "]d", utils.DiagnosticGoto(true), { desc = "Next Diagnostic" })
+vim.keymap.set("n", "[d", utils.DiagnosticGoto(false), { desc = "Prev Diagnostic" })
+vim.keymap.set("n", "]e", utils.DiagnosticGoto(true, "ERROR"), { desc = "Next Error" })
+vim.keymap.set("n", "[e", utils.DiagnosticGoto(false, "ERROR"), { desc = "Prev Error" })
+vim.keymap.set("n", "]w", utils.DiagnosticGoto(true, "WARN"), { desc = "Next Warning" })
+vim.keymap.set("n", "[w", utils.DiagnosticGoto(false, "WARN"), { desc = "Prev Warning" })
 
 -- tabs
 vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
