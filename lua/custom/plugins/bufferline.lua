@@ -30,7 +30,7 @@ return {
           bufferline.style_preset.no_bold,
         },
         show_tab_indicators = true,
-        always_show_bufferline = true,
+        always_show_bufferline = false,
         separator_style = "slant",
         offsets = {
           {
