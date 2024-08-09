@@ -56,9 +56,8 @@ return {
         },
       },
       lualine_c = {
-        {
-          "filename",
-        },
+        { "filetype", padding = { left = 1, right = 0 }, separator = " ", icon_only = true },
+        { "filename", padding = { left = 0, right = 1 } },
         {
           "diagnostics",
           symbols = {
@@ -90,7 +89,6 @@ return {
       lualine_z = {
         { "encoding" },
         { "filesize" },
-        { "filetype", icon_only = true },
         { "fileformat" },
       },
     },
