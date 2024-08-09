@@ -31,7 +31,6 @@ return {
         },
         show_tab_indicators = true,
         always_show_bufferline = false,
-        separator_style = "slant",
         offsets = {
           {
             filetype = "neo-tree",
