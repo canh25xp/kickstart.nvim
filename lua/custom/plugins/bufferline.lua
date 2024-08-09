@@ -16,23 +16,27 @@ return {
     { "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
     { "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
   },
-  opts = {
-    options = {
-      show_tab_indicators = true,
-      always_show_bufferline = true,
-      separator_style = "slant",
-      offsets = {
-        {
-          filetype = "neo-tree",
-          text = "Neo-tree",
-          highlight = "Directory",
-          text_align = "left",
+  config = function()
+    local bufferline = require("bufferline")
+    bufferline.setup({
+      options = {
+        style_preset = {
+          bufferline.style_preset.no_italic,
+          bufferline.style_preset.no_bold,
+        },
+        show_tab_indicators = true,
+        always_show_bufferline = true,
+        separator_style = "slant",
+        offsets = {
+          {
+            filetype = "neo-tree",
+            text = "Neo-tree",
+            highlight = "Directory",
+            text_align = "left",
+          },
         },
       },
-    },
-  },
-  config = function(_, opts)
-    require("bufferline").setup(opts)
+    })
     -- Fix bufferline when restoring a session
     vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
       callback = function()
