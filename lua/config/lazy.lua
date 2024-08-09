@@ -26,6 +26,12 @@ require("lazy").setup({
   },
   checker = { enabled = false }, -- Don't automatically check for plugin updates
 
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = true,
+    notify = true, -- get a notification when changes are found
+  },
+
   install = { colorscheme = { "catppuccin-mocha" } },
 
   performance = {
