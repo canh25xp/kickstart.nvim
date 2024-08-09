@@ -1,17 +1,5 @@
-local logo = [[
-  ██████   █████                   █████   █████  ███                  
- ░░██████ ░░███                   ░░███   ░░███  ░░░                   
-  ░███░███ ░███   ██████   ██████  ░███    ░███  ████  █████████████   
-  ░███░░███░███  ███░░███ ███░░███ ░███    ░███ ░░███ ░░███░░███░░███  
-  ░███ ░░██████ ░███████ ░███ ░███ ░░███   ███   ░███  ░███ ░███ ░███  
-  ░███  ░░█████ ░███░░░  ░███ ░███  ░░░█████░    ░███  ░███ ░███ ░███  
-  █████  ░░█████░░██████ ░░██████     ░░███      █████ █████░███ █████ 
- ░░░░░    ░░░░░  ░░░░░░   ░░░░░░       ░░░      ░░░░░ ░░░░░ ░░░ ░░░░░  
-]]
-
-logo = string.rep("\n", 8) .. logo .. "\n\n"
-
 local ascii = require("ascii")
+local logo = require("common.ui").logo
 
 local dynamic_logo = ascii.get_random("text", "neovim")
 
@@ -25,8 +13,8 @@ return {
         statusline = false, -- this is taken care of by lualine, enabling this messes up the actual laststatus setting after loading a file
       },
       config = {
-        header = ascii.art.text.doom.DooM,
-        -- header = vim.split(logo, "\n"),
+        -- header = ascii.art.text.doom.DooM,
+        header = vim.split(logo, "\n"),
 
         -- stylua: ignore
         center = {

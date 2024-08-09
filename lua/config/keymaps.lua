@@ -1,4 +1,4 @@
-local utils = require("config/utils")
+local utils = require("common.utils")
 
 local map = vim.keymap.set
 local nomap = vim.keymap.del
