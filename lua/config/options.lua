@@ -9,6 +9,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.confirm = true -- Ask to save changes before exiting modified buffer
 vim.opt.laststatus = 3 -- global statusline
+vim.opt.mousemoveevent = true
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
