@@ -20,6 +20,7 @@ return {
     options = {
       show_tab_indicators = true,
       always_show_bufferline = true,
+      separator_style = "slant",
       offsets = {
         {
           filetype = "neo-tree",
