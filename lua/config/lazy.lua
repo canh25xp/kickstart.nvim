@@ -19,9 +19,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     -- Essential plugins
-    { import = "kickstart/plugins" },
+    { import = "plugins" },
     -- Other plugins
-    { import = "custom/plugins" },
+    { import = "plugins.extras" },
     -- Enabled single plugin
     -- { import = "plugins/vim-tmux-navigator" },
   },
