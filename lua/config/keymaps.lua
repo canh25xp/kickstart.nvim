@@ -86,9 +86,6 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 -- lazy
 map("n", "<leader>l", ":Lazy<cr>", { desc = "Lazy" })
 
--- Lazygit
-map("n", "<leader>gg", utils.LazyGit, { desc = "Lazygit" })
-
 -- Toggle
 map("n", "<leader>tc", utils.Toggle_Theme, { desc = "Toggle Colorscheme" })
 map("n", "<leader>ts", utils.Toggle_Signcolumn, { desc = "Toggle Theme" })

@@ -16,5 +16,18 @@ return {
     { [[<C-\>]] },
     { "<leader>2", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
     { "<leader>tt", "<Cmd>ToggleTerm direction=tab<Cr>", desc = "ToggleTerm in new tab" },
+    {
+      "<leader>gg",
+      function()
+        local term = require("toggleterm.terminal").Terminal
+        local lazygit = term:new({
+          cmd = "lazygit",
+          dir = "git_dir",
+          direction = "tab",
+        })
+        lazygit:toggle()
+      end,
+      desc = "Lazygit",
+    },
   },
 }
