@@ -19,8 +19,7 @@ return {
     {
       "<leader>gg",
       function()
-        local term = require("toggleterm.terminal").Terminal
-        local lazygit = term:new({
+        local lazygit = require("toggleterm.terminal").Terminal:new({
           cmd = "lazygit",
           dir = "git_dir",
           direction = "tab",
@@ -28,6 +27,18 @@ return {
         lazygit:toggle()
       end,
       desc = "Lazygit",
+    },
+    {
+      "<leader>gl",
+      function()
+        local lazygit = require("toggleterm.terminal").Terminal:new({
+          cmd = "lazygit log",
+          dir = "git_dir",
+          direction = "tab",
+        })
+        lazygit:toggle()
+      end,
+      desc = "Lazygit log",
     },
   },
 }
