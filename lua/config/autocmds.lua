@@ -6,6 +6,8 @@ local utils = require("common.utils")
 -- General Settings
 local general = augroup("General Settings", { clear = true })
 
+autocmd("TermOpen", { command = "startinsert | setlocal nonumber norelativenumber signcolumn=no" })
+
 autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
