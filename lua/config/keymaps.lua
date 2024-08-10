@@ -9,7 +9,6 @@ map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", {
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-map("n", "<leader><cr>", utils.ReloadConfig, { desc = "Reload Config" })
 map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
 
 -- better up/down
@@ -90,6 +89,7 @@ map("n", "<leader>l", ":Lazy<cr>", { desc = "Lazy" })
 -- Toggle
 map("n", "<leader>uc", utils.Toggle_Theme, { desc = "Toggle Colorscheme" })
 map("n", "<leader>ts", utils.Toggle_Signcolumn, { desc = "Toggle Sign Column" })
+map("n", "<leader>uR", utils.ReloadConfig, { desc = "Reload Config" })
 
 if vim.g.vscode then
   -- Load nvim vscode specific key bindings
