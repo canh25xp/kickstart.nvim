@@ -1,7 +1,7 @@
-local ascii = require("ascii")
+-- local ascii = require("ascii")
 local logo = require("common.ui").logo
 
-local dynamic_logo = ascii.get_random("text", "neovim")
+-- local dynamic_logo = ascii.get_random("text", "neovim")
 
 return {
   "nvimdev/dashboard-nvim",
