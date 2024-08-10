@@ -1,8 +1,15 @@
 return {
   "catppuccin/nvim",
-  priority = 1000,
+  enabled = true,
+  lazy = false,
+  priority = 1000, -- Make sure to load this before all the other start plugins.
   name = "catppuccin",
   opts = {
+    transparent_background = false,
+    background = {
+      light = "latte",
+      dark = "mocha",
+    },
     integrations = {
       aerial = true,
       alpha = true,
@@ -39,10 +46,8 @@ return {
       treesitter_context = true,
       which_key = true,
     },
-    transparent_background = false,
-    background = {
-      light = "latte",
-      dark = "mocha",
-    },
   },
+  config = function()
+    vim.cmd.colorscheme("catppuccin")
+  end,
 }

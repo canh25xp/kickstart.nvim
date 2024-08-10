@@ -21,6 +21,7 @@ require("lazy").setup({
     -- Essential plugins
     { import = "plugins" },
     { import = "plugins.lsp" },
+    { import = "plugins.theme" },
     -- Other plugins
     { import = "plugins.extras" },
     -- Enabled single plugin
