@@ -3,12 +3,35 @@ local utils = require("common.utils")
 local map = vim.keymap.set
 local nomap = vim.keymap.del
 
+-- General
 map("i", "jk", "<esc>", { desc = "Escape insert mode" })
-map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
+map("n", "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
+map("n", "<leader>qq", "<cmd>wqa<cr>", { desc = "Quit All" })
+map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
-map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
+
+-- lazy
+map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
+-- new file
+map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
+
+-- UI
+map("n", "<leader>ut", utils.Toggle_Theme, { desc = "Toggle Theme" })
+map("n", "<leader>us", utils.Toggle_Signcolumn, { desc = "Toggle Signcolumn" })
+map("n", "<leader>ur", utils.ReloadConfig, { desc = "Reload Config" })
+map("n", "<leader>uR", ":nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
+
+-- diagnostic
+map("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "]d", utils.DiagnosticGoto(true), { desc = "Next Diagnostic" })
+map("n", "[d", utils.DiagnosticGoto(false), { desc = "Prev Diagnostic" })
+map("n", "]e", utils.DiagnosticGoto(true, "ERROR"), { desc = "Next Error" })
+map("n", "[e", utils.DiagnosticGoto(false, "ERROR"), { desc = "Prev Error" })
+map("n", "]w", utils.DiagnosticGoto(true, "WARN"), { desc = "Next Warning" })
+map("n", "[w", utils.DiagnosticGoto(false, "WARN"), { desc = "Prev Warning" })
 
 -- better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
@@ -82,15 +105,6 @@ map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
 map("n", "<leader>\\", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
 
-map("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-map("n", "]d", utils.DiagnosticGoto(true), { desc = "Next Diagnostic" })
-map("n", "[d", utils.DiagnosticGoto(false), { desc = "Prev Diagnostic" })
-map("n", "]e", utils.DiagnosticGoto(true, "ERROR"), { desc = "Next Error" })
-map("n", "[e", utils.DiagnosticGoto(false, "ERROR"), { desc = "Prev Error" })
-map("n", "]w", utils.DiagnosticGoto(true, "WARN"), { desc = "Next Warning" })
-map("n", "[w", utils.DiagnosticGoto(false, "WARN"), { desc = "Prev Warning" })
-
 -- tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
 map("n", "<leader><tab>o", "<cmd>tabonly<cr>", { desc = "Close Other Tabs" })
@@ -100,18 +114,6 @@ map("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab><tab>", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Delete Tab" })
 map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
--- lazy
-map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
-
--- new file
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
-
--- UI
-map("n", "<leader>ut", utils.Toggle_Theme, { desc = "Toggle Theme" })
-map("n", "<leader>us", utils.Toggle_Signcolumn, { desc = "Toggle Signcolumn" })
-map("n", "<leader>ur", utils.ReloadConfig, { desc = "Reload Config" })
-map("n", "<leader>uR", ":nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 
 if vim.g.vscode then
   -- Load nvim vscode specific key bindings
