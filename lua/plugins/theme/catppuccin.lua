@@ -5,10 +5,16 @@ return {
   priority = 1000, -- Make sure to load this before all the other start plugins.
   name = "catppuccin",
   opts = {
+    flavour = "auto", -- latte, frappe, macchiato, mocha
     transparent_background = false,
     background = {
       light = "latte",
       dark = "mocha",
+    },
+    dim_inactive = {
+      enabled = true, -- dims the background color of inactive window
+      shade = "dark",
+      percentage = 0.5, -- percentage of the shade to apply to the inactive window
     },
     integrations = {
       aerial = true,
