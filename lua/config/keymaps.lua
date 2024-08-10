@@ -5,6 +5,7 @@ local nomap = vim.keymap.del
 
 map("i", "jk", "<esc>", { desc = "Escape insert mode" })
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
+map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
@@ -87,8 +88,8 @@ map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 map("n", "<leader>l", ":Lazy<cr>", { desc = "Lazy" })
 
 -- Toggle
-map("n", "<leader>tc", utils.Toggle_Theme, { desc = "Toggle Colorscheme" })
-map("n", "<leader>ts", utils.Toggle_Signcolumn, { desc = "Toggle Theme" })
+map("n", "<leader>uc", utils.Toggle_Theme, { desc = "Toggle Colorscheme" })
+map("n", "<leader>ts", utils.Toggle_Signcolumn, { desc = "Toggle Sign Column" })
 
 if vim.g.vscode then
   -- Load nvim vscode specific key bindings
