@@ -90,7 +90,8 @@ map("n", "<leader>l", ":Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>gg", utils.LazyGit, { desc = "Lazygit" })
 
 -- Toggle
-map("n", "<leader>tt", utils.Toggle_Theme, { desc = "Toggle Theme" })
+map("n", "<leader>tc", utils.Toggle_Theme, { desc = "Toggle Colorscheme" })
+map("n", "<leader>ts", utils.Toggle_Signcolumn, { desc = "Toggle Theme" })
 
 if vim.g.vscode then
   -- Load nvim vscode specific key bindings

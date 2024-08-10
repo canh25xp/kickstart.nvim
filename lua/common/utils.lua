@@ -8,6 +8,10 @@ function M.Toggle_Theme()
   end
 end
 
+function M.Toggle_Signcolumn()
+  vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"
+end
+
 function M.LazyGit()
   local term = require("toggleterm.terminal").Terminal
   local lazygit = term:new({
