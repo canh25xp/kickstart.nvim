@@ -1,5 +1,13 @@
 local M = {}
 
+function M.Toggle_Theme()
+  if vim.g.colors_name == "catppuccin-mocha" then
+    vim.cmd.colorscheme("catppuccin-frappe")
+  else
+    vim.cmd.colorscheme("catppuccin-mocha")
+  end
+end
+
 function M.LazyGit()
   local term = require("toggleterm.terminal").Terminal
   local lazygit = term:new({
