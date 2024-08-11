@@ -1,5 +1,14 @@
 local M = {}
 
+function M.Load_Lazy()
+  if vim.g.minimal_config then
+    require("config.lazy")
+    vim.g.minimal_config = false
+  else
+    vim.api.nvim_err_writeln("Lazy Plugins already Loaded")
+  end
+end
+
 function M.Toggle_Theme()
   if vim.g.colors_name == "catppuccin-mocha" then
     vim.cmd.colorscheme("catppuccin-frappe")

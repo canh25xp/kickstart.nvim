@@ -1,7 +1,6 @@
 local utils = require("common.utils")
 
 local map = vim.keymap.set
-local nomap = vim.keymap.del
 
 -- General
 map("i", "jk", "<esc>", { desc = "Escape insert mode" })
@@ -21,14 +20,7 @@ map("n", "<C-\\>", ":split|terminal<CR>", { desc = "Netrw Explorer (cwd)" })
 map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 -- Lazy
-map("n", "<leader>ll", function()
-  if vim.g.minimal_config then
-    require("config.lazy")
-    vim.g.minimal_config = false
-  else
-    vim.api.nvim_err_writeln("Lazy Plugins already Loaded")
-  end
-end, { desc = "Load Lazy Plugins" })
+map("n", "<leader>ll", utils.Load_Lazy, { desc = "Load Lazy Plugins" })
 map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- New file
