@@ -9,7 +9,11 @@ vim.opt.termguicolors = true -- True color support
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
-vim.opt.linebreak = true
+vim.opt.linebreak = true -- Wrap lines at convenient points
+vim.opt.pumblend = 10 -- Popup blend
+vim.opt.pumheight = 10 -- Maximum number of entries in a popup
+vim.opt.pumwidth = 15 -- Minimum width for the popup menu
+vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
 vim.opt.wrap = false
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
@@ -25,12 +29,16 @@ vim.opt.clipboard = "unnamedplus" -- Sync clipboard between OS and Neovim.
 vim.opt.breakindent = true
 vim.opt.undofile = true -- Save undo history
 vim.opt.ignorecase = true -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
-vim.opt.smartcase = true
+vim.opt.smartcase = true -- Don't ignore case with capitals
+vim.opt.smartindent = true -- Insert indents automatically
 vim.opt.updatetime = 250 -- Decrease update time
-vim.opt.timeoutlen = 500 -- Decrease mapped sequence wait time
+vim.opt.timeoutlen = vim.g.vscode and 1000 or 500 -- Lower than default (1000) to quickly trigger which-key
 vim.opt.inccommand = "split" -- Preview substitutions live, as you type
 vim.opt.cursorline = true -- Show which line your cursor is on
 vim.opt.scrolloff = 4 -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
+vim.opt.winminwidth = 5 -- Minimum window width
+vim.opt.wrap = false -- Disable line wrap
 
 -- Configure how new splits should be opened
 vim.opt.splitright = true
