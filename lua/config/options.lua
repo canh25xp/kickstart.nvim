@@ -4,6 +4,7 @@ vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
 
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.termguicolors = true -- True color support
 vim.opt.number = true
 vim.opt.relativenumber = true
