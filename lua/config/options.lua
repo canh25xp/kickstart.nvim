@@ -91,18 +91,7 @@ if vim.g.neovide then
   vim.g.neovide_transparency = 1.0
 end
 
--- if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
---   vim.opt.shell = "pwsh"
---   vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
---   vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
---   vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
---   vim.opt.shellquote = ""
---   vim.opt.shellxquote = ""
--- end
-
-local shell = vim.o.shell
-
-if shell == "pwsh" or shell == "powershell" then
+if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
   if vim.fn.executable("pwsh") == 1 then
     print("Using shell : pwsh")
     vim.o.shell = "pwsh"
@@ -113,16 +102,17 @@ if shell == "pwsh" or shell == "powershell" then
     print("No powershell executable found")
     -- return LazyVim.error("No powershell executable found")
   end
-
   -- Setting shell command flags
-  vim.o.shellcmdflag =
-    "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
+  vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+  -- vim.o.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
 
   -- Setting shell redirection
-  vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+  vim.o.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+  -- vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
 
   -- Setting shell pipe
-  vim.o.shellpipe = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
+  vim.o.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+  -- vim.o.shellpipe = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
 
   -- Setting shell quote options
   vim.o.shellquote = ""
