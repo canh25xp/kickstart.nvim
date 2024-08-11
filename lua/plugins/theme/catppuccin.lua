@@ -4,6 +4,19 @@ return {
   lazy = false,
   priority = 1000, -- Make sure to load this before all the other start plugins.
   name = "catppuccin",
+  keys = {
+    {
+      "<leader>ut",
+      function()
+        if vim.g.colors_name == "catppuccin-mocha" then
+          vim.cmd.colorscheme("catppuccin-frappe")
+        else
+          vim.cmd.colorscheme("catppuccin-mocha")
+        end
+      end,
+      desc = "Change Theme",
+    },
+  },
   opts = {
     flavour = "auto", -- latte, frappe, macchiato, mocha
     transparent_background = false,

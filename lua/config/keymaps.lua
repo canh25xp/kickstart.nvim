@@ -22,7 +22,6 @@ map("n", "<leader>qS", ":mksession!<cr>", { desc = "Save Session here" })
 map("n", "<leader>qR", ":source Session.vim<cr>", { desc = "Restore Saved Session" })
 
 -- UI
-map("n", "<leader>ut", utils.Toggle_Theme, { desc = "Toggle Theme" })
 map("n", "<leader>us", utils.Toggle_Signcolumn, { desc = "Toggle Signcolumn" })
 map("n", "<leader>ur", utils.ReloadConfig, { desc = "Reload Config" })
 map("n", "<leader>uR", ":nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
