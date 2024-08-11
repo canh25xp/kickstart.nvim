@@ -92,6 +92,7 @@ if vim.g.neovide then
 end
 
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+  vim.g.minimal_config = true
   if vim.fn.executable("pwsh") == 1 then
     vim.o.shell = "pwsh"
   elseif vim.fn.executable("powershell") == 1 then
