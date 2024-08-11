@@ -12,7 +12,7 @@ vim.g.netrw_liststyle = 3 -- View as tree
 vim.g.netrw_browse_split = 4
 vim.g.netrw_altv = 1
 vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]] -- Hide dotfiles
-vim.g.netrw_localcopydircmd = 'cp -r' -- Change the copy command
+vim.g.netrw_localcopydircmd = "cp -r" -- Change the copy command
 
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.completeopt = "menu,menuone,noselect"
@@ -100,14 +100,18 @@ end
 --   vim.opt.shellxquote = ""
 -- end
 
+local shell = vim.o.shell
+
 if shell == "pwsh" or shell == "powershell" then
-  -- Check if 'pwsh' is executable and set the shell accordingly
   if vim.fn.executable("pwsh") == 1 then
+    print("Using shell : pwsh")
     vim.o.shell = "pwsh"
   elseif vim.fn.executable("powershell") == 1 then
+    print("Using shell : powershell")
     vim.o.shell = "powershell"
   else
-    return LazyVim.error("No powershell executable found")
+    print("No powershell executable found")
+    -- return LazyVim.error("No powershell executable found")
   end
 
   -- Setting shell command flags
