@@ -18,8 +18,8 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- sessions
-map("n", "<leader>S", ":mksession!<cr>", { desc = "Save current session" })
-map("n", "<leader>R", ":source Session.vim<cr>", { desc = "Restore saved session" })
+map("n", "<leader>qS", ":mksession!<cr>", { desc = "Save Session here" })
+map("n", "<leader>qR", ":source Session.vim<cr>", { desc = "Restore Saved Session" })
 
 -- UI
 map("n", "<leader>ut", utils.Toggle_Theme, { desc = "Toggle Theme" })
