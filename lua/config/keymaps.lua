@@ -12,7 +12,9 @@ map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 
--- lazy
+-- Netrw
+map("n", "<leader>e", ":Lexplore<CR>", { desc = "Netrw Explorer (root)" })
+map("n", "<leader>E", ":Lexplore %:p:h<CR>", { desc = "Netrw Explorer (cwd)" })
 map("n", "<leader>ll", function()
   require("config.lazy")
 end, { desc = "Load Lazy Plugins" })
