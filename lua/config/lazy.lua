@@ -79,4 +79,5 @@ local opts = {
 
 if not vim.g.minimal_config then
   require("lazy").setup(opts)
+  vim.g.minimal_config = false
 end
