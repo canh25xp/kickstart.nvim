@@ -22,7 +22,12 @@ map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 
 -- Lazy
 map("n", "<leader>ll", function()
-  require("config.lazy")
+  if vim.g.minimal_config then
+    require("config.lazy")
+    vim.g.minimal_config = false
+  else
+    print("Lazy Plugins already Loaded")
+  end
 end, { desc = "Load Lazy Plugins" })
 map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
