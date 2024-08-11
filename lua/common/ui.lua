@@ -94,10 +94,33 @@ M.icons = {
   },
 }
 
-M.statuscolumn = {}
+function M.statuscolumn()
+  local components = { "", "", "" } -- left, middle, right
+  local win = vim.g.statusline_winid
+  components[1] = "a"
+  components[3] = "c"
 
-M.statuscolumn = function()
-  return "Hi"
+  -- Numbers in Neovim are weird
+  -- They show when either number or relativenumber is true
+  local is_num = vim.wo[win].number
+  local is_relnum = vim.wo[win].relativenumber
+  if (is_num or is_relnum) and vim.v.virtnum == 0 then
+    if vim.fn.has("nvim-0.11") == 1 then
+      components[2] = "%l" -- 0.11 handles both the current and other lines with %l
+    else
+      if vim.v.relnum == 0 then
+        components[2] = is_num and "%l" or "%r" -- the current line
+      else
+        components[2] = is_relnum and "%r" or "%l" -- other lines
+      end
+    end
+    components[2] = "%=" .. components[2] .. " " -- right align
+  end
+
+  if vim.v.virtnum ~= 0 then
+    components[2] = "%= "
+  end
+  return table.concat(components, "")
 end
 
 return M
