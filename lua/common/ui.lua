@@ -94,4 +94,10 @@ M.icons = {
   },
 }
 
+M.statuscolumn = {}
+
+M.statuscolumn = function()
+  return "Hi"
+end
+
 return M
