@@ -93,10 +93,8 @@ end
 
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
   if vim.fn.executable("pwsh") == 1 then
-    print("Using shell : pwsh")
     vim.o.shell = "pwsh"
   elseif vim.fn.executable("powershell") == 1 then
-    print("Using shell : powershell")
     vim.o.shell = "powershell"
   else
     print("No powershell executable found")

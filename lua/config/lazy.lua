@@ -77,4 +77,4 @@ local opts = {
   },
 }
 
--- require("lazy").setup(opts)
+require("lazy").setup(opts)
