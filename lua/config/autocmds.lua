@@ -6,7 +6,9 @@ local utils = require("common.utils")
 -- General Settings
 local general = augroup("General Settings", { clear = true })
 
-autocmd("TermOpen", { command = "startinsert | setlocal nonumber norelativenumber signcolumn=no" })
+autocmd("TermOpen", { command = "setlocal nonumber norelativenumber signcolumn=no" })
+
+autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert" })
 
 autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
