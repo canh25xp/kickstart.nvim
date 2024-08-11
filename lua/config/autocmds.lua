@@ -1,6 +1,7 @@
 --  See `:help lua-guide-autocommands`
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local map = vim.keymap.set
 local utils = require("common.utils")
 
 -- General Settings
@@ -33,13 +34,28 @@ autocmd("FileType", {
   pattern = {
     "help",
     "checkhealth",
+    "netrw",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    vim.keymap.set("n", "q", "<cmd>close<cr>", {
+    map("n", "qq", "<cmd>close<cr>", {
       buffer = event.buf,
       silent = true,
       desc = "Quit buffer",
     })
+  end,
+})
+
+autocmd("FileType", {
+  pattern = "netrw",
+  desc = "Better mappings for Netrw",
+  callback = function()
+    map("n", "n", "%", { desc = "Netrw New file", remap = true, buffer = true })
+    map("n", "r", "R", { desc = "Netrw Rename file", remap = true, buffer = true })
+    map("n", "H", "gh", { desc = "Netrw Toggle Hidden", remap = true, buffer = true })
+    map("n", ".", "gh", { desc = "Netrw Toggle Hidden", remap = true, buffer = true })
+    -- map("n", "h", "-^", { desc = "Netrw go up", remap = true, buffer = true })
+    map("n", "l", "l<cr>", { desc = "Netrw open file", remap = true, buffer = true })
+    map("n", "P", "<C-w>z", { desc = "Netrw close preview", remap = true, buffer = true })
   end,
 })
