@@ -4,15 +4,20 @@ return {
   config = function()
     local builtin = require("statuscol.builtin")
     require("statuscol").setup({
-      relculright = false,
-      -- Default segments (fold -> sign -> line number + separator), explained below
       segments = {
-        { text = { "%C" }, click = "v:lua.ScFa" },
-        { text = { "%s" }, click = "v:lua.ScSa" },
+        -- { text = { "%C" }, click = "v:lua.ScFa" },
         {
-          text = { builtin.lnumfunc, " " },
+          sign = { namespace = { "diagnostic/signs" }, maxwidth = 1, auto = false },
+          click = "v:lua.ScSa",
+        },
+        {
+          text = { builtin.lnumfunc, "│ " },
           condition = { true, builtin.not_empty },
           click = "v:lua.ScLa",
+        },
+        {
+          sign = { namespace = { "gitsigns" }, maxwidth = 1, auto = false },
+          click = "v:lua.ScSa",
         },
       },
       -- segments = {
