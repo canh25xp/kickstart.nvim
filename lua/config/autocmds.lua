@@ -10,9 +10,19 @@ autocmd("TermOpen", { command = "setlocal nonumber norelativenumber signcolumn=n
 
 autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert" })
 
+-- resize splits if window got resized
+autocmd({ "VimResized" }, {
+  group = general,
+  callback = function()
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd("tabdo wincmd =")
+    vim.cmd("tabnext " .. current_tab)
+  end,
+})
+
 autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  group = general,
   callback = function()
     vim.highlight.on_yank()
   end,
