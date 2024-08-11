@@ -6,7 +6,8 @@ local nomap = vim.keymap.del
 -- General
 map("i", "jk", "<esc>", { desc = "Escape insert mode" })
 map("n", "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
-map("n", "<leader>qq", "<cmd>wqa<cr>", { desc = "Quit All" })
+map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
+map("n", "<leader>QQ", "<cmd>wqa<cr>", { desc = "Write Quit All" })
 map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
