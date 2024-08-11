@@ -17,6 +17,10 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- new file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
+-- sessions
+map("n", "<leader>S", ":mksession!<cr>", { desc = "Save current session" })
+map("n", "<leader>R", ":source Session.vim<cr>", { desc = "Restore saved session" })
+
 -- UI
 map("n", "<leader>ut", utils.Toggle_Theme, { desc = "Toggle Theme" })
 map("n", "<leader>us", utils.Toggle_Signcolumn, { desc = "Toggle Signcolumn" })
