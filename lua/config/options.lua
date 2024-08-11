@@ -3,6 +3,17 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
 
+-- Netrw config
+-- vim.g.loaded_netrwPlugin = 1 -- Set to 1 to disable Netrw
+vim.g.netrw_keepdir = 0 -- Keep the current directory and the browsing directory synced. This
+vim.g.netrw_winsize = 30 -- Change the size of the Netrw window
+vim.g.netrw_banner = 0 -- Hide the banner ("I" to show agin)
+vim.g.netrw_liststyle = 3 -- View as tree
+vim.g.netrw_browse_split = 4
+vim.g.netrw_altv = 1
+vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]] -- Hide dotfiles
+vim.g.netrw_localcopydircmd = 'cp -r' -- Change the copy command
+
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.termguicolors = true -- True color support
@@ -80,11 +91,36 @@ if vim.g.neovide then
   vim.g.neovide_transparency = 1.0
 end
 
-if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
-  vim.opt.shell = "pwsh"
-  vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
-  vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
-  vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-  vim.opt.shellquote = ""
-  vim.opt.shellxquote = ""
+-- if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+--   vim.opt.shell = "pwsh"
+--   vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+--   vim.opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
+--   vim.opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
+--   vim.opt.shellquote = ""
+--   vim.opt.shellxquote = ""
+-- end
+
+if shell == "pwsh" or shell == "powershell" then
+  -- Check if 'pwsh' is executable and set the shell accordingly
+  if vim.fn.executable("pwsh") == 1 then
+    vim.o.shell = "pwsh"
+  elseif vim.fn.executable("powershell") == 1 then
+    vim.o.shell = "powershell"
+  else
+    return LazyVim.error("No powershell executable found")
+  end
+
+  -- Setting shell command flags
+  vim.o.shellcmdflag =
+    "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
+
+  -- Setting shell redirection
+  vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+
+  -- Setting shell pipe
+  vim.o.shellpipe = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
+
+  -- Setting shell quote options
+  vim.o.shellquote = ""
+  vim.o.shellxquote = ""
 end
