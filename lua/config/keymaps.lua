@@ -26,7 +26,7 @@ map("n", "<leader>ll", function()
     require("config.lazy")
     vim.g.minimal_config = false
   else
-    print("Lazy Plugins already Loaded")
+    vim.api.nvim_err_writeln("Lazy Plugins already Loaded")
   end
 end, { desc = "Load Lazy Plugins" })
 map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })

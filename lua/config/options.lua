@@ -2,6 +2,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
+vim.g.minimal_config = true
 
 -- Netrw config
 -- vim.g.loaded_netrwPlugin = 1 -- Set to 1 to disable Netrw
@@ -98,8 +99,7 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
   elseif vim.fn.executable("powershell") == 1 then
     vim.o.shell = "powershell"
   else
-    print("No powershell executable found")
-    -- return LazyVim.error("No powershell executable found")
+    vim.api.nvim_err_writeln("No powershell executable found")
   end
   -- Setting shell command flags
   vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
