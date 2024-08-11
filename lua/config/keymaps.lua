@@ -15,15 +15,21 @@ map({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 -- Netrw
 map("n", "<leader>e", ":Lexplore<CR>", { desc = "Netrw Explorer (root)" })
 map("n", "<leader>E", ":Lexplore %:p:h<CR>", { desc = "Netrw Explorer (cwd)" })
+
+-- Terminal
+map("n", "<C-\\>", ":split|terminal<CR>", { desc = "Netrw Explorer (cwd)" })
+map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+
+-- Lazy
 map("n", "<leader>ll", function()
   require("config.lazy")
 end, { desc = "Load Lazy Plugins" })
 map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
--- new file
+-- New file
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
--- sessions
+-- Sessions
 map("n", "<leader>qS", ":mksession!<cr>", { desc = "Save Session here" })
 map("n", "<leader>qR", ":source Session.vim<cr>", { desc = "Restore Saved Session" })
 
@@ -32,7 +38,7 @@ map("n", "<leader>us", utils.Toggle_Signcolumn, { desc = "Toggle Signcolumn" })
 map("n", "<leader>ur", utils.ReloadConfig, { desc = "Reload Config" })
 map("n", "<leader>uR", ":nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 
--- diagnostic
+-- Diagnostic
 map("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 map("n", "]d", utils.DiagnosticGoto(true), { desc = "Next Diagnostic" })
@@ -42,21 +48,22 @@ map("n", "[e", utils.DiagnosticGoto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", utils.DiagnosticGoto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", utils.DiagnosticGoto(false, "WARN"), { desc = "Prev Warning" })
 
--- better up/down
+-- Better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
--- better indenting
+-- Better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- commenting
+-- Commenting
 map("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+-- Saner behavior of n and N
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
 map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
 map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
