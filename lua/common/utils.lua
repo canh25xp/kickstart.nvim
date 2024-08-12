@@ -5,7 +5,7 @@ function M.Load_Lazy()
     require("config.lazy")
     vim.g.load_lazy_plugins = true
   else
-    vim.api.nvim_err_writeln("Lazy Plugins already Loaded")
+    vim.notify("Lazy Plugins already Loaded", vim.log.levels.ERROR)
   end
 end
 
@@ -32,8 +32,8 @@ function M.LazyGit()
 end
 
 function M.ReloadConfig()
-  vim.notify("Nvim configuration reloaded", vim.log.levels.INFO)
   vim.cmd("luafile %")
+  vim.notify("Nvim configuration reloaded", vim.log.levels.INFO)
 end
 
 M.DiagnosticGoto = function(next, severity)
