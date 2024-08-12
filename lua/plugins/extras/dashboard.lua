@@ -16,6 +16,7 @@ return {
         -- header = ascii.art.text.doom.DooM,
         header = vim.split(logo, "\n"),
 
+        -- FIXME: replace the LazyGit command with toggle term
         -- stylua: ignore
         center = {
           { action = "Telescope find_files",                                desc = " Find File",       icon = " ", key = "f" },
