@@ -81,9 +81,7 @@ vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSi
 vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 
-if not vim.g.load_lazy_plugins then
-  vim.cmd.colorscheme("sorbet")
-end
+vim.cmd.colorscheme("sorbet")
 
 if vim.g.neovide then
   -- vim.o.guifont = "CaskaydiaCove Nerd Font:h12"
