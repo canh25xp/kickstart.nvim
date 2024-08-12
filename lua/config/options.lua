@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
-vim.g.minimal_config = true
+vim.g.load_lazy_plugins = true
 
 -- Netrw config
 -- vim.g.loaded_netrwPlugin = 1 -- Set to 1 to disable Netrw
@@ -81,7 +81,7 @@ vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSi
 vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 
-if vim.g.minimal_config then
+if not vim.g.load_lazy_plugins then
   vim.cmd.colorscheme("sorbet")
 end
 
@@ -95,7 +95,7 @@ if vim.g.neovide then
 end
 
 if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
-  vim.g.minimal_config = true
+  vim.g.load_lazy_plugins = false
   if vim.fn.executable("pwsh") == 1 then
     vim.o.shell = "pwsh"
   elseif vim.fn.executable("powershell") == 1 then

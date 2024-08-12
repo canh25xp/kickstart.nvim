@@ -1,9 +1,9 @@
 local M = {}
 
 function M.Load_Lazy()
-  if vim.g.minimal_config then
+  if not vim.g.load_lazy_plugins then
     require("config.lazy")
-    vim.g.minimal_config = false
+    vim.g.load_lazy_plugins = true
   else
     vim.api.nvim_err_writeln("Lazy Plugins already Loaded")
   end

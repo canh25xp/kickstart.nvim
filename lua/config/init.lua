@@ -1,6 +1,6 @@
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
-if not vim.g.minimal_config then
+if vim.g.load_lazy_plugins then
   require("config.lazy")
 end
