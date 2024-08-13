@@ -57,15 +57,14 @@ vim.opt.wrap = false -- Disable line wrap
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Sets how neovim will display certain whitespace characters in the editor.
 vim.opt.list = true
-vim.opt.listchars = {
-  tab = "» ",
-  trail = "·",
-  nbsp = "␣",
-}
 
 if vim.g.have_nerd_font then
+  vim.opt.listchars = {
+    tab = "» ",
+    trail = "·",
+    nbsp = "␣",
+  }
   -- Use a bold seperators
   -- stylua: ignore
   vim.opt.fillchars = {
