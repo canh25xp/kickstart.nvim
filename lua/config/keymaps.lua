@@ -57,6 +57,10 @@ map("n", "[e", utils.DiagnosticGoto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", utils.DiagnosticGoto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", utils.DiagnosticGoto(false, "WARN"), { desc = "Prev Warning" })
 
+-- Better scroll
+-- map("n", "<C-d>", "<C-d>zz")
+-- map("n", "<C-u>", "<C-u>zz")
+
 -- Better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
@@ -81,12 +85,14 @@ map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
 -- Move Lines
-map("n", "<A-u>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
-map("i", "<A-u>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
-map("v", "<A-u>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
-map("n", "<A-d>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
-map("i", "<A-d>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
-map("v", "<A-d>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
+map("n", "<A-u>", "<cmd>m .-2<cr>==", { desc = "Move Line Up" })
+map("i", "<A-u>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Line Up" })
+map("v", "<A-u>", ":m '<-2<cr>gv=gv", { desc = "Move Line Up" })
+map("n", "<A-d>", "<cmd>m .+1<cr>==", { desc = "Move Line Down" })
+map("i", "<A-d>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Line Down" })
+map("v", "<A-d>", ":m '>+1<cr>gv=gv", { desc = "Move Line Down" })
+map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move Line Up" })
+map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move Line Down" })
 
 -- Srolling
 map("n", "<left>", "zh", { desc = "Scroll left" })
