@@ -11,6 +11,18 @@ map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 
+-- Yank and Paste
+map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
+map("n", "<leader>Y", [["+Y]], { desc = "Yank to system clipboad" })
+map("n", "<leader>P", [["+P]], { desc = "Paste form system clipboard" })
+map("n", "<leader>p", [["+p]], { desc = "Paste form system clipboard" })
+map("n", "<leader>ay", 'gg"+yG', { desc = "Yank whole file" })
+map("i", "<C-r><C-r>", [[<C-o>"+p]], { desc = "Paste form system clipboard" })
+
+-- Delete
+map("x", "<leader>p", [["_dP]], { desc = "Paste without yank" })
+map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yank" })
+
 -- Netrw
 map("n", "<leader>e", ":Lexplore<CR>", { desc = "Netrw Explorer (root)" })
 map("n", "<leader>E", ":Lexplore %:p:h<CR>", { desc = "Netrw Explorer (cwd)" })
