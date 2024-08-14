@@ -34,6 +34,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.confirm = true -- Ask to save changes before exiting modified buffer
 vim.opt.laststatus = 3 -- global statusline
+vim.opt.cmdheight = 0
 vim.opt.mousemoveevent = true
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 vim.opt.signcolumn = "auto" -- Always show the signcolumn, otherwise it would shift the text each time
