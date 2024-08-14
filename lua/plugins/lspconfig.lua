@@ -2,10 +2,11 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "williamboman/mason.nvim" }, -- NOTE: Must be loaded before dependants
+      "williamboman/mason.nvim", -- NOTE: Must be loaded before dependants
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp", -- For auto completion
+      "j-hui/fidget.nvim", -- For LSP progress messages
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
