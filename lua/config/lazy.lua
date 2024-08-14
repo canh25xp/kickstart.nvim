@@ -18,13 +18,9 @@ local opts = {
   spec = {
     -- Lazyvim distro
     -- { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- Essential plugins
+    -- Import all plugins
     { import = "plugins" },
-    { import = "plugins.lsp" },
-    { import = "plugins.theme" },
-    -- Other plugins
-    { import = "plugins.extras" },
-    -- Enabled single plugin
+    -- Import single plugin
     -- { import = "plugins/vim-tmux-navigator" },
   },
   checker = { enabled = false }, -- Don't automatically check for plugin updates
