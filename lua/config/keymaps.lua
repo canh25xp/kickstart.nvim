@@ -11,6 +11,9 @@ map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 
+map("n", "J", "mzJ`z", {desc = "Join without moving cursor"})
+map("n", "<leader>/", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = "Change word under cursor"})
+
 -- Yank and Paste
 map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
 map("n", "<leader>Y", [["+Y]], { desc = "Yank to system clipboad" })
