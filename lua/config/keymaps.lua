@@ -81,14 +81,16 @@ map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
 -- Move Lines
-map("n", "<A-u>", "<cmd>m .-2<cr>==", { desc = "Move Line Up" })
-map("i", "<A-u>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Line Up" })
-map("v", "<A-u>", ":m '<-2<cr>gv=gv", { desc = "Move Line Up" })
-map("n", "<A-d>", "<cmd>m .+1<cr>==", { desc = "Move Line Down" })
-map("i", "<A-d>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Line Down" })
-map("v", "<A-d>", ":m '>+1<cr>gv=gv", { desc = "Move Line Down" })
-map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move Line Up" })
-map("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move Line Down" })
+-- stylua: ignore start
+map("n", "<A-k>", "<cmd>m .-2<cr>==",         { desc = "Move Line Up" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi",  { desc = "Move Line Up" })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv",         { desc = "Move Line Up" })
+map("v", "K",     ":m '<-2<CR>gv=gv",         { desc = "Move Line Up" })
+map("n", "<A-j>", "<cmd>m .+1<cr>==",         { desc = "Move Line Down" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi",  { desc = "Move Line Down" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv",         { desc = "Move Line Down" })
+map("v", "J",     ":m '>+1<CR>gv=gv",         { desc = "Move Line Down" })
+-- stylua: ignore stop
 
 -- Srolling
 map("n", "<left>", "zh", { desc = "Scroll left" })
@@ -146,27 +148,3 @@ map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "Create New Tab" })
 map("n", "<leader><tab>n", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Delete Tab" })
 map("n", "<leader><tab>p", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-
-if vim.g.vscode then
-  -- Load nvim vscode specific key bindings
-  local vscode = require("vscode")
-  map("n", "<leader>cf", function()
-    vscode.action("editor.action.formatDocument")
-  end)
-
-  map("n", "<leader>gg", function()
-    vscode.action("workbench.view.scm")
-  end)
-
-  map("n", "<leader>e", function()
-    vscode.action("workbench.view.explorer")
-  end)
-
-  map("n", "<leader>E", function()
-    vscode.action("workbench.files.action.showActiveFileInExplorer")
-  end)
-
-  map("n", "<leader>j", function()
-    vscode.action("workbench.action.togglePanel")
-  end)
-end
