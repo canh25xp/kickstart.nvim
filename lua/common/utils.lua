@@ -21,14 +21,21 @@ function M.Toggle_Signcolumn()
   vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"
 end
 
+function M.TabTerminal()
+  vim.cmd("tab terminal")
+  vim.cmd.startinsert()
+end
+
 function M.LazyGit()
-  local term = require("toggleterm.terminal").Terminal
-  local lazygit = term:new({
-    cmd = "lazygit",
-    dir = "git_dir",
-    direction = "tab",
-  })
-  lazygit:toggle()
+  vim.cmd("tab terminal lazygit")
+  vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
+  vim.cmd.startinsert()
+end
+
+function M.LazyGit_Log()
+  vim.cmd("tab terminal lazygit log")
+  vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
+  vim.cmd.startinsert()
 end
 
 function M.ReloadConfig()

@@ -30,10 +30,6 @@ map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yank" })
 map("n", "<leader>e", ":Lexplore<CR>", { desc = "Netrw Explorer (root)" })
 map("n", "<leader>E", ":Lexplore %:p:h<CR>", { desc = "Netrw Explorer (cwd)" })
 
--- Terminal
-map("n", "<C-\\>", ":split|terminal<CR>", { desc = "Netrw Explorer (cwd)" })
-map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-
 -- Lazy
 map("n", "<leader>ll", utils.Load_Lazy, { desc = "Load Lazy Plugins" })
 map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
@@ -125,13 +121,17 @@ map("n", "<leader>bd", "<cmd>bp | bd #<cr>", { desc = "Delete Current Buffer" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
 -- Terminal Mappings
-map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
+map("n", "<leader>tt", utils.TabTerminal, { desc = "New Tab Terminal" })
+map("n", "<leader>gg", utils.LazyGit, { desc = "LazyGit" })
+map("n", "<leader>gl", utils.LazyGit_Log, { desc = "LazyGit Log" })
+map("n", "<C-\\>", "<cmd>split|terminal<CR>", { desc = "New Terminal" })
+map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+map("t", "jk", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
 map("t", "<C-_>", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
-map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to Left Window" })
-map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to Lower Window" })
-map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to Upper Window" })
-map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to Right Window" })
--- map("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Focus Left Window" })
+map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Focus Lower Window" })
+map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Focus Upper Window" })
+map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Focus Right Window" })
 -- map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
 -- windows
