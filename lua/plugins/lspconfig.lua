@@ -26,6 +26,9 @@ return {
           map("n", "gr", vim.lsp.buf.references, "Goto References")
           map("n", "gs", vim.lsp.buf.signature_help, "Signature help")
           map("n", "<leader>cr", vim.lsp.buf.rename, "Rename")
+          map({ "n", "x" }, "<leader>cF", function()
+            vim.lsp.buf.format({ async = true })
+          end, "Format")
           map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
 
           -- map("n", "gd", require("telescope.builtin").lsp_definitions, "Goto Definitions")
