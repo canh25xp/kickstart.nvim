@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  dependencies = { "mason.nvim" },
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
   keys = {
@@ -9,11 +10,18 @@ return {
         require("conform").format({ async = true, lsp_fallback = true })
       end,
       mode = "",
-      desc = "[F]ormat buffer",
+      desc = "Code Format",
     },
   },
   opts = {
     notify_on_error = false,
+
+    default_format_opts = {
+      timeout_ms = 3000,
+      async = false, -- not recommended to change
+      quiet = false, -- not recommended to change
+      lsp_format = "fallback", -- not recommended to change
+    },
     format_on_save = function(bufnr)
       -- Disable "format_on_save lsp_fallback" for languages that don't have a well standardized coding style.
       -- You can add additional languages here or re-enable it for the disabled ones.
