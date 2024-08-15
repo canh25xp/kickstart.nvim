@@ -115,10 +115,11 @@ map("n", "<C-Right>", "<cmd>vertical resize +1<cr>", { desc = "Increase Window W
 map("n", "H", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "L", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>bd", "<cmd>bp | bd #<cr>", { desc = "Delete Current Buffer" })
+map("n", "<leader>bd", "<cmd>bp|bd #<cr>", { desc = "Delete Current Buffer" })
+map("n", "<leader>bo", utils.Delete_Other_Buffers, { desc = "Delete Other Buffer" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
+-- map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+-- map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- Terminal Mappings
 map("n", "<leader>tt", utils.TabTerminal, { desc = "New Tab Terminal" })

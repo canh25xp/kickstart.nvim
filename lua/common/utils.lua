@@ -1,5 +1,15 @@
 local M = {}
 
+function M.Delete_Other_Buffers()
+  local bufs = vim.api.nvim_list_bufs()
+  local current_buf = vim.api.nvim_get_current_buf()
+  for _, i in ipairs(bufs) do
+    if i ~= current_buf then
+      vim.api.nvim_buf_delete(i, {})
+    end
+  end
+end
+
 function M.Load_Lazy()
   if not vim.g.load_lazy_plugins then
     require("config.lazy")
