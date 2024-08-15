@@ -36,6 +36,7 @@ return {
       cmp = true,
       dashboard = true,
       flash = true,
+      fidget = true,
       grug_far = true,
       gitsigns = true,
       headlines = true,
