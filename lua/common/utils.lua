@@ -23,19 +23,16 @@ end
 
 function M.TabTerminal()
   vim.cmd("tab terminal")
-  vim.cmd.startinsert()
 end
 
 function M.LazyGit()
   vim.cmd("tab terminal lazygit")
   vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
-  vim.cmd.startinsert()
 end
 
 function M.LazyGit_Log()
   vim.cmd("tab terminal lazygit log")
   vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
-  vim.cmd.startinsert()
 end
 
 function M.ReloadConfig()
