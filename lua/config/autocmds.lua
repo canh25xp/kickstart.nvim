@@ -11,6 +11,12 @@ autocmd("TermOpen", { command = "setlocal nonumber norelativenumber signcolumn=n
 
 autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert" })
 
+autocmd("TermClose", {
+  callback = function()
+    vim.cmd("bdelete")
+  end,
+})
+
 -- resize splits if window got resized
 autocmd({ "VimResized" }, {
   group = general,
