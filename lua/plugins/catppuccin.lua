@@ -20,12 +20,13 @@ return {
   opts = {
     flavour = "auto", -- latte, frappe, macchiato, mocha
     transparent_background = false,
+    term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
     background = {
       light = "latte",
       dark = "mocha",
     },
     dim_inactive = {
-      enabled = true, -- dims the background color of inactive window
+      enabled = false, -- dims the background color of inactive window
       shade = "dark",
       percentage = 0.5, -- percentage of the shade to apply to the inactive window
     },
@@ -66,7 +67,8 @@ return {
       which_key = true,
     },
   },
-  config = function()
+  config = function(_, opts)
+    require("catppuccin").setup(opts)
     vim.cmd.colorscheme("catppuccin-mocha")
   end,
 }
