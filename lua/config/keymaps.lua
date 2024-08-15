@@ -11,8 +11,8 @@ map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 
-map("n", "J", "mzJ`z", {desc = "Join without moving cursor"})
-map("n", "<leader>/", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = "Change word under cursor"})
+map("n", "J", "mzJ`z", { desc = "Join without moving cursor" })
+map("n", "<leader>/", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change word under cursor" })
 
 -- Yank and Paste
 map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
@@ -42,8 +42,8 @@ map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- Sessions
-map("n", "<leader>qS", ":mksession!<cr>", { desc = "Save Session here" })
-map("n", "<leader>qR", ":source Session.vim<cr>", { desc = "Restore Saved Session" })
+map("n", "<leader>qr", ":source Session.vim<cr>", { desc = "Restore Session" })
+map("n", "<leader>qs", ":mksession!<cr>", { desc = "Save Session" })
 
 -- UI
 map("n", "<leader>us", utils.Toggle_Signcolumn, { desc = "Toggle Signcolumn" })
