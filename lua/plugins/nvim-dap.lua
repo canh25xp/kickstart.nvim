@@ -71,7 +71,7 @@ return {
       floating = {
         border = "single",
         mappings = {
-          close = { "q", "<Esc>" },
+          close = { "qq", "<Esc>" },
         },
       },
       icons = { expanded = "▾", collapsed = "▸", current_frame = "*" },
