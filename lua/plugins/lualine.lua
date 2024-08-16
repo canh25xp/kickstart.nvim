@@ -1,5 +1,17 @@
 local ui = require("common.ui")
 local icons = ui.icons
+local git = {
+  added = icons.git.added,
+  modified = icons.git.modified,
+  removed = icons.git.removed,
+}
+
+local diagnostics = {
+  error = icons.diagnostics.Error,
+  warn = icons.diagnostics.Warn,
+  info = icons.diagnostics.Info,
+  hint = icons.diagnostics.Hint,
+}
 
 return {
   "nvim-lualine/lualine.nvim",
@@ -12,35 +24,30 @@ return {
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
     },
+    extensions = { "neo-tree", "lazy", "toggleterm" },
     sections = {
-      lualine_a = {
-        "mode",
-      },
+      lualine_a = { "mode" },
       lualine_b = {
-        {
-          "branch",
-        },
+        { "branch" },
         {
           "diff",
-          symbols = {
-            added = icons.git.added,
-            modified = icons.git.modified,
-            removed = icons.git.removed,
-          },
+          symbols = git,
+          source = function()
+            local gitsigns = vim.b.gitsigns_status_dict
+            if gitsigns then
+              return {
+                added = gitsigns.added,
+                modified = gitsigns.changed,
+                removed = gitsigns.removed,
+              }
+            end
+          end,
         },
       },
       lualine_c = {
         { "filetype", padding = { left = 1, right = 0 }, separator = " ", icon_only = true },
         { "filename", padding = { left = 0, right = 1 } },
-        {
-          "diagnostics",
-          symbols = {
-            error = icons.diagnostics.Error,
-            warn = icons.diagnostics.Warn,
-            info = icons.diagnostics.Info,
-            hint = icons.diagnostics.Hint,
-          },
-        },
+        { "diagnostics", symbols = diagnostics },
       },
 
       lualine_x = {
@@ -66,6 +73,5 @@ return {
       },
       lualine_z = { "encoding", "filesize", "fileformat" },
     },
-    extensions = { "neo-tree", "lazy", "toggleterm" },
   },
 }
