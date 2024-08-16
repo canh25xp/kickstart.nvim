@@ -1,5 +1,5 @@
 return {
-  "L3MON4D3/LuaSnip",
+  "L3MON4D3/luaSnip",
   lazy = true,
   build = (function()
     -- Build Step is needed for regex support in snippets.
