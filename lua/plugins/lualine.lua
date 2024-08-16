@@ -44,27 +44,27 @@ return {
       },
 
       lualine_x = {
-        -- stylua: ignore
+        -- stylua: ignore start
         {
           function() return require("noice").api.status.command.get() end,
           cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
           separator = " "
         },
-        -- stylua: ignore
         {
           function() return require("noice").api.status.mode.get() end,
           cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
         },
+        {
+          function() return "  " .. require("dap").status() end,
+          cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
+        },
+        -- stylua: ignore stop
       },
       lualine_y = {
         { "progress", separator = " ", padding = { left = 1, right = 0 } },
         { "location", padding = { left = 0, right = 1 } },
       },
-      lualine_z = {
-        { "encoding" },
-        { "filesize" },
-        { "fileformat" },
-      },
+      lualine_z = { "encoding", "filesize", "fileformat" },
     },
     extensions = { "neo-tree", "lazy", "toggleterm" },
   },
