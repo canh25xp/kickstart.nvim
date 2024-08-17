@@ -8,7 +8,7 @@ return {
   },
   cmd = "Neotree",
   keys = {
-    { "<C-n>", ":Neotree action=show toggle=true<esc>", desc = "NeoTree Toggle" },
+    -- { "<C-n>", ":Neotree action=show toggle=true<esc>", desc = "NeoTree Toggle" },
     { "<leader>e", "<leader>fe", desc = "NeoTree Explorer (root)", remap = true },
     { "<leader>E", "<leader>fE", desc = "NeoTree Explorer (cwd)", remap = true },
     {
