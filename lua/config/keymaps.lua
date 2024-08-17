@@ -1,6 +1,7 @@
+local map = vim.keymap.set
 local utils = require("common.utils")
 
-local map = vim.keymap.set
+map("n", "<leader>cs", "<cmd>so<CR>", { desc = "Source this file" })
 
 -- General
 map("i", "jk", "<esc>", { desc = "Escape insert mode" })
@@ -40,8 +41,7 @@ map("n", "<leader>qs", ":mksession!<cr>", { desc = "Save Session" })
 
 -- UI
 map("n", "<leader>us", utils.Toggle_Signcolumn, { desc = "Toggle Signcolumn" })
-map("n", "<leader>ur", utils.ReloadConfig, { desc = "Reload Config" })
-map("n", "<leader>uR", ":nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
+map("n", "<leader>ur", ":nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 
 -- Diagnostic
 map("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
