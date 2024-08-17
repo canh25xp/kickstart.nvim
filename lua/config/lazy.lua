@@ -21,7 +21,25 @@ local opts = {
     -- Import all plugins
     { import = "plugins" },
     -- Import single plugin
-    -- { import = "plugins/vim-tmux-navigator" },
+    -- { import = "plugins.catppuccin" },
+    -- { import = "plugins.neo-tree" },
+    -- { import = "plugins.nvim-treesitter" },
+    -- { import = "plugins.lspconfig" },
+    -- { import = "plugins.nvim-cmp" },
+    -- { import = "plugins.conform" },
+    -- { import = "plugins.toggleterm" },
+    -- { import = "plugins.persistance" },
+    -- { import = "plugins.which-key" },
+    -- { import = "plugins.nvim-lint" },
+    -- { import = "plugins.zenmode" },
+    -- { import = "plugins.mini" },
+    -- { import = "plugins.lualine" },
+    -- { import = "plugins.noice" },
+    -- { import = "plugins.gitsigns" },
+    -- { import = "plugins.url-open" },
+    -- { import = "plugins.nvim-dap" },
+    -- { import = "plugins.peek" },
+    -- { import = "plugins.autopairs" },
   },
   checker = { enabled = false }, -- Don't automatically check for plugin updates
 
