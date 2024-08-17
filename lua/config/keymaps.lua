@@ -122,6 +122,7 @@ map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 
 -- Terminal Mappings
 map("n", "<leader>tt", utils.TabTerminal, { desc = "New Tab Terminal" })
+map("n", "<leader>md", utils.Glow, { desc = "Markdown Preview with Glow" })
 map("n", "<leader>gg", utils.LazyGit, { desc = "Lazygit" })
 map("n", "<leader>gl", utils.LazyGit_Log, { desc = "Lazygit Log" })
 map("n", "<C-\\>", "<cmd>split|terminal<CR>", { desc = "New Terminal" })

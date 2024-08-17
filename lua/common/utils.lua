@@ -35,6 +35,11 @@ function M.TabTerminal()
   vim.cmd("tab terminal")
 end
 
+function M.Glow()
+  vim.cmd("tab terminal glow")
+  vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
+end
+
 function M.LazyGit()
   vim.cmd("tab terminal lazygit")
   vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
