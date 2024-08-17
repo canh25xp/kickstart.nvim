@@ -16,7 +16,6 @@ return {
         -- header = ascii.art.text.doom.DooM,
         header = vim.split(logo, "\n"),
 
-        -- FIXME: replace the LazyGit command with toggle term
         -- stylua: ignore
         center = {
           { action = "Telescope find_files",                                desc = " Find File",       icon = " ", key = "f" },
@@ -24,7 +23,7 @@ return {
           { action = "Neotree position=current",                            desc = " Neotree",         icon = " ", key = "e" },
           { action = 'lua require("persistence").load()',                   desc = " Restore Session", icon = " ", key = "s" },
           { action = "Lazy",                                                desc = " Lazy",            icon = "󰒲 ", key = "l" },
-          { action = function() vim.api.nvim_input("<cmd>LazyGit<cr>") end, desc = " Lazygit",         icon = " ", key = "g" },
+          { action = function() require("common.utils").LazyGit() end,      desc = " Lazygit",         icon = " ", key = "g" },
           { action = function() vim.api.nvim_input("<cmd>qa<cr>") end,      desc = " Quit",            icon = " ", key = "q" },
         },
       },
