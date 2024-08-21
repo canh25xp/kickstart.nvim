@@ -37,4 +37,7 @@ return {
     --   end
     -- end
   end,
+  keys = {
+    { "<localLeader>l", "", desc = "+vimtext" },
+  },
 }
