@@ -66,7 +66,13 @@ return {
     "rcarriga/nvim-dap-ui",
     dependencies = {
       "nvim-neotest/nvim-nio",
-      -- "theHamsta/nvim-dap-virtual-text",
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        opts = {
+          commented = false, -- prefix virtual text with comment string
+          virt_text_pos = 'eol',
+        },
+      },
     },
     -- stylua: ignore
     keys = {
