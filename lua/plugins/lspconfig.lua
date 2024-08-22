@@ -1,36 +1,13 @@
-local function show_only_one_sign_in_sign_column()
-  ---custom namespace
+local function signcolumn_single_sign()
   local ns = vim.api.nvim_create_namespace("severe-diagnostics")
-
-  ---reference to the original handler
   local orig_signs_handler = vim.diagnostic.handlers.signs
 
-  ---Overriden diagnostics signs helper to only show the single most relevant sign
-  ---@see `:h diagnostic-handlers`
-  vim.diagnostic.handlers.signs = {
-    show = function(_, bufnr, _, opts)
-      -- get all diagnostics from the whole buffer rather
-      -- than just the diagnostics passed to the handler
-      local diagnostics = vim.diagnostic.get(bufnr)
-
-      local filtered_diagnostics = filter_diagnostics(diagnostics)
-
-      -- pass the filtered diagnostics (with the
-      -- custom namespace) to the original handler
-      orig_signs_handler.show(ns, bufnr, filtered_diagnostics, opts)
-    end,
-
-    hide = function(_, bufnr)
-      orig_signs_handler.hide(ns, bufnr)
-    end,
-  }
-
-  filter_diagnostics = function(diagnostics)
+  local function filter_diagnostics(diagnostics)
     if not diagnostics then
       return {}
     end
 
-    -- find the "worst" diagnostic per line
+    -- Find the "worst" diagnostic per line
     local most_severe = {}
     for _, cur in pairs(diagnostics) do
       local max = most_severe[cur.lnum]
@@ -41,9 +18,24 @@ local function show_only_one_sign_in_sign_column()
       end
     end
 
-    -- return list of diagnostics
-    return vim.tbl_values(most_severe)
+    return vim.tbl_values(most_severe) -- return list of diagnostics
   end
+
+  vim.diagnostic.handlers.signs = {
+    show = function(_, bufnr, _, opts)
+      -- Get all diagnostics from the whole buffer rather than just the diagnostics passed to the handler
+      local diagnostics = vim.diagnostic.get(bufnr)
+
+      local filtered_diagnostics = filter_diagnostics(diagnostics)
+
+      -- Pass the filtered diagnostics (with the custom namespace) to the original handler
+      orig_signs_handler.show(ns, bufnr, filtered_diagnostics, opts)
+    end,
+
+    hide = function(_, bufnr)
+      orig_signs_handler.hide(ns, bufnr)
+    end,
+  }
 end
 return {
   {
@@ -168,7 +160,7 @@ return {
         },
       })
     end,
-    show_only_one_sign_in_sign_column(),
+    signcolumn_single_sign(),
   },
   {
     "williamboman/mason.nvim",
