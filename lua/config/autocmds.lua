@@ -47,7 +47,7 @@ autocmd("FileType", {
     map("n", "qq", "<cmd>close<cr>", {
       buffer = event.buf,
       silent = true,
-      desc = "Quit buffer",
+      desc = "Quick Quit buffer",
     })
   end,
 })
