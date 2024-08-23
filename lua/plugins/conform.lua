@@ -38,6 +38,7 @@ return {
       lua = { "stylua" },
       sh = { "shfmt" },
       python = { "ruff_format" },
+      markdown = { "markdownlint" },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
