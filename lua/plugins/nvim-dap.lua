@@ -15,8 +15,6 @@ return {
     "mfussenegger/nvim-dap",
     dependencies = {
       "rcarriga/nvim-dap-ui",
-      "williamboman/mason.nvim",
-      "jay-babu/mason-nvim-dap.nvim",
     },
     -- stylua: ignore
     keys = {
@@ -44,16 +42,6 @@ return {
       { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Debug: Widgets" },
     },
     config = function()
-      require("mason-nvim-dap").setup({
-        automatic_installation = true,
-        handlers = {},
-        ensure_installed = {
-          ensure_installed = {
-            "python",
-            "cppdbg",
-          },
-        },
-      })
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
       for name, sign in pairs(require("common.ui").icons.dap) do
@@ -70,7 +58,7 @@ return {
         "theHamsta/nvim-dap-virtual-text",
         opts = {
           commented = false, -- prefix virtual text with comment string
-          virt_text_pos = 'eol',
+          virt_text_pos = "eol",
         },
       },
     },

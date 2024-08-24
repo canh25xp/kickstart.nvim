@@ -42,6 +42,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim", -- NOTE: Must be loaded before dependants
+      "jay-babu/mason-nvim-dap.nvim",
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       "hrsh7th/cmp-nvim-lsp", -- For auto completion
@@ -137,6 +138,15 @@ return {
 
       -- Ensure the servers and tools above are installed
       require("mason").setup()
+
+      require("mason-nvim-dap").setup({
+        automatic_installation = true,
+        handlers = {},
+        ensure_installed = {
+          "python",
+          "cppdbg",
+        },
+      })
 
       -- You can add other tools here that you want Mason to install for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
