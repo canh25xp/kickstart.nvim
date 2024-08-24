@@ -3,7 +3,7 @@ return {
   event = "InsertEnter",
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
-    "L3MON4D3/LuaSnip",
+    "L3MON4D3/luaSnip",
     "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
