@@ -1,7 +1,7 @@
 -- markdown preview
 return {
   "toppair/peek.nvim",
-  -- build = "deno task --quiet build:fast",
+  build = "deno task --quiet build:fast",
   keys = {
     {
       "<leader>cp",
