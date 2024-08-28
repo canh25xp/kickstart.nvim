@@ -48,9 +48,7 @@ local opts = {
     enabled = true,
     notify = true, -- get a notification when changes are found
   },
-
-  install = { colorscheme = { "catppuccin-mocha" } },
-
+  install = { colorscheme = { "habamax", "catppuccin-mocha" } },
   performance = {
     cache = {
       enabled = true,

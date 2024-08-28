@@ -97,7 +97,7 @@ else
   }
 end
 
-vim.cmd.colorscheme("sorbet")
+vim.cmd.colorscheme("habamax")
 
 if vim.g.neovide then
   -- vim.o.guifont = "CaskaydiaCove Nerd Font:h12"
