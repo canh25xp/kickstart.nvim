@@ -1,6 +1,3 @@
--- vim.cmd([[set runtimepath^=~/.vim runtimepath+=~/.vim/after]])
--- vim.cmd([[let &packpath = &runtimepath]])
--- vim.cmd([[source ~/.vimrc]])
 vim.opt.runtimepath:prepend("~/.vim/after")
 vim.opt.packpath = vim.opt.runtimepath:get()
 vim.cmd("source ~/.vimrc")
