@@ -1,5 +1,6 @@
 local map = vim.keymap.set
 local utils = require("common.utils")
+local terminal = require("common.terminal")
 
 map("n", "<leader>cs", "<cmd>so<CR>", { desc = "Source this file" })
 
@@ -126,8 +127,9 @@ map("n", "<leader>tt", utils.TabTerminal, { desc = "New Tab Terminal" })
 map("n", "<leader>md", utils.Glow, { desc = "Markdown Preview with Glow" })
 map("n", "<leader>gg", utils.LazyGit, { desc = "Lazygit" })
 map("n", "<leader>gl", utils.LazyGit_Log, { desc = "Lazygit Log" })
-map("n", "<C-\\>", "<cmd>split|terminal<CR>", { desc = "New Terminal" })
-map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+-- map("n", "<C-\\>", "<cmd>split|terminal<CR>", { desc = "New Terminal" })
+-- map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
+map({"n", "t"}, "<C-\\>", terminal.Toggle, { desc = "Toggle Terminal" })
 map("t", "jk", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
 map("t", "<C-_>", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
 map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Focus Left Window" })
