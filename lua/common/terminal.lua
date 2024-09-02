@@ -28,10 +28,10 @@ function M.Close()
 end
 
 function M.Toggle()
-  if vim.fn.win_gotoid(M.lua_terminal_window) == 1 then
-    M.Close()
-  else
+  if vim.fn.win_gotoid(M.lua_terminal_window) == 0 then
     M.Open()
+  else
+    M.Close()
   end
 end
 
