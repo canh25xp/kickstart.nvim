@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
 vim.g.load_lazy_plugins = true
+vim.g.is_windows = vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1
 
 -- Netrw config
 -- vim.g.loaded_netrwPlugin = 1 -- Set to 1 to disable Netrw
@@ -108,7 +109,7 @@ if vim.g.neovide then
   vim.g.neovide_transparency = 1.0
 end
 
-if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
+if vim.g.is_windows then
   vim.g.load_lazy_plugins = false
   vim.o.shell = "powershell"
 
