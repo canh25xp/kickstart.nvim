@@ -15,32 +15,7 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 local opts = {
-  spec = {
-    -- Lazyvim distro
-    -- { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    -- Import all plugins
-    { import = "plugins" },
-    -- Import single plugin
-    -- { import = "plugins.catppuccin" },
-    -- { import = "plugins.neo-tree" },
-    -- { import = "plugins.nvim-treesitter" },
-    -- { import = "plugins.lspconfig" },
-    -- { import = "plugins.nvim-cmp" },
-    -- { import = "plugins.conform" },
-    -- { import = "plugins.toggleterm" },
-    -- { import = "plugins.persistance" },
-    -- { import = "plugins.which-key" },
-    -- { import = "plugins.nvim-lint" },
-    -- { import = "plugins.zenmode" },
-    -- { import = "plugins.mini" },
-    -- { import = "plugins.lualine" },
-    -- { import = "plugins.noice" },
-    -- { import = "plugins.gitsigns" },
-    -- { import = "plugins.url-open" },
-    -- { import = "plugins.nvim-dap" },
-    -- { import = "plugins.peek" },
-    -- { import = "plugins.autopairs" },
-  },
+  spec = {},
   checker = { enabled = false }, -- Don't automatically check for plugin updates
 
   change_detection = {
@@ -88,5 +63,33 @@ local opts = {
     },
   },
 }
+
+if vim.g.is_windows then
+  opts.spec = {
+    { import = "plugins.catppuccin" },
+    { import = "plugins.neo-tree" },
+    { import = "plugins.nvim-treesitter" },
+    { import = "plugins.lsp" },
+    { import = "plugins.dap" },
+    { import = "plugins.nvim-cmp" },
+    { import = "plugins.conform" },
+    { import = "plugins.lualine" },
+    -- { import = "plugins.toggleterm" },
+    -- { import = "plugins.persistance" },
+    -- { import = "plugins.which-key" },
+    -- { import = "plugins.nvim-lint" },
+    -- { import = "plugins.zenmode" },
+    -- { import = "plugins.mini" },
+    -- { import = "plugins.noice" },
+    -- { import = "plugins.gitsigns" },
+    -- { import = "plugins.url-open" },
+    -- { import = "plugins.peek" },
+    -- { import = "plugins.autopairs" },
+  }
+else
+  opts.spec = {
+    { import = "plugins" },
+  }
+end
 
 require("lazy").setup(opts)
