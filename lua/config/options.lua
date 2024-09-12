@@ -110,7 +110,6 @@ if vim.g.neovide then
 end
 
 if vim.g.is_windows then
-  vim.g.load_lazy_plugins = false
   if vim.fn.executable("pwsh") == 1 then
     vim.o.shell = "pwsh"
   elseif vim.fn.executable("powershell") == 1 then
