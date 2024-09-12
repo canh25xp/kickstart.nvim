@@ -111,14 +111,13 @@ end
 
 if vim.g.is_windows then
   vim.g.load_lazy_plugins = false
-  vim.o.shell = "powershell"
-
-  -- if vim.fn.executable("pwsh") == 1 then
-  --   vim.o.shell = "pwsh"
-  -- else
-  --   vim.notify("No pwsh executable found", vim.log.levels.ERROR)
-  -- end
-
+  if vim.fn.executable("pwsh") == 1 then
+    vim.o.shell = "pwsh"
+  elseif vim.fn.executable("powershell") == 1 then
+    vim.o.shell = "powershell"
+  else
+    vim.api.nvim_err_writeln("No powershell executable found")
+  end
   -- Setting shell command flags
   vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
   -- vim.o.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';"
