@@ -1,5 +1,9 @@
 local M = {}
 
+function M.pick_chezmoi()
+  require("telescope").extensions.chezmoi.find_files()
+end
+
 function M.Delete_Other_Buffers()
   local bufs = vim.api.nvim_list_bufs()
   local current_buf = vim.api.nvim_get_current_buf()

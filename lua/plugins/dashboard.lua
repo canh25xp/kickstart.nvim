@@ -23,6 +23,7 @@ return {
           { action = "Neotree position=current",                            desc = " Neotree",         icon = " ", key = "e" },
           { action = 'lua require("persistence").load()',                   desc = " Restore Session", icon = " ", key = "s" },
           { action = "Lazy",                                                desc = " Lazy",            icon = "󰒲 ", key = "l" },
+          { action = require("common.utils").pick_chezmoi,                  desc = " Chezmoi",         icon = " ", key = "c", },
           { action = function() require("common.utils").LazyGit() end,      desc = " Lazygit",         icon = " ", key = "g" },
           { action = function() vim.api.nvim_input("<cmd>qa<cr>") end,      desc = " Quit",            icon = " ", key = "q" },
         },
