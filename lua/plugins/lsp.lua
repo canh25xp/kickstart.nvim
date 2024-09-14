@@ -1,42 +1,3 @@
-local function signcolumn_single_sign()
-  local ns = vim.api.nvim_create_namespace("severe-diagnostics")
-  local orig_signs_handler = vim.diagnostic.handlers.signs
-
-  local function filter_diagnostics(diagnostics)
-    if not diagnostics then
-      return {}
-    end
-
-    -- Find the "worst" diagnostic per line
-    local most_severe = {}
-    for _, cur in pairs(diagnostics) do
-      local max = most_severe[cur.lnum]
-
-      -- higher severity has lower value (`:h diagnostic-severity`)
-      if not max or cur.severity < max.severity then
-        most_severe[cur.lnum] = cur
-      end
-    end
-
-    return vim.tbl_values(most_severe) -- return list of diagnostics
-  end
-
-  vim.diagnostic.handlers.signs = {
-    show = function(_, bufnr, _, opts)
-      -- Get all diagnostics from the whole buffer rather than just the diagnostics passed to the handler
-      local diagnostics = vim.diagnostic.get(bufnr)
-
-      local filtered_diagnostics = filter_diagnostics(diagnostics)
-
-      -- Pass the filtered diagnostics (with the custom namespace) to the original handler
-      orig_signs_handler.show(ns, bufnr, filtered_diagnostics, opts)
-    end,
-
-    hide = function(_, bufnr)
-      orig_signs_handler.hide(ns, bufnr)
-    end,
-  }
-end
 return {
   {
     "neovim/nvim-lspconfig",
@@ -184,7 +145,7 @@ return {
         },
       })
     end,
-    signcolumn_single_sign(),
+    require("common.utils").signcolumn_single_sign(),
   },
   {
     "williamboman/mason.nvim",
