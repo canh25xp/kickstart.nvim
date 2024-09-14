@@ -17,13 +17,11 @@ vim.opt.runtimepath:prepend(lazypath)
 local opts = {
   spec = {},
   checker = { enabled = false }, -- Don't automatically check for plugin updates
-
   change_detection = {
-    -- automatically check for config file changes and reload the ui
-    enabled = true,
+    enabled = true, -- automatically check for config file changes and reload the ui
     notify = true, -- get a notification when changes are found
   },
-  install = { colorscheme = { "habamax", "catppuccin-mocha" } },
+  install = { colorscheme = { "catppuccin-mocha", "habamax" } },
   performance = {
     cache = {
       enabled = true,
@@ -80,14 +78,6 @@ if vim.g.is_windows then
     { import = "plugins.gitsigns" },
     { import = "plugins.chezmoi" },
     { import = "plugins.dashboard" },
-    -- { import = "plugins.which-key" },
-    -- { import = "plugins.nvim-lint" },
-    -- { import = "plugins.zenmode" },
-    -- { import = "plugins.mini" },
-    -- { import = "plugins.noice" },
-    -- { import = "plugins.url-open" },
-    -- { import = "plugins.peek" },
-    -- { import = "plugins.autopairs" },
   }
 else
   opts.spec = {
