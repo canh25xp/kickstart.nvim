@@ -4,6 +4,7 @@ vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
 vim.g.load_lazy_plugins = true
 vim.g.is_windows = vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1
+vim.g.is_linux = vim.fn.has("unix") == 1
 
 -- Netrw config
 -- vim.g.loaded_netrwPlugin = 1 -- Set to 1 to disable Netrw
