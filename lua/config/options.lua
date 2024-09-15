@@ -17,6 +17,10 @@ vim.g.netrw_altv = 1
 vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]] -- Hide dotfiles
 vim.g.netrw_localcopydircmd = "cp -r" -- Change the copy command
 
+vim.g.loaded_perl_provider = 0  -- Disable perl provider
+vim.g.loaded_ruby_provider = 0  -- Disable ruby provider
+vim.g.loaded_node_provider = 0  -- Disable node provider
+
 -- vim.opt.swapfile = false
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.completeopt = "menu,menuone,noselect"
