@@ -1,7 +1,17 @@
--- local ascii = require("ascii")
+local ascii = require("ascii")
 local logo = require("common.ui").logo
+local logo_padding = vim.split(logo, "\n")
+local dynamic_logo = ascii.get_random("text", "neovim")
 
--- local dynamic_logo = ascii.get_random("text", "neovim")
+local header = ascii.art.text.neovim.dos_rebel
+
+local function add_padding(tbl, n)
+  for i = 1, n do
+    table.insert(tbl, 1, [[ ]])
+  end
+end
+
+add_padding(header, 6)
 
 return {
   "nvimdev/dashboard-nvim",
@@ -13,9 +23,7 @@ return {
         statusline = false, -- this is taken care of by lualine, enabling this messes up the actual laststatus setting after loading a file
       },
       config = {
-        -- header = ascii.art.text.doom.DooM,
-        header = vim.split(logo, "\n"),
-
+        header = header,
         -- stylua: ignore
         center = {
           { action = "Telescope find_files",                                desc = " Find File",       icon = " ", key = "f" },
