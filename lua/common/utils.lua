@@ -41,17 +41,20 @@ end
 
 function M.Glow()
   vim.cmd("tab terminal glow")
-  vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
+  -- vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
+  vim.keymap.set("t", "<esc>", "<esc>", { buffer = 0, nowait = true })
 end
 
 function M.LazyGit()
   vim.cmd("tab terminal lazygit")
-  vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
+  -- vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
+  vim.keymap.set("t", "<esc>", "<esc>", { buffer = 0, nowait = true })
 end
 
 function M.LazyGit_Log()
   vim.cmd("tab terminal lazygit log")
-  vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
+  -- vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
+  vim.keymap.set("t", "<esc>", "<esc>", { buffer = 0, nowait = true })
 end
 
 function M.ReloadConfig()
