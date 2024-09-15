@@ -2,16 +2,20 @@ return {
   "MaximilianLloyd/ascii.nvim",
   enabled = true,
   lazy = true,
+  dependencies = {
+    "nvim-telescope/telescope.nvim",
+    "MunifTanjim/nui.nvim",
+  },
   keys = {
     {
-      "<leader>a",
+      "<leader>sa",
       function()
-        require("ascii").preview()
+        require("telescope").extensions.ascii.ascii()
       end,
       desc = "Ascii Preview",
     },
   },
-  dependencies = {
-    "MunifTanjim/nui.nvim",
-  },
+  config = function()
+    require("telescope").load_extension("ascii")
+  end,
 }
