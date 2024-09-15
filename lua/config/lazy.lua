@@ -77,7 +77,6 @@ if vim.g.is_windows then
     { import = "plugins.persistance" },
     { import = "plugins.gitsigns" },
     { import = "plugins.chezmoi" },
-    { import = "plugins.dashboard" },
   }
 else
   opts.spec = {
