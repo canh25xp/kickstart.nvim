@@ -68,8 +68,9 @@ if vim.g.is_windows then
     { import = "plugins.neo-tree" },
     { import = "plugins.nvim-treesitter" },
     { import = "plugins.lsp" },
-    { import = "plugins.dap" },
+    -- { import = "plugins.lspconfig" },
     { import = "plugins.nvim-cmp" },
+    -- { import = "plugins.dap" },
     { import = "plugins.conform" },
     { import = "plugins.lualine" },
     { import = "plugins.telescope" },
@@ -77,6 +78,7 @@ if vim.g.is_windows then
     { import = "plugins.persistance" },
     { import = "plugins.gitsigns" },
     { import = "plugins.chezmoi" },
+    { import = "plugins.bufferline" },
   }
 else
   opts.spec = {
