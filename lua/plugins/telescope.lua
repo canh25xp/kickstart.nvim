@@ -15,18 +15,19 @@ return {
     { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
   },
   config = function()
-    -- Two important keymaps to use while in Telescope are:
+    -- Shows all keymaps for the current Telescope picker.
     -- Insert mode: <c-/>
     -- Normal mode: ?
-    --
-    -- This opens a window that shows you all of the keymaps for the current Telescope picker.
-    -- This is really useful to discover what Telescope can do as well as how to actually do it!
     require("telescope").setup({
-      -- defaults = {
-      --   mappings = {
-      --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-      --   },
-      -- },
+      defaults = {
+        mappings = {
+          i = {
+            ["<c-enter>"] = "to_fuzzy_refine",
+            ["<C-j>"] = require("telescope.actions").cycle_history_next,
+            ["<C-k>"] = require("telescope.actions").cycle_history_prev,
+          },
+        },
+      },
       -- pickers = {}
       extensions = {
         ["ui-select"] = {
