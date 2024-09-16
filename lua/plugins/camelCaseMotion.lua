@@ -1,5 +1,5 @@
 return {
-  "bkad/CamelCaseMotion",
+  "bkad/camelCaseMotion",
   config = function()
     vim.cmd([[
       " Map to w, b and e mappings
