@@ -72,11 +72,13 @@ if vim.g.is_windows then
     { import = "plugins.nvim-cmp" },
     { import = "plugins.conform" },
     { import = "plugins.lualine" },
+    { import = "plugins.bufferline" },
     { import = "plugins.telescope" },
     { import = "plugins.toggleterm" },
     { import = "plugins.persistance" },
     { import = "plugins.gitsigns" },
     { import = "plugins.chezmoi" },
+    { import = "plugins.vim-sleuth" },
   }
 else
   opts.spec = {
