@@ -217,15 +217,15 @@ function M.get_cmd_output(cmd, cwd)
   local command = table.remove(cmd, 1)
   local stderr = {}
   local stdout, ret = require("plenary.job")
-    :new({
-      command = command,
-      args = cmd,
-      cwd = cwd,
-      on_stderr = function(_, data)
-        table.insert(stderr, data)
-      end,
-    })
-    :sync()
+      :new({
+        command = command,
+        args = cmd,
+        cwd = cwd,
+        on_stderr = function(_, data)
+          table.insert(stderr, data)
+        end,
+      })
+      :sync()
 
   return stdout, ret, stderr
 end
@@ -320,6 +320,13 @@ end
 function M.run_shell_script()
   local script = vim.fn.expand("%:p")
   require("toggleterm").exec(script)
+end
+
+-- Change border of documentation hover window
+-- github.com/neovim/neovim/pull/13998.
+--- @param border string
+function M.set_lsp_border(border)
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border, })
 end
 
 function M.signcolumn_single_sign()
