@@ -6,13 +6,11 @@ local utils = require("common.utils")
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp", -- For auto completion
-    },
+    dependencies = {},
     event = { "BufRead", "BufNewFile" },
     config = function()
-      local custom_attach = function(client, bufnr)
-        local map = function(modes, keys, func, desc)
+      local function lsp_attach(client, bufnr)
+        local function map(modes, keys, func, desc)
           vim.keymap.set(modes, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
         end
 
@@ -31,65 +29,15 @@ return {
             vim.lsp.buf.format({ async = true })
           end, "Format")
         end
-
-        api.nvim_create_autocmd("CursorHold", {
-          buffer = bufnr,
-          callback = function()
-            local float_opts = {
-              focusable = false,
-              close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-              border = "rounded",
-              source = "always", -- show source in diagnostic popup window
-              prefix = " ",
-            }
-
-            if not vim.b.diagnostics_pos then
-              vim.b.diagnostics_pos = { nil, nil }
-            end
-
-            local cursor_pos = api.nvim_win_get_cursor(0)
-            if (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2]) and #diagnostic.get() > 0 then
-              diagnostic.open_float(nil, float_opts)
-            end
-
-            vim.b.diagnostics_pos = cursor_pos
-          end,
-        })
-
-        -- The blow command will highlight the current variable and its usages in the buffer.
-        if client.server_capabilities.documentHighlightProvider then
-          vim.cmd([[
-            hi! link LspReferenceRead Visual
-            hi! link LspReferenceText Visual
-            hi! link LspReferenceWrite Visual
-          ]])
-
-          local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-          api.nvim_create_autocmd("CursorHold", {
-            group = gid,
-            buffer = bufnr,
-            callback = function()
-              lsp.buf.document_highlight()
-            end,
-          })
-
-          api.nvim_create_autocmd("CursorMoved", {
-            group = gid,
-            buffer = bufnr,
-            callback = function()
-              lsp.buf.clear_references()
-            end,
-          })
-        end
       end
 
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
       local lspconfig = require("lspconfig")
 
       if utils.executable("lua-language-server") then
         -- https://github.com/LuaLS/lua-language-server/wiki/Settings .
         lspconfig.lua_ls.setup({
-          on_attach = custom_attach,
+          on_attach = lsp_attach,
           settings = {
             Lua = {
               runtime = {
