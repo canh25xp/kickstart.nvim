@@ -1,6 +1,3 @@
-local api = vim.api
-local lsp = vim.lsp
-local diagnostic = vim.diagnostic
 local utils = require("common.utils")
 
 return {
@@ -67,10 +64,5 @@ return {
   {
     "Bilal2453/luvit-meta",
     lazy = true,
-  },
-  {
-    "b0o/schemaStore.nvim",
-    lazy = true,
-    version = false, -- last release is way too old
   },
 }
