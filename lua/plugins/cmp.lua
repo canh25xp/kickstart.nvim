@@ -4,6 +4,7 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
+    "hrsh7th/cmp-buffer",
   },
   config = function()
     local cmp = require("cmp")
@@ -11,6 +12,7 @@ return {
       sources = {
         { name = "nvim_lsp" },
         { name = "path" },
+        { name = "buffer" },
       },
       snippet = {
         expand = function(args)
