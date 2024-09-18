@@ -68,7 +68,7 @@ if vim.g.is_windows then
     { import = "plugins.neo-tree" },
     { import = "plugins.nvim-treesitter" },
     { import = "plugins.lsp" },
-    -- { import = "plugins.nvim-cmp" },
+    { import = "plugins.cmp" },
     -- { import = "plugins.dap" },
     { import = "plugins.conform" },
     { import = "plugins.lualine" },

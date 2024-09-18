@@ -3,7 +3,9 @@ local utils = require("common.utils")
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = {},
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+    },
     event = { "BufRead", "BufNewFile" },
     config = function()
       local function lsp_attach(client, bufnr)
@@ -29,6 +31,7 @@ return {
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       local lspconfig = require("lspconfig")
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       if utils.executable("lua-language-server") then
         -- https://github.com/LuaLS/lua-language-server/wiki/Settings .
