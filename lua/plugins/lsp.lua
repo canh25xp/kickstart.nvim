@@ -22,9 +22,7 @@ return {
         map("n", "<leader>cr", vim.lsp.buf.rename, "Rename")
         map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
         if client.server_capabilities.documentFormattingProvider then
-          map({ "n", "x" }, "<leader>cF", function()
-            vim.lsp.buf.format({ async = true })
-          end, "Format")
+          map({ "n", "x" }, "<leader>cF", function() vim.lsp.buf.format({ async = true }) end, "Format")
         end
 
       end
