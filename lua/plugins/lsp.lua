@@ -38,6 +38,10 @@ return {
           on_attach = lsp_attach,
           settings = {
             Lua = {
+              completion = {
+                callSnippet = "Replace",
+              },
+              diagnostics = { disable = { "missing-fields" } },
               runtime = {
                 version = "LuaJIT",
               },
