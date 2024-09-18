@@ -3,12 +3,14 @@ return {
   event = "InsertEnter",
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-path",
   },
   config = function()
     local cmp = require("cmp")
     cmp.setup({
       sources = {
         { name = "nvim_lsp" },
+        { name = "path" },
       },
       snippet = {
         expand = function(args)
