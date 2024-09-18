@@ -26,7 +26,6 @@ return {
         if client.server_capabilities.documentFormattingProvider then
           map({ "n", "x" }, "<leader>cF", function() vim.lsp.buf.format({ async = true }) end, "Format")
         end
-
       end
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -51,5 +50,18 @@ return {
       utils.set_lsp_border("rounded")
       utils.signcolumn_single_sign()
     end,
+  },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "luvit-meta/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
+    "Bilal2453/luvit-meta",
+    lazy = true,
   },
 }
