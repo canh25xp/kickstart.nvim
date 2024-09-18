@@ -17,6 +17,15 @@ autocmd("TermClose", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "",
+  callback = function()
+    if vim.fn.argc() == 0 and vim.bo.filetype == "" then
+      map("n", "r", "<leader>qr", { desc = "Restore Session", buffer = 0, remap = true })
+    end
+  end,
+})
+
 -- resize splits if window got resized
 autocmd({ "VimResized" }, {
   group = general,
