@@ -19,7 +19,7 @@ return {
   },
   opts = {
     flavour = "auto", -- latte, frappe, macchiato, mocha
-    transparent_background = false,
+    transparent_background = true,
     term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
     background = {
       light = "latte",
