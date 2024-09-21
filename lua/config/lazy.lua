@@ -65,6 +65,7 @@ if vim.g.is_windows then
     { import = "plugins.gitsigns" },
     { import = "plugins.chezmoi" },
     { import = "plugins.bufferline" },
+    { import = "plugins.fzf" },
   }
 else
   opts.spec = {
