@@ -22,6 +22,7 @@ local function compile_run_cpp()
     return
   end
 
+  -- BUG: Did not tested for cross platformm expecting bugs
   local cmd = string.format("%s %s %s -o %s && %s", compiler, flags, file_path, executable, executable)
 
   print(cmd)
