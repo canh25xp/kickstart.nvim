@@ -1,3 +1,4 @@
+local lsp = vim.lsp
 local utils = require("common.utils")
 
 return {
@@ -14,24 +15,25 @@ return {
           vim.keymap.set(modes, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
         end
 
-        map("n", "K", vim.lsp.buf.hover, "Hover")
-        map("n", "gd", vim.lsp.buf.definition, "Goto Definition")
-        map("n", "gD", vim.lsp.buf.declaration, "Goto Declaration")
-        map("n", "gI", vim.lsp.buf.implementation, "Goto Implementation")
-        map("n", "gY", vim.lsp.buf.type_definition, "Goto Type Definition")
-        map("n", "gr", vim.lsp.buf.references, "Goto References")
-        map("n", "gs", vim.lsp.buf.signature_help, "Signature help")
-        map("i", "<C-k>", vim.lsp.buf.signature_help, "Signature help")
-        map("n", "<leader>cr", vim.lsp.buf.rename, "Rename")
-        map("n", "<leader>ca", vim.lsp.buf.code_action, "Code Action")
+        map("n", "K", lsp.buf.hover, "Hover")
+        map("n", "gd", lsp.buf.definition, "Goto Definition")
+        map("n", "gD", lsp.buf.declaration, "Goto Declaration")
+        map("n", "gI", lsp.buf.implementation, "Goto Implementation")
+        map("n", "gY", lsp.buf.type_definition, "Goto Type Definition")
+        map("n", "gr", lsp.buf.references, "Goto References")
+        map("n", "gs", lsp.buf.signature_help, "Signature help")
+        map("i", "<C-k>", lsp.buf.signature_help, "Signature help")
+        map("n", "<leader>cr", lsp.buf.rename, "Rename")
+        map("n", "<leader>ca", lsp.buf.code_action, "Code Action")
+
         if client.server_capabilities.documentFormattingProvider then
           map({ "n", "x" }, "<leader>cF", function()
-            vim.lsp.buf.format({ async = true })
+            lsp.buf.format({ async = true })
           end, "Format")
         end
       end
 
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local capabilities = lsp.protocol.make_client_capabilities()
       local lspconfig = require("lspconfig")
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
