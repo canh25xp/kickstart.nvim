@@ -29,7 +29,7 @@ return {
           { action = "Telescope find_files",                                desc = " Find File",       icon = " ", key = "f" },
           { action = "ene | startinsert",                                   desc = " New File",        icon = " ", key = "n" },
           { action = "Neotree position=current",                            desc = " Neotree",         icon = " ", key = "e" },
-          { action = 'lua require("persistence").load()',                   desc = " Restore Session", icon = " ", key = "s" },
+          { action = 'lua require("persistence").load()',                   desc = " Restore Session", icon = " ", key = "r" },
           { action = "Lazy",                                                desc = " Lazy",            icon = "󰒲 ", key = "l" },
           { action = require("common.utils").pick_chezmoi,                  desc = " Chezmoi",         icon = " ", key = "c", },
           { action = function() require("common.utils").LazyGit() end,      desc = " Lazygit",         icon = " ", key = "g" },

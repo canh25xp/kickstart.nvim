@@ -59,6 +59,7 @@ if vim.g.is_windows then
     -- { import = "plugins.dap" },
     { import = "plugins.conform" },
     { import = "plugins.lualine" },
+    { import = "plugins.bufferline" },
     { import = "plugins.telescope" },
     { import = "plugins.toggleterm" },
     { import = "plugins.persistance" },
@@ -66,6 +67,7 @@ if vim.g.is_windows then
     { import = "plugins.chezmoi" },
     { import = "plugins.bufferline" },
     { import = "plugins.fzf" },
+    { import = "plugins.vim-sleuth" },
   }
 else
   opts.spec = {
