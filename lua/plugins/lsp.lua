@@ -65,6 +65,13 @@ return {
         })
       end
 
+      if utils.executable("pyright") then
+        lspconfig.pyright.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
+        })
+      end
+
       if utils.executable("bash-language-server") then
         lspconfig.bashls.setup({
           on_attach = lsp_attach,
