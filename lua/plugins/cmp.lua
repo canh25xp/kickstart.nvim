@@ -27,6 +27,7 @@ return {
           luasnip.lsp_expand(args.body)
         end,
       },
+      preselect = "item",
       completion = { completeopt = "menu,menuone,noinsert" },
       window = {
         completion = cmp.config.window.bordered(),
