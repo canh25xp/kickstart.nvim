@@ -13,6 +13,7 @@ return {
     local cmp = require("cmp")
     local luasnip = require("luasnip")
     local lspkind = require("lspkind")
+    local clangd_cmp_scores = require("clangd_extensions.cmp_scores")
     luasnip.config.setup({})
     cmp.setup({
       sources = {
@@ -26,6 +27,18 @@ return {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
+      },
+      sorting = {
+        comparators = {
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.recently_used,
+          clangd_cmp_scores,
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
       },
       preselect = "item",
       completion = { completeopt = "menu,menuone,noinsert" },
