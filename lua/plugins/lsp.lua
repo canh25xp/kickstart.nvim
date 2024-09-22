@@ -54,6 +54,17 @@ return {
         })
       end
 
+      if utils.executable("clangd") then
+        lspconfig.clangd.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
+          filetypes = { "c", "cpp", "cc" },
+          flags = {
+            debounce_text_changes = 500,
+          },
+        })
+      end
+
       utils.set_lsp_border("rounded")
       utils.signcolumn_single_sign()
     end,
