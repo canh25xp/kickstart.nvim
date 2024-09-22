@@ -111,6 +111,10 @@ return {
           flags = {
             debounce_text_changes = 500,
           },
+          cmd = { "clangd", "--background-index", "--clang-tidy", "--log=verbose" },
+          init_options = {
+            fallback_flags = { "-std=c++17" },
+          },
         })
       end
 
