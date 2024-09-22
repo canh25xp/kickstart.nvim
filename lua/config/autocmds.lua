@@ -7,6 +7,18 @@ local utils = require("common.utils")
 -- General Settings
 local general = augroup("General Settings", { clear = true })
 
+autocmd({ "RecordingEnter" }, {
+  callback = function()
+    vim.opt.cmdheight = 1
+  end,
+})
+
+autocmd({ "RecordingLeave" }, {
+  callback = function()
+    vim.opt.cmdheight = 0
+  end,
+})
+
 autocmd("TermOpen", { command = "setlocal nonumber norelativenumber signcolumn=no" })
 
 autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert" })
@@ -14,6 +26,15 @@ autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinse
 autocmd("TermClose", {
   callback = function()
     vim.cmd("bdelete")
+  end,
+})
+
+autocmd("BufEnter", {
+  pattern = "",
+  callback = function()
+    if vim.fn.argc() == 0 and vim.bo.filetype == "" then
+      map("n", "r", "<leader>qr", { desc = "Restore Session", buffer = 0, remap = true })
+    end
   end,
 })
 

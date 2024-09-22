@@ -4,6 +4,8 @@ vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
 vim.g.load_lazy_plugins = true
 vim.g.is_windows = vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1
+vim.g.is_linux = vim.fn.has("unix") == 1
+vim.g.path_sep = vim.g.is_windows and ";" or ":"
 
 -- Netrw config
 -- vim.g.loaded_netrwPlugin = 1 -- Set to 1 to disable Netrw
@@ -15,6 +17,10 @@ vim.g.netrw_browse_split = 4
 vim.g.netrw_altv = 1
 vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]] -- Hide dotfiles
 vim.g.netrw_localcopydircmd = "cp -r" -- Change the copy command
+
+vim.g.loaded_perl_provider = 0 -- Disable perl provider
+vim.g.loaded_ruby_provider = 0 -- Disable ruby provider
+vim.g.loaded_node_provider = 0 -- Disable node provider
 
 -- vim.opt.swapfile = false
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
@@ -35,7 +41,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.confirm = true -- Ask to save changes before exiting modified buffer
 vim.opt.laststatus = 3 -- global statusline
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 vim.opt.mousemoveevent = true
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 vim.opt.signcolumn = "yes:2" -- Always show the signcolumn, otherwise it would shift the text each time
@@ -97,6 +103,13 @@ else
     verthoriz = "+",
   }
 end
+
+vim.diagnostic.config({
+  underline = true,
+  virtual_text = true,
+  signs = true,
+  severity_sort = true,
+})
 
 vim.cmd.colorscheme("habamax")
 

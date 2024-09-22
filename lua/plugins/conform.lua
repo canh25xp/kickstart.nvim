@@ -1,6 +1,13 @@
 return {
   "stevearc/conform.nvim",
-  dependencies = { "mason.nvim" },
+  dependencies = {
+    {
+      "williamboman/mason.nvim",
+      config = function()
+        require("mason").setup()
+      end,
+    },
+  },
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
   keys = {
@@ -9,8 +16,14 @@ return {
       function()
         require("conform").format({ async = true, lsp_fallback = true })
       end,
-      mode = "",
+      mode = { "n", "v" },
       desc = "Code Format",
+    },
+    {
+      "<leader>ci",
+      "<cmd>ConformInfo<CR>",
+      mode = "n",
+      desc = "Conform Info",
     },
   },
   opts = {
@@ -22,28 +35,23 @@ return {
       quiet = false, -- not recommended to change
       lsp_format = "fallback", -- not recommended to change
     },
-    -- format_on_save = function(bufnr)
-    --   -- Disable "format_on_save lsp_fallback" for languages that don't have a well standardized coding style.
-    --   -- You can add additional languages here or re-enable it for the disabled ones.
-    --   local disable_filetypes = {
-    --     c = true,
-    --     cpp = true,
-    --   }
-    --   return {
-    --     timeout_ms = 500,
-    --     lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
-    --   }
-    -- end,
+    format_on_save = function(bufnr)
+      -- Disable "format_on_save lsp_fallback" for languages that don't have a well standardized coding style.
+      local disable_filetypes = {
+        c = true,
+        cpp = true,
+      }
+      return {
+        timeout_ms = 500,
+        lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
+      }
+    end,
     formatters_by_ft = {
       lua = { "stylua" },
       sh = { "shfmt" },
-      python = { "ruff_format" },
+      python = { "ruff_format", "isort", "black", stop_after_first = true },
       markdown = { "markdownlint" },
-      -- Conform can also run multiple formatters sequentially
-      -- python = { "isort", "black" },
-      --
-      -- You can use 'stop_after_first' to run the first available formatter from the list
-      -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      javascript = { "prettierd", "prettier", stop_after_first = true },
     },
   },
 }

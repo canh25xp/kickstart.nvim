@@ -1,3 +1,4 @@
+local icons = require("common.ui")
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -40,25 +41,11 @@ local opts = {
     },
   },
   ui = {
-    size = {
-      width = 0.9,
-      height = 0.9,
-    },
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = "⌘",
-      config = "🛠",
-      event = "📅",
-      ft = "📂",
-      init = "⚙",
-      keys = "🗝",
-      plugin = "🔌",
-      runtime = "💻",
-      require = "🌙",
-      source = "📄",
-      start = "🚀",
-      task = "📌",
-      lazy = "💤 ",
-    },
+    size = { width = 0.9, height = 0.9 },
+    icons = vim.g.have_nerd_font and {} or icons.lazy,
+  },
+  rocks = {
+    enabled = false,
   },
 }
 
@@ -68,8 +55,8 @@ if vim.g.is_windows then
     { import = "plugins.neo-tree" },
     { import = "plugins.nvim-treesitter" },
     { import = "plugins.lsp" },
-    { import = "plugins.dap" },
-    { import = "plugins.nvim-cmp" },
+    { import = "plugins.cmp" },
+    -- { import = "plugins.dap" },
     { import = "plugins.conform" },
     { import = "plugins.lualine" },
     { import = "plugins.bufferline" },
@@ -78,6 +65,8 @@ if vim.g.is_windows then
     { import = "plugins.persistance" },
     { import = "plugins.gitsigns" },
     { import = "plugins.chezmoi" },
+    { import = "plugins.bufferline" },
+    { import = "plugins.fzf" },
     { import = "plugins.vim-sleuth" },
   }
 else

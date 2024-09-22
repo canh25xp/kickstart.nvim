@@ -1,4 +1,25 @@
+local fn = vim.fn
+local version = vim.version
 local M = {}
+
+function M.executable(name)
+  if fn.executable(name) > 0 then
+    return true
+  end
+
+  return false
+end
+
+--- check whether a feature exists in Nvim
+--- @param feat string the feature name, like `nvim-0.7` or `unix`.
+--- @return boolean
+M.has = function(feat)
+  if fn.has(feat) == 1 then
+    return true
+  end
+
+  return false
+end
 
 function M.pick_chezmoi()
   require("telescope").extensions.chezmoi.find_files()
@@ -299,6 +320,13 @@ end
 function M.run_shell_script()
   local script = vim.fn.expand("%:p")
   require("toggleterm").exec(script)
+end
+
+-- Change border of documentation hover window
+-- github.com/neovim/neovim/pull/13998.
+--- @param border string
+function M.set_lsp_border(border)
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
 end
 
 function M.signcolumn_single_sign()
