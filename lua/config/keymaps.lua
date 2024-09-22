@@ -46,8 +46,9 @@ map("n", "<leader>us", utils.Toggle_Signcolumn, { desc = "Toggle Signcolumn" })
 map("n", "<leader>ur", ":nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 
 -- Diagnostic
+-- stylua: ignore
+map("n", "<leader>cd", function() vim.diagnostic.open_float({ border = "rounded" }) end, { desc = "Code Diagnostics" })
 map("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Code Quickfix list" })
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Code Diagnostics" })
 map("n", "]d", utils.DiagnosticGoto(true), { desc = "Next Diagnostic" })
 map("n", "[d", utils.DiagnosticGoto(false), { desc = "Prev Diagnostic" })
 map("n", "]e", utils.DiagnosticGoto(true, "ERROR"), { desc = "Next Error" })
