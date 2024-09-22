@@ -226,6 +226,18 @@ return {
     "b0o/schemaStore.nvim",
     lazy = true,
     version = false, -- last release is way too old
+    -- config = function()
+    --   require("schemastore").json.schemas({
+    --     extra = {
+    --       {
+    --         description = "Local Terminal settings json schema",
+    --         fileMatch = "settings.json",
+    --         name = "settings.json",
+    --         url = "file:///C:/Users/Michael/.local/share/chezmoi/.schema/terminal.json", -- or '/path/to/your/schema.json'
+    --       },
+    --     },
+    --   })
+    -- end,
   },
   {
     "j-hui/fidget.nvim",
