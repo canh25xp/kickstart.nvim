@@ -1,3 +1,4 @@
+local api = vim.api
 local lsp = vim.lsp
 local utils = require("common.utils")
 
@@ -30,6 +31,32 @@ return {
           map({ "n", "x" }, "<leader>cF", function()
             lsp.buf.format({ async = true })
           end, "Format")
+        end
+
+        -- Highlight the current variable and its usages in the buffer.
+        if client.server_capabilities.documentHighlightProvider then
+          vim.cmd([[
+            hi! link LspReferenceRead Visual
+            hi! link LspReferenceText Visual
+            hi! link LspReferenceWrite Visual
+          ]])
+
+          local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+          api.nvim_create_autocmd("CursorHold", {
+            group = gid,
+            buffer = bufnr,
+            callback = function()
+              lsp.buf.document_highlight()
+            end,
+          })
+
+          api.nvim_create_autocmd("CursorMoved", {
+            group = gid,
+            buffer = bufnr,
+            callback = function()
+              lsp.buf.clear_references()
+            end,
+          })
         end
       end
 
