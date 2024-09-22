@@ -65,6 +65,16 @@ return {
         })
       end
 
+      if vim.g.is_windows then
+        local tools_bin = vim.fn.stdpath("data") .. "/tools"
+        local bundle_path = tools_bin .. "/powershell_es"
+        lspconfig.powershell_es.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
+          bundle_path = bundle_path,
+        })
+      end
+
       utils.set_lsp_border("rounded")
       utils.signcolumn_single_sign()
     end,
