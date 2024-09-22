@@ -145,6 +145,16 @@ return {
         })
       end
 
+      if utils.executable("vim-language-server") then
+        lspconfig.vimls.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
+          flags = {
+            debounce_text_changes = 500,
+          },
+        })
+      end
+
       utils.set_lsp_border("rounded")
       utils.signcolumn_single_sign()
     end,
