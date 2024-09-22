@@ -53,7 +53,7 @@ if vim.g.is_windows then
   opts.spec = {
     { import = "plugins.catppuccin" },
     { import = "plugins.neo-tree" },
-    { import = "plugins.nvim-treesitter" },
+    { import = "plugins.treesitter" },
     { import = "plugins.lsp" },
     { import = "plugins.cmp" },
     -- { import = "plugins.dap" },
