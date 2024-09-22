@@ -3,6 +3,7 @@ return {
   event = "InsertEnter",
   dependencies = {
     "L3MON4D3/luaSnip",
+    "onsails/lspkind.nvim",
     "saadparwaiz1/cmp_luasnip",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
@@ -11,6 +12,7 @@ return {
   config = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local lspkind = require("lspkind")
     luasnip.config.setup({})
     cmp.setup({
       sources = {
@@ -29,6 +31,9 @@ return {
       window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
+      },
+      formatting = {
+        format = lspkind.cmp_format(),
       },
       mapping = cmp.mapping.preset.insert({
         ["<C-n>"] = cmp.mapping.select_next_item(),
