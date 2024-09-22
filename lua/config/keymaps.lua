@@ -46,8 +46,8 @@ map("n", "<leader>us", utils.Toggle_Signcolumn, { desc = "Toggle Signcolumn" })
 map("n", "<leader>ur", ":nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 
 -- Diagnostic
-map("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Code Quickfix list" })
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Code Diagnostics" })
 map("n", "]d", utils.DiagnosticGoto(true), { desc = "Next Diagnostic" })
 map("n", "[d", utils.DiagnosticGoto(false), { desc = "Prev Diagnostic" })
 map("n", "]e", utils.DiagnosticGoto(true, "ERROR"), { desc = "Next Error" })
