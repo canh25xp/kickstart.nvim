@@ -23,14 +23,14 @@ return {
         vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
       end
 
-      map("n", "]h", function()
+      map("n", "]c", function()
         if vim.wo.diff then
           vim.cmd.normal({ "]c", bang = true })
         else
           gs.nav_hunk("next")
         end
       end, "Next Hunk")
-      map("n", "[h", function()
+      map("n", "[c", function()
         if vim.wo.diff then
           vim.cmd.normal({ "[c", bang = true })
         else
@@ -39,8 +39,8 @@ return {
       end, "Prev Hunk")
 
       -- stylua: ignore start
-      map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
-      map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
+      map("n", "]C", function() gs.nav_hunk("last") end, "Last Hunk")
+      map("n", "[C", function() gs.nav_hunk("first") end, "First Hunk")
       map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
       map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
       map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")

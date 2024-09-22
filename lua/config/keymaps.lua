@@ -54,6 +54,10 @@ map("n", "]e", utils.DiagnosticGoto(true, "ERROR"), { desc = "Next Error" })
 map("n", "[e", utils.DiagnosticGoto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "]w", utils.DiagnosticGoto(true, "WARN"), { desc = "Next Warning" })
 map("n", "[w", utils.DiagnosticGoto(false, "WARN"), { desc = "Prev Warning" })
+map("n", "]i", utils.DiagnosticGoto(true, "INFO"), { desc = "Next Info" })
+map("n", "[i", utils.DiagnosticGoto(false, "INFO"), { desc = "Prev Info" })
+map("n", "]h", utils.DiagnosticGoto(true, "HINT"), { desc = "Next Hint" })
+map("n", "[h", utils.DiagnosticGoto(false, "HINT"), { desc = "Prev Hint" })
 
 -- Better scroll
 -- map("n", "<C-d>", "<C-d>zz")
