@@ -65,6 +65,13 @@ return {
         })
       end
 
+      if utils.executable("bash-language-server") then
+        lspconfig.bashls.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
+        })
+      end
+
       if vim.g.is_windows then
         local tools_bin = vim.fn.stdpath("data") .. "/tools"
         local bundle_path = tools_bin .. "/powershell_es"
