@@ -36,9 +36,9 @@ return {
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       if utils.executable("lua-language-server") then
-        -- https://github.com/LuaLS/lua-language-server/wiki/Settings .
         lspconfig.lua_ls.setup({
           on_attach = lsp_attach,
+          capabilities = capabilities,
           settings = {
             Lua = {
               completion = {
@@ -50,7 +50,6 @@ return {
               },
             },
           },
-          capabilities = capabilities,
         })
       end
 
