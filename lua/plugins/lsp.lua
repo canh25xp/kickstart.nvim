@@ -114,6 +114,20 @@ return {
         })
       end
 
+      if utils.executable("ltex-ls") then
+        lspconfig.ltex.setup({
+          on_attach = lsp_attach,
+          cmd = { "ltex-ls" },
+          filetypes = { "text", "plaintex", "tex", "markdown" },
+          settings = {
+            ltex = {
+              language = "en",
+            },
+          },
+          flags = { debounce_text_changes = 300 },
+        })
+      end
+
       if utils.executable("bash-language-server") then
         lspconfig.bashls.setup({
           on_attach = lsp_attach,
