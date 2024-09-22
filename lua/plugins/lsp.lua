@@ -65,6 +65,24 @@ return {
       local lspconfig = require("lspconfig")
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+      require("lspconfig").jsonls.setup({
+        on_attach = lsp_attach,
+        capabilities = capabilities,
+        -- lazy-load schemastore when needed
+        on_new_config = function(new_config)
+          new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+          vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+        end,
+        settings = {
+          json = {
+            format = {
+              enable = true,
+            },
+            validate = { enable = true },
+          },
+        },
+      })
+
       if utils.executable("lua-language-server") then
         lspconfig.lua_ls.setup({
           on_attach = lsp_attach,
@@ -201,6 +219,11 @@ return {
   {
     "Bilal2453/luvit-meta",
     lazy = true,
+  },
+  {
+    "b0o/schemaStore.nvim",
+    lazy = true,
+    version = false, -- last release is way too old
   },
   {
     "j-hui/fidget.nvim",
