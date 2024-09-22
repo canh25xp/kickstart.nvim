@@ -9,7 +9,11 @@ if vim.g.vscode then
   require("config.vscode")
 end
 
-local tools_bin_dir = vim.fn.stdpath("data") .. "/tools"
-local lua_language_server_bin_dir = tools_bin_dir .. "/lua-language-server/bin"
+local sep = vim.g.path_sep
 
-vim.env.PATH = vim.env.PATH .. vim.g.path_sep .. lua_language_server_bin_dir .. vim.g.path_sep
+local tools_bin = vim.fn.stdpath("data") .. "/tools"
+local luals_bin = tools_bin .. "/lua-language-server/bin"
+local clangd_bin = tools_bin .. "/clangd/bin"
+
+vim.env.PATH = vim.env.PATH .. sep .. luals_bin
+vim.env.PATH = vim.env.PATH .. sep .. clangd_bin .. sep
