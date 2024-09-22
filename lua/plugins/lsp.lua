@@ -28,13 +28,13 @@ return {
         map("n", "<leader>cr", lsp.buf.rename, "Rename")
         map("n", "<leader>ca", lsp.buf.code_action, "Code Action")
 
-        -- Keymap for LSP format
         if client.server_capabilities.documentFormattingProvider then
           map({ "n", "x" }, "<leader>cF", function()
             lsp.buf.format({ async = true })
           end, "Format")
         end
 
+        -- Show a pop up for diagnostic at the current cursor position
         api.nvim_create_autocmd("CursorHold", {
           buffer = bufnr,
           callback = function()
@@ -42,7 +42,7 @@ return {
               focusable = false,
               close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
               border = "rounded",
-              source = "always", -- show source in diagnostic popup window
+              source = "always",
               prefix = " ",
             }
 
