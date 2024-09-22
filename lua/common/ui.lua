@@ -106,7 +106,27 @@ M.icons = {
     start = "🚀",
     task = "📌",
     lazy = "💤 ",
-  }
+  },
+  ast = {
+    --These require codicons (https://github.com/microsoft/vscode-codicons)
+    role_icons = {
+      type = "",
+      declaration = "",
+      expression = "",
+      specifier = "",
+      statement = "",
+      ["template argument"] = "",
+    },
+    kind_icons = {
+      Compound = "",
+      Recovery = "",
+      TranslationUnit = "",
+      PackExpansion = "",
+      TemplateTypeParm = "",
+      TemplateTemplateParm = "",
+      TemplateParamObject = "",
+    },
+  },
 }
 
 function M.statuscolumn()
@@ -124,7 +144,7 @@ function M.statuscolumn()
       components[2] = "%l" -- 0.11 handles both the current and other lines with %l
     else
       if vim.v.relnum == 0 then
-        components[2] = is_num and "%l" or "%r"    -- the current line
+        components[2] = is_num and "%l" or "%r" -- the current line
       else
         components[2] = is_relnum and "%r" or "%l" -- other lines
       end
