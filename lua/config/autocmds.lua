@@ -7,17 +7,19 @@ local utils = require("common.utils")
 -- General Settings
 local general = augroup("General Settings", { clear = true })
 
-autocmd({ "RecordingEnter" }, {
-  callback = function()
-    vim.opt.cmdheight = 1
-  end,
-})
+if vim.g.windows then
+  autocmd({ "RecordingEnter" }, {
+    callback = function()
+      vim.opt.cmdheight = 1
+    end,
+  })
 
-autocmd({ "RecordingLeave" }, {
-  callback = function()
-    vim.opt.cmdheight = 0
-  end,
-})
+  autocmd({ "RecordingLeave" }, {
+    callback = function()
+      vim.opt.cmdheight = 0
+    end,
+  })
+end
 
 autocmd("TermOpen", { command = "setlocal nonumber norelativenumber signcolumn=no" })
 
