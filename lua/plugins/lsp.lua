@@ -8,6 +8,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      "williamboman/mason.nvim", -- NOTE: Must be loaded before dependants
       "hrsh7th/cmp-nvim-lsp",
       "j-hui/fidget.nvim", -- For LSP progress messages
     },
