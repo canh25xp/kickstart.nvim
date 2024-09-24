@@ -41,20 +41,27 @@ return {
           api.nvim_set_hl(0, "LspReferenceRead", { link = "Visual" })
           api.nvim_set_hl(0, "LspReferenceText", { link = "Visual" })
           api.nvim_set_hl(0, "LspReferenceWrite", { link = "Visual" })
-          local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-          api.nvim_create_autocmd("CursorHold", {
-            group = gid,
+          local gid = api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
+
+          -- highlight references of the word under cursor.
+          api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
             buffer = bufnr,
-            callback = function()
-              lsp.buf.document_highlight()
-            end,
+            group = gid,
+            callback = lsp.buf.document_highlight,
           })
 
-          api.nvim_create_autocmd("CursorMoved", {
-            group = gid,
+          -- clear highlights when cursor moves.
+          api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
             buffer = bufnr,
-            callback = function()
+            group = gid,
+            callback = lsp.buf.clear_references,
+          })
+
+          api.nvim_create_autocmd("lspdetach", {
+            group = api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+            callback = function(event2)
               lsp.buf.clear_references()
+              api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
             end,
           })
         end
