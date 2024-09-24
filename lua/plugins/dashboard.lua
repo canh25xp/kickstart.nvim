@@ -11,7 +11,7 @@ return {
     local header = ascii.art.text.neovim.dos_rebel
 
     local function add_padding(tbl, n)
-      for i = 1, n do
+      for _ = 1, n do
         table.insert(tbl, 1, [[ ]])
       end
     end
