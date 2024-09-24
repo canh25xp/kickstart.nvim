@@ -16,7 +16,23 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 local opts = {
-  spec = {},
+  spec = {
+    { import = "plugins.bufferline" },
+    { import = "plugins.catppuccin" },
+    { import = "plugins.chezmoi" },
+    { import = "plugins.cmp" },
+    { import = "plugins.conform" },
+    { import = "plugins.fzf" },
+    { import = "plugins.gitsigns" },
+    { import = "plugins.lsp" },
+    { import = "plugins.lualine" },
+    { import = "plugins.neo-tree" },
+    { import = "plugins.persistance" },
+    { import = "plugins.telescope" },
+    { import = "plugins.toggleterm" },
+    { import = "plugins.treesitter" },
+    { import = "plugins.vim-sleuth" },
+  },
   checker = { enabled = false }, -- Don't automatically check for plugin updates
   change_detection = {
     enabled = true, -- automatically check for config file changes and reload the ui
@@ -49,30 +65,10 @@ local opts = {
   },
 }
 
-if vim.g.is_windows then
-  opts.spec = {
-    { import = "plugins.catppuccin" },
-    { import = "plugins.neo-tree" },
-    { import = "plugins.treesitter" },
-    { import = "plugins.lsp" },
-    { import = "plugins.cmp" },
-    -- { import = "plugins.dap" },
-    { import = "plugins.conform" },
-    { import = "plugins.lualine" },
-    { import = "plugins.bufferline" },
-    { import = "plugins.telescope" },
-    { import = "plugins.toggleterm" },
-    { import = "plugins.persistance" },
-    { import = "plugins.gitsigns" },
-    { import = "plugins.chezmoi" },
-    { import = "plugins.bufferline" },
-    { import = "plugins.fzf" },
-    { import = "plugins.vim-sleuth" },
-  }
-else
-  opts.spec = {
-    { import = "plugins" },
-  }
+if vim.g.is_linux then
+  table.insert(opts.spec, { import = "plugins.dap" })
+  table.insert(opts.spec, { import = "plugins.lint" })
+  table.insert(opts.spec, { import = "plugins.dashboard" })
 end
 
 require("lazy").setup(opts)
