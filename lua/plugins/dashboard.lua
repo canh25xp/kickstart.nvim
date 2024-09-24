@@ -1,22 +1,23 @@
-local ascii = require("ascii")
-local logo = require("common.ui").logo
-local logo_padding = vim.split(logo, "\n")
-local dynamic_logo = ascii.get_random("text", "neovim")
-
-local header = ascii.art.text.neovim.dos_rebel
-
-local function add_padding(tbl, n)
-  for i = 1, n do
-    table.insert(tbl, 1, [[ ]])
-  end
-end
-
-add_padding(header, 6)
-
 return {
   "nvimdev/dashboard-nvim",
   lazy = false, -- As https://github.com/nvimdev/dashboard-nvim/pull/450, dashboard-nvim shouldn't be lazy-loaded to properly handle stdin.
+  dependencies = { "MaximilianLloyd/ascii.nvim" },
   opts = function()
+    local ascii = require("ascii")
+    local logo = require("common.ui").logo
+    local logo_padding = vim.split(logo, "\n")
+    local dynamic_logo = ascii.get_random("text", "neovim")
+
+    local header = ascii.art.text.neovim.dos_rebel
+
+    local function add_padding(tbl, n)
+      for i = 1, n do
+        table.insert(tbl, 1, [[ ]])
+      end
+    end
+
+    add_padding(header, 6)
+
     local opts = {
       theme = "doom",
       hide = {
