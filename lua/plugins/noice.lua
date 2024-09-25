@@ -36,6 +36,9 @@ return {
           ---@type NoiceViewOptions
           opts = {}, -- merged with defaults from documentation
         },
+        signature = {
+          enabled = false,
+        },
       },
       cmdline = {
         view = "cmdline",
