@@ -1,7 +1,7 @@
 $tools_dir = "$env:LOCALAPPDATA\nvim-data\tools"
 $download_link = "https://github.com/PowerShell/PowerShellEditorServices/releases/download/v3.20.1/PowerShellEditorServices.zip"
-$download_path = "$tools_dir\powershell_es.zip"
-$install_dir = "$tools_dir\powershell_es"
+$download_path = "$tools_dir\PowerShellEditorServices.zip"
+$install_dir = "$tools_dir\powershell-editor-services"
 
 curl -L $download_link -o $download_path
 
