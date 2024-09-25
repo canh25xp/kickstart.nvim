@@ -108,7 +108,23 @@ return {
 
       local capabilities = lsp.protocol.make_client_capabilities()
       local lspconfig = require("lspconfig")
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+      if status_ok then
+        capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
+      else
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+        capabilities.textDocument.completion.completionItem.resolveSupport = {
+          properties = {
+            "documentation",
+            "detail",
+            "additionalTextEdits",
+          },
+        }
+        capabilities.textDocument.foldingRange = {
+          dynamicRegistration = false,
+          lineFoldingOnly = true,
+        }
+      end
 
       if utils.executable("vscode-json-language-server") then
         require("lspconfig").jsonls.setup({
