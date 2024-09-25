@@ -17,9 +17,9 @@ vim.opt.runtimepath:prepend(lazypath)
 
 local opts = {
   spec = {
+    { import = "plugins.autopairs" },
     { import = "plugins.bufferline" },
     { import = "plugins.catppuccin" },
-    { import = "plugins.chezmoi" },
     { import = "plugins.cmp" },
     { import = "plugins.conform" },
     { import = "plugins.fzf" },
@@ -57,7 +57,8 @@ local opts = {
     },
   },
   ui = {
-    size = { width = 0.9, height = 0.9 },
+    border = "rounded",
+    size = { width = 0.8, height = 0.8 },
     icons = vim.g.have_nerd_font and {} or icons.lazy,
   },
   rocks = {
@@ -66,9 +67,13 @@ local opts = {
 }
 
 if vim.g.is_linux then
-  table.insert(opts.spec, { import = "plugins.dap" })
+  table.insert(opts.spec, { import = "plugins.todo-comments" })
+  table.insert(opts.spec, { import = "plugins.which-key" })
   table.insert(opts.spec, { import = "plugins.lint" })
   table.insert(opts.spec, { import = "plugins.dashboard" })
+  table.insert(opts.spec, { import = "plugins.noice" })
+else
+  table.insert(opts.spec, { import = "plugins.chezmoi" })
 end
 
 require("lazy").setup(opts)
