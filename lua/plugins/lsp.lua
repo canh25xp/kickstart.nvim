@@ -1,6 +1,7 @@
 local api = vim.api
 local lsp = vim.lsp
 local diagnostic = vim.diagnostic
+local sep = vim.g.path_sep
 local utils = require("common.utils")
 local icons = require("common.ui").icons
 
@@ -8,11 +9,25 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      "williamboman/mason.nvim",
       "hrsh7th/cmp-nvim-lsp",
-      "j-hui/fidget.nvim", -- For LSP progress messages
+      "j-hui/fidget.nvim",
     },
     event = { "BufRead", "BufNewFile" },
-    config = function()
+    opts = {
+      inlay_hints = {
+        enabled = false,
+        exclude = { "vue" }, -- filetypes for which you don't want to enable inlay hints
+      },
+    },
+    config = function(_, opts)
+      local tools_bin = vim.fn.stdpath("data") .. "/tools"
+      local luals_bin = tools_bin .. "/lua-language-server/bin"
+      local clangd_bin = tools_bin .. "/clangd/bin"
+      local powershell_es_bundle = tools_bin .. "/powershell-editor-services"
+      vim.env.PATH = vim.env.PATH .. sep .. luals_bin
+      vim.env.PATH = vim.env.PATH .. sep .. clangd_bin .. sep
+
       local function lsp_attach(client, bufnr)
         local function map(modes, keys, func, desc)
           vim.keymap.set(modes, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
@@ -35,53 +50,81 @@ return {
           end, "Format")
         end
 
+        if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+          vim.lsp.inlay_hint.enable(opts.inlay_hints.enabled)
+
+          map("n", "<leader>uh", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
+          end, "Inlay Hints Toggle")
+        end
+
         -- Highlight the current variable and its usages in the buffer.
         if client.server_capabilities.documentHighlightProvider then
-          vim.cmd([[
-            hi! link LspReferenceRead Visual
-            hi! link LspReferenceText Visual
-            hi! link LspReferenceWrite Visual
-          ]])
+          api.nvim_set_hl(0, "LspReferenceRead", { link = "Visual" })
+          api.nvim_set_hl(0, "LspReferenceText", { link = "Visual" })
+          api.nvim_set_hl(0, "LspReferenceWrite", { link = "Visual" })
+          local gid = api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
 
-          local gid = api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-          api.nvim_create_autocmd("CursorHold", {
-            group = gid,
+          -- highlight references of the word under cursor.
+          api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
             buffer = bufnr,
-            callback = function()
-              lsp.buf.document_highlight()
-            end,
+            group = gid,
+            callback = lsp.buf.document_highlight,
           })
 
-          api.nvim_create_autocmd("CursorMoved", {
-            group = gid,
+          -- clear highlights when cursor moves.
+          api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
             buffer = bufnr,
-            callback = function()
+            group = gid,
+            callback = lsp.buf.clear_references,
+          })
+
+          api.nvim_create_autocmd("lspdetach", {
+            group = api.nvim_create_augroup("kickstart-lsp-detach", { clear = true }),
+            callback = function(event2)
               lsp.buf.clear_references()
+              api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
             end,
           })
         end
 
-        require("clangd_extensions.inlay_hints").setup_autocmd()
-        require("clangd_extensions.inlay_hints").set_inlay_hints()
-        local group = vim.api.nvim_create_augroup("clangd_no_inlay_hints_in_insert", { clear = true })
-
-        vim.keymap.set("n", "<leader>ch", function()
-          if require("clangd_extensions.inlay_hints").toggle_inlay_hints() then
-            vim.api.nvim_create_autocmd("InsertEnter", { group = group, buffer = bufnr, callback = require("clangd_extensions.inlay_hints").disable_inlay_hints })
-            vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
-              group = group,
-              buffer = bufnr,
-              callback = require("clangd_extensions.inlay_hints").set_inlay_hints,
-            })
-          else
-            vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
-          end
-        end, { buffer = bufnr, desc = "Code Inlay Hints toggle" })
+        -- require("clangd_extensions.inlay_hints").setup_autocmd()
+        -- require("clangd_extensions.inlay_hints").set_inlay_hints()
+        -- local group = vim.api.nvim_create_augroup("clangd_no_inlay_hints_in_insert", { clear = true })
+        --
+        -- vim.keymap.set("n", "<leader>uh", function()
+        --   if require("clangd_extensions.inlay_hints").toggle_inlay_hints() then
+        --     vim.api.nvim_create_autocmd("InsertEnter", { group = group, buffer = bufnr, callback = require("clangd_extensions.inlay_hints").disable_inlay_hints })
+        --     vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
+        --       group = group,
+        --       buffer = bufnr,
+        --       callback = require("clangd_extensions.inlay_hints").set_inlay_hints,
+        --     })
+        --   else
+        --     vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
+        --   end
+        -- end, { buffer = bufnr, desc = "Code Inlay Hints toggle" })
       end
 
       local capabilities = lsp.protocol.make_client_capabilities()
       local lspconfig = require("lspconfig")
-      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+      if status_ok then
+        capabilities = vim.tbl_deep_extend("force", capabilities, cmp_nvim_lsp.default_capabilities())
+      else
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+        capabilities.textDocument.completion.completionItem.resolveSupport = {
+          properties = {
+            "documentation",
+            "detail",
+            "additionalTextEdits",
+          },
+        }
+        capabilities.textDocument.foldingRange = {
+          dynamicRegistration = false,
+          lineFoldingOnly = true,
+        }
+      end
 
       if utils.executable("vscode-json-language-server") then
         require("lspconfig").jsonls.setup({
@@ -208,12 +251,10 @@ return {
       end
 
       if vim.g.is_windows then
-        local tools_bin = vim.fn.stdpath("data") .. "/tools"
-        local bundle_path = tools_bin .. "/powershell_es"
         lspconfig.powershell_es.setup({
           on_attach = lsp_attach,
           capabilities = capabilities,
-          bundle_path = bundle_path,
+          bundle_path = powershell_es_bundle,
         })
       end
 
@@ -226,6 +267,28 @@ return {
           },
         })
       end
+
+      diagnostic.config({
+        signs = {
+          text = {
+            [diagnostic.severity.ERROR] = icons.diagnostics.Error,
+            [diagnostic.severity.WARN] = icons.diagnostics.Warn,
+            [diagnostic.severity.HINT] = icons.diagnostics.Hint,
+            [diagnostic.severity.INFO] = icons.diagnostics.Info,
+          },
+        },
+        virtual_text = true,
+        update_in_insert = false,
+        underline = true,
+        severity_sort = true,
+        float = {
+          focusable = true,
+          style = "minimal",
+          border = "rounded",
+          prefix = "",
+          header = "",
+        },
+      })
 
       utils.set_lsp_border("rounded")
       utils.signcolumn_single_sign()
@@ -248,18 +311,6 @@ return {
     "b0o/schemaStore.nvim",
     lazy = true,
     version = false, -- last release is way too old
-    -- config = function()
-    --   require("schemastore").json.schemas({
-    --     extra = {
-    --       {
-    --         description = "Local Terminal settings json schema",
-    --         fileMatch = "settings.json",
-    --         name = "settings.json",
-    --         url = "file:///C:/Users/Michael/.local/share/chezmoi/.schema/terminal.json", -- or '/path/to/your/schema.json'
-    --       },
-    --     },
-    --   })
-    -- end,
   },
   {
     "p00f/clangd_extensions.nvim",
@@ -283,36 +334,23 @@ return {
   {
     "j-hui/fidget.nvim",
     lazy = true,
+    opts = {},
+  },
+  {
+    "williamboman/mason.nvim",
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     opts = {
-      notification = {
-        window = {
-          winblend = 0, -- Background color opacity in the notification window
-          border = "none", -- Border around the notification window
-          zindex = 45, -- Stacking priority of the notification window
-          max_width = 0, -- Maximum width of the notification window
-          max_height = 0, -- Maximum height of the notification window
-          x_padding = 0, -- Padding from right edge of window boundary
-          y_padding = 0, -- Padding from bottom edge of window boundary
-          align = "bottom", -- How to align the notification window
-          relative = "editor", -- What the notification window position is relative to
+      ui = {
+        border = "rounded",
+        width = 0.8,
+        height = 0.8,
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗",
         },
-      },
-      progress = {
-        display = {
-          render_limit = 16, -- How many LSP messages to show at once
-          done_ttl = 5, -- How long a message should persist after completion
-          done_icon = "✔", -- Icon shown when all LSP progress tasks are complete
-          done_style = "Constant", -- Highlight group for completed LSP tasks
-          progress_ttl = math.huge, -- How long a message should persist when in progress
-          progress_icon = { pattern = "dots", period = 1 }, -- Icon shown when LSP progress tasks are in progress
-          progress_style = "WarningMsg", -- Highlight group for in-progress LSP tasks
-          group_style = "Title", -- Highlight group for group name (LSP server name)
-          icon_style = "Question", -- Highlight group for group icons
-          priority = 30, -- Ordering priority for LSP notification group
-          skip_history = false, -- Whether progress notifications should be omitted from history
-          overrides = { -- Override options from the default notification config
-            rust_analyzer = { name = "rust-analyzer" },
-          },
+        keymaps = {
+          toggle_help = "?",
         },
       },
     },

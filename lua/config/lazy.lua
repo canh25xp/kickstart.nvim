@@ -36,7 +36,7 @@ local opts = {
   checker = { enabled = false }, -- Don't automatically check for plugin updates
   change_detection = {
     enabled = true, -- automatically check for config file changes and reload the ui
-    notify = true, -- get a notification when changes are found
+    notify = false, -- get a notification when changes are found
   },
   install = { colorscheme = { "catppuccin-mocha", "habamax" } },
   performance = {

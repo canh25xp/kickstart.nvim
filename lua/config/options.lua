@@ -41,6 +41,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.confirm = true -- Ask to save changes before exiting modified buffer
 vim.opt.laststatus = 3 -- global statusline
+-- BUG: Lost command bar when press save (Ctrl - S)
 vim.opt.cmdheight = 0
 vim.opt.mousemoveevent = true
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
@@ -86,11 +87,6 @@ if vim.g.have_nerd_font then
     vertright = "┣",
     verthoriz = "╋",
   }
-
-  vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-  vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-  vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-  vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 else
   -- stylua: ignore
   vim.opt.fillchars = {
