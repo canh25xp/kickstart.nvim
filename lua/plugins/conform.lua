@@ -1,13 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  dependencies = {
-    {
-      "williamboman/mason.nvim",
-      config = function()
-        require("mason").setup()
-      end,
-    },
-  },
+  dependencies = { "williamboman/mason.nvim" },
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
   keys = {

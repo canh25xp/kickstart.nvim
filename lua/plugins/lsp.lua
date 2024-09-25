@@ -336,4 +336,23 @@ return {
     lazy = true,
     opts = {},
   },
+  {
+    "williamboman/mason.nvim",
+    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    opts = {
+      ui = {
+        border = "rounded",
+        width = 0.8,
+        height = 0.8,
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗",
+        },
+        keymaps = {
+          toggle_help = "?",
+        },
+      },
+    },
+  },
 }
