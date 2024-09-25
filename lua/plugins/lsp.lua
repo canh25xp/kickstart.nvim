@@ -268,6 +268,17 @@ return {
         })
       end
 
+      diagnostic.config({
+        signs = {
+          text = {
+            [diagnostic.severity.ERROR] = icons.diagnostics.Error,
+            [diagnostic.severity.WARN] = icons.diagnostics.Warn,
+            [diagnostic.severity.HINT] = icons.diagnostics.Hint,
+            [diagnostic.severity.INFO] = icons.diagnostics.Info,
+          },
+        },
+      })
+
       utils.set_lsp_border("rounded")
       utils.signcolumn_single_sign()
     end,
