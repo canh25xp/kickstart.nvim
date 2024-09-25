@@ -7,7 +7,7 @@ local utils = require("common.utils")
 -- General Settings
 local general = augroup("General Settings", { clear = true })
 
-if vim.g.windows then
+if vim.g.is_windows then
   autocmd({ "RecordingEnter" }, {
     callback = function()
       vim.opt.cmdheight = 1
