@@ -1,5 +1,6 @@
 local api = vim.api
 local lsp = vim.lsp
+local sep = vim.g.path_sep
 local diagnostic = vim.diagnostic
 local utils = require("common.utils")
 local icons = require("common.ui").icons
@@ -14,6 +15,13 @@ return {
     },
     event = { "BufRead", "BufNewFile" },
     config = function()
+      local tools_bin = vim.fn.stdpath("data") .. "/tools"
+      local luals_bin = tools_bin .. "/lua-language-server/bin"
+      local clangd_bin = tools_bin .. "/clangd/bin"
+      local powershell_es_bundle = tools_bin .. "/powershell-editor-services"
+      vim.env.PATH = vim.env.PATH .. sep .. luals_bin
+      vim.env.PATH = vim.env.PATH .. sep .. clangd_bin .. sep
+
       local function lsp_attach(client, bufnr)
         local function map(modes, keys, func, desc)
           vim.keymap.set(modes, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
@@ -213,12 +221,10 @@ return {
       end
 
       if vim.g.is_windows then
-        local tools_bin = vim.fn.stdpath("data") .. "/tools"
-        local bundle_path = tools_bin .. "/powershell-editor-services"
         lspconfig.powershell_es.setup({
           on_attach = lsp_attach,
           capabilities = capabilities,
-          bundle_path = bundle_path,
+          bundle_path = powershell_es_bundle,
         })
       end
 
