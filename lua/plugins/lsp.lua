@@ -1,7 +1,7 @@
 local api = vim.api
 local lsp = vim.lsp
-local sep = vim.g.path_sep
 local diagnostic = vim.diagnostic
+local sep = vim.g.path_sep
 local utils = require("common.utils")
 local icons = require("common.ui").icons
 
@@ -14,7 +14,13 @@ return {
       "j-hui/fidget.nvim",
     },
     event = { "BufRead", "BufNewFile" },
-    config = function()
+    opts = {
+      inlay_hints = {
+        enabled = false,
+        exclude = { "vue" }, -- filetypes for which you don't want to enable inlay hints
+      },
+    },
+    config = function(_, opts)
       local tools_bin = vim.fn.stdpath("data") .. "/tools"
       local luals_bin = tools_bin .. "/lua-language-server/bin"
       local clangd_bin = tools_bin .. "/clangd/bin"
@@ -42,6 +48,14 @@ return {
           map({ "n", "x" }, "<leader>cF", function()
             lsp.buf.format({ async = true })
           end, "Format")
+        end
+
+        if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+          vim.lsp.inlay_hint.enable(opts.inlay_hints.enabled)
+
+          map("n", "<leader>uh", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
+          end, "Inlay Hints Toggle")
         end
 
         -- Highlight the current variable and its usages in the buffer.
