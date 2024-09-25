@@ -277,6 +277,17 @@ return {
             [diagnostic.severity.INFO] = icons.diagnostics.Info,
           },
         },
+        virtual_text = true,
+        update_in_insert = false,
+        underline = true,
+        severity_sort = true,
+        float = {
+          focusable = true,
+          style = "minimal",
+          border = "rounded",
+          prefix = "",
+          header = "",
+        },
       })
 
       utils.set_lsp_border("rounded")
