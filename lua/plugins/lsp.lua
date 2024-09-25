@@ -88,22 +88,22 @@ return {
           })
         end
 
-        require("clangd_extensions.inlay_hints").setup_autocmd()
-        require("clangd_extensions.inlay_hints").set_inlay_hints()
-        local group = vim.api.nvim_create_augroup("clangd_no_inlay_hints_in_insert", { clear = true })
-
-        vim.keymap.set("n", "<leader>uh", function()
-          if require("clangd_extensions.inlay_hints").toggle_inlay_hints() then
-            vim.api.nvim_create_autocmd("InsertEnter", { group = group, buffer = bufnr, callback = require("clangd_extensions.inlay_hints").disable_inlay_hints })
-            vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
-              group = group,
-              buffer = bufnr,
-              callback = require("clangd_extensions.inlay_hints").set_inlay_hints,
-            })
-          else
-            vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
-          end
-        end, { buffer = bufnr, desc = "Code Inlay Hints toggle" })
+        -- require("clangd_extensions.inlay_hints").setup_autocmd()
+        -- require("clangd_extensions.inlay_hints").set_inlay_hints()
+        -- local group = vim.api.nvim_create_augroup("clangd_no_inlay_hints_in_insert", { clear = true })
+        --
+        -- vim.keymap.set("n", "<leader>uh", function()
+        --   if require("clangd_extensions.inlay_hints").toggle_inlay_hints() then
+        --     vim.api.nvim_create_autocmd("InsertEnter", { group = group, buffer = bufnr, callback = require("clangd_extensions.inlay_hints").disable_inlay_hints })
+        --     vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, {
+        --       group = group,
+        --       buffer = bufnr,
+        --       callback = require("clangd_extensions.inlay_hints").set_inlay_hints,
+        --     })
+        --   else
+        --     vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
+        --   end
+        -- end, { buffer = bufnr, desc = "Code Inlay Hints toggle" })
       end
 
       local capabilities = lsp.protocol.make_client_capabilities()
