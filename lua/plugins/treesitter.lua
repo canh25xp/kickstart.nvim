@@ -6,6 +6,7 @@ return {
       "bash",
       "bibtex",
       "c",
+      "cmake",
       "cpp",
       "diff",
       "git_config",

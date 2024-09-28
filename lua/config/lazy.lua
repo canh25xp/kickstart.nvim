@@ -72,6 +72,7 @@ if vim.g.is_linux then
   table.insert(opts.spec, { import = "plugins.lint" })
   table.insert(opts.spec, { import = "plugins.dashboard" })
   table.insert(opts.spec, { import = "plugins.noice" })
+  table.insert(opts.spec, { import = "plugins.url-open" })
 else
   table.insert(opts.spec, { import = "plugins.chezmoi" })
 end
