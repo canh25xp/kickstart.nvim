@@ -14,6 +14,10 @@ return {
       for _ = 1, n do
         table.insert(tbl, 1, [[ ]])
       end
+
+      for _ = 1, 3 do
+        table.insert(tbl, [[ ]])
+      end
     end
 
     add_padding(header, 6)
