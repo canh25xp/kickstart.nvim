@@ -17,7 +17,7 @@ return {
     vim.g.vimtex_doc_confirm_single = 0
     vim.g.vimtex_doc_handlers = { "vimtex#doc#handlers#texdoc" }
     vim.g.vimtex_view_method = "sioyek"
-    if vim.fn.has("wsl") == 1 then
+    if vim.g.is_wsl then
       vim.g.vimtex_view_sioyek_exe = "sioyek.exe"
       vim.g.vimtex_callback_progpath = "wsl nvim"
     end
