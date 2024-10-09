@@ -33,6 +33,7 @@ local opts = {
     { import = "plugins.toggleterm" },
     { import = "plugins.treesitter" },
     { import = "plugins.vim-sleuth" },
+    { import = "plugins.vimtex" },
   },
   checker = { enabled = false }, -- Don't automatically check for plugin updates
   change_detection = {
