@@ -242,9 +242,17 @@ return {
         })
       end
 
+      if utils.executable("texlab") then
+        lspconfig.texlab.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
+        })
+      end
+
       if utils.executable("ltex-ls") then
         lspconfig.ltex.setup({
           on_attach = lsp_attach,
+          capabilities = capabilities,
           cmd = { "ltex-ls" },
           filetypes = { "text", "plaintex", "tex", "markdown" },
           settings = {
