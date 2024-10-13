@@ -13,7 +13,7 @@ return {
   },
   cmd = "ToggleTerm",
   keys = {
-    { [[<C-\>]] },
+    { "<C-\\>" },
     { "<leader>t1", "<Cmd>1ToggleTerm<Cr>", desc = "Terminal #2" },
     { "<leader>t2", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
     { "<leader>tt", "<Cmd>ToggleTerm direction=tab<Cr>", desc = "ToggleTerm in new tab" },
