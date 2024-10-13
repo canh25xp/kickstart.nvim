@@ -32,4 +32,4 @@ local function compile_run_cpp()
   vim.cmd("startinsert")
 end
 
-vim.keymap.set("n", "<leader>cx", compile_run_cpp, { buffer = true, noremap = true, silent = true })
+vim.keymap.set("n", "<leader>cc", compile_run_cpp, { buffer = true, noremap = true, silent = true, desc = "Compile run cpp" })
