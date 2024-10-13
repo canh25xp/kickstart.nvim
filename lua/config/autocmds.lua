@@ -23,7 +23,7 @@ end
 
 autocmd("TermOpen", { command = "setlocal nonumber norelativenumber signcolumn=no" })
 
-autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert" })
+-- autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert" })
 
 autocmd("TermClose", {
   callback = function()
