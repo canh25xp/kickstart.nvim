@@ -35,6 +35,10 @@ local opts = {
     { import = "plugins.vim-sleuth" },
     { import = "plugins.vimtex" },
   },
+
+  dev = {
+    path = "~/projects/lua",
+  },
   checker = { enabled = false }, -- Don't automatically check for plugin updates
   change_detection = {
     enabled = true, -- automatically check for config file changes and reload the ui
