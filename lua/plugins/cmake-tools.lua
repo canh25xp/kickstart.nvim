@@ -53,8 +53,8 @@ return {
       },
     },
     cmake_notifications = {
-      runner = { enabled = true },
-      executor = { enabled = false },
+      executor = { enabled = true },
+      runner = { enabled = false },
       spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }, -- icons used for progress display
       refresh_rate_ms = 100, -- how often to iterate icons
     },
