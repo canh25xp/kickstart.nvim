@@ -54,13 +54,7 @@ return {
     "rcarriga/nvim-dap-ui",
     dependencies = {
       "nvim-neotest/nvim-nio",
-      {
-        "theHamsta/nvim-dap-virtual-text",
-        opts = {
-          commented = false, -- prefix virtual text with comment string
-          virt_text_pos = "eol",
-        },
-      },
+      "theHamsta/nvim-dap-virtual-text",
     },
     -- stylua: ignore
     keys = {
@@ -106,5 +100,12 @@ return {
       dap.listeners.before.event_exited["dapui_config"] = function() dapui.close({}) end
       -- stylua: ignore stop
     end,
+  },
+  {
+    "theHamsta/nvim-dap-virtual-text",
+    opts = {
+      commented = false, -- prefix virtual text with comment string
+      virt_text_pos = "eol",
+    },
   },
 }

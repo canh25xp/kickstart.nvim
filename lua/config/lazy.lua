@@ -73,12 +73,13 @@ local opts = {
 }
 
 if vim.g.is_linux then
-  table.insert(opts.spec, { import = "plugins.todo-comments" })
-  table.insert(opts.spec, { import = "plugins.which-key" })
-  table.insert(opts.spec, { import = "plugins.lint" })
   table.insert(opts.spec, { import = "plugins.dashboard" })
+  table.insert(opts.spec, { import = "plugins.dap" })
+  table.insert(opts.spec, { import = "plugins.lint" })
   table.insert(opts.spec, { import = "plugins.noice" })
+  table.insert(opts.spec, { import = "plugins.todo-comments" })
   table.insert(opts.spec, { import = "plugins.url-open" })
+  table.insert(opts.spec, { import = "plugins.which-key" })
 else
   table.insert(opts.spec, { import = "plugins.chezmoi" })
 end
