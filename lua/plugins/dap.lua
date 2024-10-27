@@ -52,13 +52,13 @@ return {
 
       local dap = require("dap")
 
-      dap.adapters.cppdbg = {
+      local cppdbg = {
         id = "cppdbg",
         type = "executable",
         command = "/home/michael/.local/share/nvim/mason/bin/OpenDebugAD7",
       }
 
-      dap.configurations.cpp = {
+      local config = {
         {
           name = "Launch file",
           type = "cppdbg",
@@ -82,6 +82,9 @@ return {
           end,
         },
       }
+      dap.adapters.cppdbg = cppdbg
+      dap.configurations.cpp = config
+      dap.configurations.c = config
     end,
   },
   {
