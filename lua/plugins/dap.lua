@@ -42,6 +42,13 @@ return {
       { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Debug: Widgets" },
     },
     config = function()
+      local dap = require("dap")
+      local pickers = require("telescope.pickers")
+      local finders = require("telescope.finders")
+      local conf = require("telescope.config").values
+      local actions = require("telescope.actions")
+      local action_state = require("telescope.actions.state")
+
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
       for name, sign in pairs(require("common.ui").icons.dap) do
@@ -49,8 +56,6 @@ return {
         ---@diagnostic disable-next-line: assign-type-mismatch
         vim.fn.sign_define("Dap" .. name, { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] })
       end
-
-      local dap = require("dap")
 
       local cppdbg = {
         id = "cppdbg",
@@ -60,7 +65,32 @@ return {
 
       local config = {
         {
-          name = "Launch file",
+          name = "Pick an executable",
+          type = "cppdbg",
+          request = "launch",
+          cwd = "${workspaceFolder}",
+          program = function()
+            return coroutine.create(function(coro)
+              local opts = {}
+              pickers
+                .new(opts, {
+                  prompt_title = "Path to executable",
+                  finder = finders.new_oneshot_job({ "fd", "--hidden", "--no-ignore", "--type", "x" }, {}),
+                  sorter = conf.generic_sorter(opts),
+                  attach_mappings = function(buffer_number)
+                    actions.select_default:replace(function()
+                      actions.close(buffer_number)
+                      coroutine.resume(coro, action_state.get_selected_entry()[1])
+                    end)
+                    return true
+                  end,
+                })
+                :find()
+            end)
+          end,
+        },
+        {
+          name = "Enter path to executable",
           type = "cppdbg",
           request = "launch",
           program = function()
