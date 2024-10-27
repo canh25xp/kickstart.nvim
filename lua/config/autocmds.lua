@@ -64,10 +64,11 @@ autocmd("FileType", {
     "help",
     "checkhealth",
     "netrw",
+    "dap-float"
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    map("n", "qq", "<cmd>close<cr>", {
+    map("n", "q", "<cmd>close<cr>", {
       buffer = event.buf,
       silent = true,
       desc = "Quick Quit buffer",
