@@ -85,6 +85,13 @@ return {
           type = "cppdbg",
           request = "launch",
           cwd = "${workspaceFolder}",
+          setupCommands = {
+            {
+              text = "-enable-pretty-printing",
+              description = "enable pretty printing",
+              ignoreFailures = false,
+            },
+          },
           program = function()
             return coroutine.create(function(coro)
               local opts = {}
@@ -114,6 +121,13 @@ return {
           end,
           cwd = "${workspaceFolder}",
           stopAtEntry = true,
+          setupCommands = {
+            {
+              text = "-enable-pretty-printing",
+              description = "enable pretty printing",
+              ignoreFailures = false,
+            },
+          },
         },
         {
           name = "cppdbg attach to gdbserver :1234",
