@@ -12,6 +12,7 @@ return {
       "williamboman/mason.nvim",
       "hrsh7th/cmp-nvim-lsp",
       "j-hui/fidget.nvim",
+      "ray-x/lsp_signature.nvim",
     },
     event = { "BufRead", "BufNewFile" },
     opts = {
@@ -86,6 +87,12 @@ return {
               api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
             end,
           })
+          require("lsp_signature").on_attach({
+            bind = true,
+            handler_opts = {
+              border = "rounded",
+            },
+          }, bufnr)
         end
 
         -- require("clangd_extensions.inlay_hints").setup_autocmd()
