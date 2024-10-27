@@ -71,16 +71,6 @@ return {
 
       local config = {
         {
-          name = "gdb launch",
-          type = "gdb",
-          request = "launch",
-          program = function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-          end,
-          cwd = "${workspaceFolder}",
-          stopAtBeginningOfMainSubprogram = false,
-        },
-        {
           name = "cppdbg launch (telescope)",
           type = "cppdbg",
           request = "launch",
@@ -140,6 +130,16 @@ return {
           program = function()
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
           end,
+        },
+        {
+          name = "gdb launch",
+          type = "gdb",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+          end,
+          cwd = "${workspaceFolder}",
+          stopAtBeginningOfMainSubprogram = false,
         },
       }
 
