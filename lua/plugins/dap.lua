@@ -57,15 +57,31 @@ return {
         vim.fn.sign_define("Dap" .. name, { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] })
       end
 
-      local cppdbg = {
+      dap.adapters.cppdbg = {
         id = "cppdbg",
         type = "executable",
         command = "/home/michael/.local/share/nvim/mason/bin/OpenDebugAD7",
       }
 
+      dap.adapters.gdb = {
+        type = "executable",
+        command = "gdb",
+        args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+      }
+
       local config = {
         {
-          name = "Pick an executable",
+          name = "gdb launch",
+          type = "gdb",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+          end,
+          cwd = "${workspaceFolder}",
+          stopAtBeginningOfMainSubprogram = false,
+        },
+        {
+          name = "cppdbg launch (telescope)",
           type = "cppdbg",
           request = "launch",
           cwd = "${workspaceFolder}",
@@ -90,7 +106,7 @@ return {
           end,
         },
         {
-          name = "Enter path to executable",
+          name = "cppdbg launch",
           type = "cppdbg",
           request = "launch",
           program = function()
@@ -100,7 +116,7 @@ return {
           stopAtEntry = true,
         },
         {
-          name = "Attach to gdbserver :1234",
+          name = "cppdbg attach to gdbserver :1234",
           type = "cppdbg",
           request = "launch",
           MIMode = "gdb",
@@ -112,7 +128,7 @@ return {
           end,
         },
       }
-      dap.adapters.cppdbg = cppdbg
+
       dap.configurations.cpp = config
       dap.configurations.c = config
     end,
