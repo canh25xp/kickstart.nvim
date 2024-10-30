@@ -60,7 +60,11 @@ return {
       dap.adapters.cppdbg = {
         id = "cppdbg",
         type = "executable",
-        command = "/home/michael/.local/share/nvim/mason/bin/OpenDebugAD7",
+        -- command = "/home/michael/.local/share/nvim/mason/bin/OpenDebugAD7",
+        command = "C:\\Users\\Michael\\.vscode\\extensions\\ms-vscode.cpptools-1.21.6-win32-x64\\debugAdapters\\bin\\OpenDebugAD7.exe",
+        options = {
+          detached = false,
+        },
       }
 
       dap.adapters.gdb = {

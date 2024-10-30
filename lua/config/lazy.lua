@@ -21,6 +21,7 @@ local opts = {
     { import = "plugins.bufferline" },
     { import = "plugins.catppuccin" },
     { import = "plugins.cmp" },
+    { import = "plugins.dap" },
     { import = "plugins.cmake-tools" },
     { import = "plugins.conform" },
     { import = "plugins.fzf" },
