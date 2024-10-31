@@ -57,6 +57,18 @@ return {
         vim.fn.sign_define("Dap" .. name, { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] })
       end
 
+      dap.adapters.codelldb = {
+        type = "server",
+        port = "${port}",
+        executable = {
+          command = "C:\\Users\\Michael\\.vscode\\extensions\\vadimcn.vscode-lldb-1.11.0\\adapter\\codelldb.exe",
+          args = { "--port", "${port}" },
+
+          -- On windows you may have to uncomment this:
+          detached = false,
+        },
+      }
+
       dap.adapters.cppdbg = {
         id = "cppdbg",
         type = "executable",
@@ -144,6 +156,16 @@ return {
           end,
           cwd = "${workspaceFolder}",
           stopAtBeginningOfMainSubprogram = false,
+        },
+        {
+          name = "codelldb launch",
+          type = "codelldb",
+          request = "launch",
+          program = function()
+            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+          end,
+          cwd = "${workspaceFolder}",
+          stopOnEntry = true,
         },
       }
 
