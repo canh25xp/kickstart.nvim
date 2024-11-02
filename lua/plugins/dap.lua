@@ -191,10 +191,10 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<leader>du", function() require("dapui").toggle({reset=true}) end, desc = "Debug: Toggle Dap UI" },
-      { "<leader>dv", function() require("dapui").toggle({layout=1}) end, desc = "Debug: Dap Scope" },
-      { "<leader>dc", function() require("dapui").toggle({layout=2}) end, desc = "Debug: Dap Console" },
-      { "<leader>dv", function() require("dapui").toggle({layout=3}) end, desc = "Debug: Dap Watch Variable" },
+      { "<leader>du", function() require("dapui").toggle({ reset = true }) end, desc = "Debug: Toggle Dap UI" },
+      { "<leader>dv", function() require("dapui").toggle({ layout = 1 }) end, desc = "Debug: Dap Scope" },
+      { "<leader>dc", function() require("dapui").toggle({ layout = 2 }) end, desc = "Debug: Dap Console" },
+      { "<leader>dv", function() require("dapui").toggle({ layout = 3 }) end, desc = "Debug: Dap Watch Variable" },
       { "<leader>de", function() require("dapui").eval() end, desc = "Debug: Eval", mode = {"n", "v"} },
     },
     opts = {
