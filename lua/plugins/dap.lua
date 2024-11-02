@@ -10,6 +10,32 @@ local function get_args(config)
   return config
 end
 
+local function telescope_pick()
+  return coroutine.create(function(coro)
+    local opts = {}
+    local pickers = require("telescope.pickers")
+    local finders = require("telescope.finders")
+    local conf = require("telescope.config").values
+    local actions = require("telescope.actions")
+    local action_state = require("telescope.actions.state")
+
+    pickers
+      .new(opts, {
+        prompt_title = "Path to executable",
+        finder = finders.new_oneshot_job({ "fd", "--hidden", "--no-ignore", "--type", "x" }, {}),
+        sorter = conf.generic_sorter(opts),
+        attach_mappings = function(buffer_number)
+          actions.select_default:replace(function()
+            actions.close(buffer_number)
+            coroutine.resume(coro, action_state.get_selected_entry()[1])
+          end)
+          return true
+        end,
+      })
+      :find()
+  end)
+end
+
 return {
   {
     "mfussenegger/nvim-dap",
@@ -43,12 +69,6 @@ return {
     },
     config = function()
       local dap = require("dap")
-      local pickers = require("telescope.pickers")
-      local finders = require("telescope.finders")
-      local conf = require("telescope.config").values
-      local actions = require("telescope.actions")
-      local action_state = require("telescope.actions.state")
-
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
       for name, sign in pairs(require("common.ui").icons.dap) do
@@ -70,13 +90,13 @@ return {
       }
 
       dap.adapters.cppdbg = {
-        id = "cppdbg",
         type = "executable",
+        id = "cppdbg",
         command = "OpenDebugAD7",
         -- command = "/home/michael/.local/share/nvim/mason/bin/OpenDebugAD7",
         -- command = "C:\\Users\\Michael\\.vscode\\extensions\\ms-vscode.cpptools-1.21.6-win32-x64\\debugAdapters\\bin\\OpenDebugAD7.exe",
         -- options = {
-          -- detached = false, -- On windows you may have to uncomment this:
+        -- detached = false, -- On windows you may have to uncomment this:
         -- },
       }
 
@@ -102,25 +122,7 @@ return {
               ignoreFailures = false,
             },
           },
-          program = function()
-            return coroutine.create(function(coro)
-              local opts = {}
-              pickers
-                .new(opts, {
-                  prompt_title = "Path to executable",
-                  finder = finders.new_oneshot_job({ "fd", "--hidden", "--no-ignore", "--type", "x" }, {}),
-                  sorter = conf.generic_sorter(opts),
-                  attach_mappings = function(buffer_number)
-                    actions.select_default:replace(function()
-                      actions.close(buffer_number)
-                      coroutine.resume(coro, action_state.get_selected_entry()[1])
-                    end)
-                    return true
-                  end,
-                })
-                :find()
-            end)
-          end,
+          program = telescope_pick,
         },
         {
           name = "cppdbg launch",
