@@ -216,7 +216,6 @@ return {
         {
           elements = {
             { id = "console", size = 1.0 },
-            -- { id = "repl", size = 0.5 },
           },
           position = "bottom",
           size = 10,
@@ -228,6 +227,13 @@ return {
           position = "right",
           size = 40,
         },
+        -- {
+        --   elements = {
+        --     { id = "repl", size = 1.0 },
+        --   },
+        --   position = "top",
+        --   size = 10,
+        -- },
       },
     },
     config = function(_, opts)
