@@ -61,7 +61,8 @@ return {
         type = "server",
         port = "${port}",
         executable = {
-          command = "C:\\Users\\Michael\\.vscode\\extensions\\vadimcn.vscode-lldb-1.11.0\\adapter\\codelldb.exe",
+          -- command = "C:\\Users\\Michael\\.vscode\\extensions\\vadimcn.vscode-lldb-1.11.0\\adapter\\codelldb.exe",
+          command = "codelldb.exe",
           args = { "--port", "${port}" },
 
           -- On windows you may have to uncomment this:
@@ -72,11 +73,12 @@ return {
       dap.adapters.cppdbg = {
         id = "cppdbg",
         type = "executable",
+        command = "OpenDebugAD7",
         -- command = "/home/michael/.local/share/nvim/mason/bin/OpenDebugAD7",
-        command = "C:\\Users\\Michael\\.vscode\\extensions\\ms-vscode.cpptools-1.21.6-win32-x64\\debugAdapters\\bin\\OpenDebugAD7.exe",
-        options = {
-          detached = false,
-        },
+        -- command = "C:\\Users\\Michael\\.vscode\\extensions\\ms-vscode.cpptools-1.21.6-win32-x64\\debugAdapters\\bin\\OpenDebugAD7.exe",
+        -- options = {
+        --   detached = false,
+        -- },
       }
 
       dap.adapters.gdb = {
