@@ -39,6 +39,7 @@ end
 return {
   {
     "mfussenegger/nvim-dap",
+    lazy = true,
     dependencies = {
       "rcarriga/nvim-dap-ui",
     },
@@ -183,6 +184,7 @@ return {
   },
   {
     "rcarriga/nvim-dap-ui",
+    lazy = true,
     dependencies = {
       "nvim-neotest/nvim-nio",
       "theHamsta/nvim-dap-virtual-text",
@@ -249,6 +251,7 @@ return {
   },
   {
     "theHamsta/nvim-dap-virtual-text",
+    lazy = true,
     opts = {
       commented = false, -- prefix virtual text with comment string
       virt_text_pos = "eol",
