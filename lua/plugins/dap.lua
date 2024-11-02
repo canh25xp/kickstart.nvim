@@ -90,7 +90,10 @@ return {
           name = "cppdbg launch (telescope)",
           type = "cppdbg",
           request = "launch",
-          cwd = "${workspaceFolder}",
+          cwd = function()
+            return vim.fn.expand("%:p:h") -- current file directory
+          end,
+          stopAtEntry = false,
           setupCommands = {
             {
               text = "-enable-pretty-printing",
@@ -125,8 +128,10 @@ return {
           program = function()
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
           end,
-          cwd = "${workspaceFolder}",
-          stopAtEntry = true,
+          cwd = function()
+            return vim.fn.expand("%:p:h") -- current file directory
+          end,
+          stopAtEntry = false,
           setupCommands = {
             {
               text = "-enable-pretty-printing",
