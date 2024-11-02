@@ -189,7 +189,10 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Debug: Toggle Dap UI" },
+      { "<leader>du", function() require("dapui").toggle({reset=true}) end, desc = "Debug: Toggle Dap UI" },
+      { "<leader>dv", function() require("dapui").toggle({layout=1}) end, desc = "Debug: Dap Scope" },
+      { "<leader>dc", function() require("dapui").toggle({layout=2}) end, desc = "Debug: Dap Console" },
+      { "<leader>dv", function() require("dapui").toggle({layout=3}) end, desc = "Debug: Dap Watch Variable" },
       { "<leader>de", function() require("dapui").eval() end, desc = "Debug: Eval", mode = {"n", "v"} },
     },
     opts = {
@@ -203,8 +206,7 @@ return {
       layouts = {
         {
           elements = {
-            { id = "scopes", size = 0.4 },
-            { id = "watches", size = 0.4 },
+            { id = "scopes", size = 0.8 },
             { id = "breakpoints", size = 0.1 },
             { id = "stacks", size = 0.1 },
           },
@@ -218,6 +220,13 @@ return {
           },
           position = "bottom",
           size = 10,
+        },
+        {
+          elements = {
+            { id = "watches", size = 1.0 },
+          },
+          position = "right",
+          size = 40,
         },
       },
     },
