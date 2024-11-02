@@ -75,7 +75,6 @@ local opts = {
 
 if vim.g.is_linux then
   table.insert(opts.spec, { import = "plugins.dashboard" })
-  table.insert(opts.spec, { import = "plugins.dap" })
   table.insert(opts.spec, { import = "plugins.lint" })
   table.insert(opts.spec, { import = "plugins.noice" })
   table.insert(opts.spec, { import = "plugins.todo-comments" })
