@@ -125,7 +125,7 @@ if vim.g.is_windows then
   elseif vim.fn.executable("powershell") == 1 then
     vim.o.shell = "powershell"
   else
-    vim.api.nvim_err_writeln("No powershell executable found")
+    vim.notify("Lazy Plugins already Loaded", vim.log.levels.ERROR)
   end
   -- Setting shell command flags
   vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
