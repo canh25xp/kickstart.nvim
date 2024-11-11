@@ -38,6 +38,6 @@ return {
     -- end
   end,
   keys = {
-    { "<localLeader>l", "", desc = "+vimtext" },
+    { "<localLeader>l", "", desc = "+vimtex" },
   },
 }
