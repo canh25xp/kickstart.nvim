@@ -3,6 +3,7 @@ local utils = require("common.utils")
 local terminal = require("common.terminal")
 
 map("n", "<leader>cs", "<cmd>so<CR>", { desc = "Source this file" })
+map("v", "<leader>cs", "<cmd>'<,'>lua<CR>", { desc = "Source current selected file" })
 
 -- General
 map("i", "jk", "<esc>", { desc = "Escape insert mode" })
