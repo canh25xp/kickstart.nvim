@@ -120,25 +120,10 @@ if vim.g.neovide then
 end
 
 if vim.g.is_windows then
-  if vim.fn.executable("pwsh") == 1 then
-    vim.o.shell = "pwsh"
-  elseif vim.fn.executable("powershell") == 1 then
-    vim.o.shell = "powershell"
-  else
-    vim.notify("Lazy Plugins already Loaded", vim.log.levels.ERROR)
-  end
-  -- Setting shell command flags
+  vim.o.shell = vim.fn.executable("pwsh") and "pwsh" or "powershell"
   vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
-
-  -- Setting shell redirection
   vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
-  -- vim.o.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
-
-  -- Setting shell pipe
-  vim.o.shellpipe = '2>&1 | %%{ "$_" } | Tee-Object %s; exit $LastExitCode'
-  -- vim.o.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-
-  -- Setting shell quote options
+  vim.o.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
   vim.o.shellquote = ""
   vim.o.shellxquote = ""
 end
