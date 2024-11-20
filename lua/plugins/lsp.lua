@@ -153,6 +153,14 @@ return {
             },
           },
         })
+        require("lspconfig").eslint.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
+        })
+        require("lspconfig").html.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
+        })
       end
 
       if utils.executable("lua-language-server") then
