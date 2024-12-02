@@ -81,6 +81,7 @@ if vim.g.is_linux then
   table.insert(opts.spec, { import = "plugins.url-open" })
   table.insert(opts.spec, { import = "plugins.which-key" })
   table.insert(opts.spec, { import = "plugins.peek" })
+  table.insert(opts.spec, { import = "plugins.luaSnip" })
 else
   table.insert(opts.spec, { import = "plugins.chezmoi" })
 end
