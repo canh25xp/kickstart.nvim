@@ -120,7 +120,7 @@ if vim.g.neovide then
 end
 
 if vim.g.is_windows then
-  vim.o.shell = vim.fn.executable("pwsh") and "pwsh" or "powershell"
+  vim.o.shell = vim.uv.os_gethostname() == "vancanh-ng02" and "powershell" or (vim.fn.executable("pwsh") and "pwsh" or "cmd")
   vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
   vim.o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
   vim.o.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
