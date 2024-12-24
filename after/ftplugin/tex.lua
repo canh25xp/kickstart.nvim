@@ -8,3 +8,5 @@ map("n", "<localleader>sm", "ciW$<esc>pa$<esc>", { desc = "Surround with Math Mo
 
 map("v", "<localleader>st", [[s\text{ <esc>pa }<esc>]], { desc = "Surround with text" })
 map("n", "<localleader>st", [[ciW\text{ <esc>pa }<esc>]], { desc = "Surround with text" })
+
+map("n", "<leader>ch", "<CMD>!xdg-open https://quickref.me/latex &<CR>", { desc = "Open LaTeX Cheatsheet", silent=true})
