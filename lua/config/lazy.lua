@@ -37,6 +37,7 @@ local opts = {
     { import = "plugins.vim-sleuth" },
     { import = "plugins.vimtex" },
     { import = "plugins.luaSnip" },
+    { import = "plugins.chezmoi" },
   },
 
   dev = {
@@ -83,8 +84,6 @@ if vim.g.is_linux then
   table.insert(opts.spec, { import = "plugins.url-open" })
   table.insert(opts.spec, { import = "plugins.which-key" })
   table.insert(opts.spec, { import = "plugins.peek" })
-else
-  table.insert(opts.spec, { import = "plugins.chezmoi" })
 end
 
 require("lazy").setup(opts)
