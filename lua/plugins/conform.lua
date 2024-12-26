@@ -23,8 +23,8 @@ return {
     notify_on_error = false,
     default_format_opts = {
       timeout_ms = 3000,
-      async = false, -- not recommended to change
-      quiet = false, -- not recommended to change
+      async = false,           -- not recommended to change
+      quiet = false,           -- not recommended to change
       lsp_format = "fallback", -- not recommended to change
     },
     -- format_on_save = function(bufnr)
@@ -39,12 +39,25 @@ return {
     --   }
     -- end,
     formatters_by_ft = {
+      ps1 = { "pwsh_formatter" },
       lua = { "stylua" },
       sh = { "shfmt" },
       python = { "ruff_format", "isort", "black", stop_after_first = true },
       markdown = { "markdownlint" },
       javascript = { "prettierd", "prettier", stop_after_first = true },
       html = { "prettierd" },
+    },
+    formatters = {
+      pwsh_formatter = {
+        command = "pwsh",
+        args = {
+          "-NoProfile",
+          "-Command",
+          "Edit-DTWBeautifyScript",
+          "$FILENAME",
+        },
+        stdin = false,
+      }
     },
   },
 }
