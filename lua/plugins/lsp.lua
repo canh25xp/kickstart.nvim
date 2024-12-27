@@ -25,9 +25,11 @@ return {
       local tools_bin = vim.fn.stdpath("data") .. "/tools"
       local luals_bin = tools_bin .. "/lua-language-server/bin"
       local clangd_bin = tools_bin .. "/clangd/bin"
+      local texlab_bin = tools_bin .. "/texlab"
       local powershell_es_bundle = tools_bin .. "/powershell-editor-services"
       vim.env.PATH = vim.env.PATH .. sep .. luals_bin
       vim.env.PATH = vim.env.PATH .. sep .. clangd_bin .. sep
+      vim.env.PATH = vim.env.PATH .. sep .. texlab_bin .. sep
 
       local function lsp_attach(client, bufnr)
         local function map(modes, keys, func, desc)
