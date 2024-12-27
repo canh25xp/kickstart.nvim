@@ -46,6 +46,7 @@ return {
       markdown = { "markdownlint" },
       javascript = { "prettierd", "prettier", stop_after_first = true },
       html = { "prettierd" },
+      yaml = { "prettierd" },
     },
     formatters = {
       pwsh_formatter = {
