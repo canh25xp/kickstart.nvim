@@ -16,12 +16,20 @@ return {
     vim.g.vimtex_view_automatic = 1
     vim.g.vimtex_doc_confirm_single = 0
     vim.g.vimtex_doc_handlers = { "vimtex#doc#handlers#texdoc" }
-    vim.g.vimtex_view_method = "sioyek"
-    if vim.g.is_wsl then
-      vim.g.vimtex_view_sioyek_exe = "sioyek.exe"
-      vim.g.vimtex_callback_progpath = "wsl nvim"
-    end
+
+    -- vim.g.vimtex_view_method = "sioyek"
     -- vim.g.vimtex_view_sioyek_options = "--reuse-window"
+    -- if vim.g.is_wsl then
+    --   vim.g.vimtex_view_sioyek_exe = "sioyek.exe"
+    --   vim.g.vimtex_callback_progpath = "wsl nvim"
+    -- end
+
+    if vim.g.is_wsl then
+      vim.g.vimtex_view_general_viewer = "~/.local/bin/sumatrapdf.sh"
+    else
+      vim.g.vimtex_view_general_viewer = "SumatraPDF.exe"
+    end
+    vim.g.vimtex_view_general_options = "-reuse-instance -forward-search @tex @line @pdf"
 
     -- vim.g.vimtex_callback_progpath = "pwsh"
     -- if vim.fn.has("win32") or (vim.fn.has("unix") and vim.fn.exists("$WSLENV")) then
