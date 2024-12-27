@@ -5,9 +5,24 @@ return {
     vim.g.vimtex_mappings_disable = { ["n"] = { "K" } } -- disable `K` as it conflicts with LSP hover
     vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
     vim.g.vimtex_compiler_latexmk = {
+      out_dir = 'build',
       continuous = 1,
     }
-    -- vim.g.tex_conceal = "abdmgs"
+    vim.g.vimtex_syntax_conceal = {
+      accents = 0,
+      ligatures = 0,
+      cites = 1,
+      fancy = 1,
+      spacing = 1,
+      greek = 1,
+      math_bounds = 0,
+      math_delimiters = 0,
+      math_fracs = 0,
+      math_super_sub = 0,
+      math_symbols = 0,
+      sections = 1,
+      styles = 0,
+    }
     vim.g.vimtex_quickfix_mode = 0
     -- vim.g.vimtex_quickfix_autoclose_after_keystrokes = 1
     -- vim.g.vimtex_compiler_latexmk_engines = { ["_"] = "-lualatex" }
