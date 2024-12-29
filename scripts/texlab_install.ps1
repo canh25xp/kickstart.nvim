@@ -1,5 +1,5 @@
 $tools_dir = "$env:LOCALAPPDATA\nvim-data\tools"
-$download_link = "https://github.com/latex-lsp/texlab/releases/download/latest/texlab-x86_64-windows.zip"
+$download_link = "https://github.com/latex-lsp/texlab/releases/latest/download/texlab-x86_64-windows.zip"
 $download_path = "$tools_dir\texlab.zip"
 $install_dir = "$tools_dir\texlab"
 
