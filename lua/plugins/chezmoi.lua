@@ -10,6 +10,10 @@ return {
             if string.find(vim.bo.filetype, "chezmoitmpl") then
               return true
             end
+            -- TODO: Some how make this only when vimtex is enabled.
+            if vim.bo.filetype == "tex" then
+              return true
+            end
           end,
         },
       })
