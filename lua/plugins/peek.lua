@@ -1,7 +1,14 @@
--- markdown preview
 return {
-  "toppair/peek.nvim",
-  build = "deno task --quiet build:fast",
+  "toppair/peek.nvim", -- markdown preview
+  build = function()
+    if not require("common.utils").executable("deno") then
+      vim.notify("No deno executable found skip peek,vim build", vim.log.levels.ERROR)
+      return
+    end
+    print("Building peek.nvim")
+    os.execute("deno task --quiet build:fast")
+    print("Done build peek.nvim")
+  end,
   keys = {
     {
       "<leader>cp",
