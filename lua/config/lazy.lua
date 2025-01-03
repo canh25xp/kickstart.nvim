@@ -15,7 +15,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-local opts = {
+require("lazy").setup({
   spec = {
     { import = "plugins.catppuccin" },
     { import = "plugins.treesitter" },
@@ -47,6 +47,7 @@ local opts = {
     { import = "plugins.peek" },
   },
   lockfile = vim.fn.stdpath("config") .. "/.lazy-lock.json",
+  ---@diagnostic disable-next-line: assign-type-mismatch
   dev = {
     path = "~/projects/lua",
   },
@@ -81,6 +82,4 @@ local opts = {
   rocks = {
     enabled = false,
   },
-}
-
-require("lazy").setup(opts)
+})
