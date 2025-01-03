@@ -29,7 +29,9 @@ return {
     init = function()
       -- run chezmoi edit on file enter
       vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-        pattern = { vim.env.HOME .. "/.local/share/chezmoi/*" },
+        -- TODO: something's wrong with this pattern on windows
+        -- pattern = { vim.env.HOME .. "/.local/share/chezmoi/*" },
+        pattern = { "*.tmpl" },
         callback = function()
           vim.schedule(require("chezmoi.commands.__edit").watch)
         end,
