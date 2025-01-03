@@ -8,17 +8,6 @@ vim.g.is_linux = vim.fn.has("unix") == 1
 vim.g.is_wsl = vim.fn.has("wsl") == 1
 vim.g.path_sep = vim.g.is_windows and ";" or ":"
 
--- Netrw config
--- vim.g.loaded_netrwPlugin = 1 -- Set to 1 to disable Netrw
-vim.g.netrw_keepdir = 0 -- Keep the current directory and the browsing directory synced. This
-vim.g.netrw_winsize = 30 -- Change the size of the Netrw window
-vim.g.netrw_banner = 0 -- Hide the banner ("I" to show agin)
-vim.g.netrw_liststyle = 3 -- View as tree
-vim.g.netrw_browse_split = 4
-vim.g.netrw_altv = 1
-vim.g.netrw_list_hide = [[\(^\|\s\s\)\zs\.\S\+]] -- Hide dotfiles
-vim.g.netrw_localcopydircmd = "cp -r" -- Change the copy command
-
 vim.g.loaded_perl_provider = 0 -- Disable perl provider
 vim.g.loaded_ruby_provider = 0 -- Disable ruby provider
 vim.g.loaded_node_provider = 0 -- Disable node provider
@@ -42,8 +31,7 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.confirm = true -- Ask to save changes before exiting modified buffer
 vim.opt.laststatus = 3 -- global statusline
--- BUG: Lost command bar when press save (Ctrl - S)
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 0 -- BUG: Lost command bar when press save (Ctrl - S)
 vim.opt.mousemoveevent = true
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 vim.opt.signcolumn = "yes:2" -- Always show the signcolumn, otherwise it would shift the text each time
