@@ -49,12 +49,9 @@ vim.opt.scrolloff = 4 -- Minimal number of screen lines to keep above and below 
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.winminwidth = 5 -- Minimum window width
 vim.opt.wrap = false -- Disable line wrap
-
--- Configure how new splits should be opened
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
-vim.opt.list = true
+vim.opt.splitright = true -- New splits should be opened right
+vim.opt.splitbelow = true -- New splits should be opened below
+vim.opt.list = true -- Display tabs, trailing spaces and non-breakable space characters.
 
 if vim.g.have_nerd_font then
   vim.opt.showbreak = "↳"
@@ -97,7 +94,6 @@ vim.diagnostic.config({
 vim.cmd.colorscheme("habamax")
 
 if vim.g.neovide then
-  -- vim.o.guifont = "CaskaydiaCove Nerd Font:h12"
   vim.g.neovide_fullscreen = false
   vim.g.neovide_scroll_animation_length = 0.3
   vim.g.neovide_cursor_vfx_mode = "sonicboom"
