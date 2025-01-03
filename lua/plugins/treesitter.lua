@@ -33,9 +33,11 @@ return {
       -- If you are experiencing weird indenting issues,
       -- add the language to the list of additional_vim_regex_highlighting and disabled languages for indent.
       additional_vim_regex_highlighting = { "ruby" },
-      disable = {
-        "latex",
-      },
+      disable = function()
+        if string.find(vim.bo.filetype, "chezmoitmpl") or vim.bo.filetype == "tex" then
+          return true
+        end
+      end,
     },
     indent = {
       enable = true,

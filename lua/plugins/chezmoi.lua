@@ -4,19 +4,6 @@ return {
     init = function()
       vim.g["chezmoi#use_tmp_buffer"] = true
       vim.g["chezmoi#source_dir_path"] = vim.env.HOME .. "/.local/share/chezmoi"
-      require("nvim-treesitter.configs").setup({
-        highlight = {
-          disable = function()
-            if string.find(vim.bo.filetype, "chezmoitmpl") then
-              return true
-            end
-            -- TODO: Some how make this only when vimtex is enabled.
-            if vim.bo.filetype == "tex" then
-              return true
-            end
-          end,
-        },
-      })
     end,
   },
   {
