@@ -1,27 +1,10 @@
 return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
-  dependencies = { "MaximilianLloyd/ascii.nvim" },
   opts = function()
-    local ascii = require("ascii")
     local logo = require("common.ui").logo
-    local logo_padding = vim.split(logo, "\n")
-    local dynamic_logo = ascii.get_random("text", "neovim")
-
-    local header = ascii.art.text.neovim.dos_rebel
-
-    local function add_padding(tbl, n)
-      for _ = 1, n do
-        table.insert(tbl, 1, [[ ]])
-      end
-
-      for _ = 1, 3 do
-        table.insert(tbl, [[ ]])
-      end
-    end
-
-    add_padding(header, 6)
-
+    logo = string.rep("\n", 8) .. logo .. "\n\n"
+    local header = vim.split(logo, "\n")
     local opts = {
       theme = "doom",
       hide = {
