@@ -38,6 +38,13 @@ local opts = {
     { import = "plugins.vimtex" },
     { import = "plugins.luaSnip" },
     { import = "plugins.chezmoi" },
+    { import = "plugins.dashboard" },
+    { import = "plugins.lint" },
+    { import = "plugins.noice" },
+    { import = "plugins.todo-comments" },
+    { import = "plugins.url-open" },
+    { import = "plugins.which-key" },
+    { import = "plugins.peek" },
   },
   lockfile = vim.fn.stdpath("config") .. "/.lazy-lock.json",
   dev = {
@@ -75,15 +82,5 @@ local opts = {
     enabled = false,
   },
 }
-
-if vim.g.is_linux then
-  table.insert(opts.spec, { import = "plugins.dashboard" })
-  table.insert(opts.spec, { import = "plugins.lint" })
-  table.insert(opts.spec, { import = "plugins.noice" })
-  table.insert(opts.spec, { import = "plugins.todo-comments" })
-  table.insert(opts.spec, { import = "plugins.url-open" })
-  table.insert(opts.spec, { import = "plugins.which-key" })
-  table.insert(opts.spec, { import = "plugins.peek" })
-end
 
 require("lazy").setup(opts)
