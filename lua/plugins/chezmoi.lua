@@ -1,7 +1,6 @@
 return {
   {
     "alker0/chezmoi.vim",
-    lazy = false,
     init = function()
       vim.g["chezmoi#use_tmp_buffer"] = true
       require("nvim-treesitter.configs").setup({
@@ -21,12 +20,9 @@ return {
   },
   {
     "xvzc/chezmoi.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      {
-        "<leader>sz",
-        require("common.utils").pick_chezmoi,
-        desc = "Chezmoi",
-      },
+      { "<leader>sz", require("common.utils").pick_chezmoi, desc = "Search chezmoi files" },
     },
     opts = {
       edit = {
@@ -45,9 +41,7 @@ return {
     init = function()
       -- run chezmoi edit on file enter
       vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-        -- TODO:: test this on both windows and linux
-        -- pattern = { os.getenv("USERPROFILE") .. "/.local/share/chezmoi/*" },
-        pattern = { "~/.local/share/chezmoi/*" },
+        pattern = { os.getenv("HOME") .. "/.local/share/chezmoi/*" },
         callback = function()
           vim.schedule(require("chezmoi.commands.__edit").watch)
         end,
