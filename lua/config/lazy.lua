@@ -68,7 +68,7 @@ local opts = {
   },
   ui = {
     border = "rounded",
-    size = { width = 0.8, height = 0.8 },
+    size = { width = 0.9, height = 0.8 },
     icons = vim.g.have_nerd_font and {} or icons.lazy,
   },
   rocks = {
