@@ -5,7 +5,7 @@ return {
     vim.g.vimtex_mappings_disable = { ["n"] = { "K" } } -- disable `K` as it conflicts with LSP hover
     vim.g.vimtex_quickfix_method = vim.fn.executable("pplatex") == 1 and "pplatex" or "latexlog"
     vim.g.vimtex_compiler_latexmk = {
-      out_dir = 'build',
+      out_dir = "build",
       continuous = 1,
     }
     vim.g.vimtex_syntax_conceal = {
@@ -56,6 +56,7 @@ return {
     -- end
   end,
   keys = {
-    { "<localLeader>l", "", desc = "+vimtex" },
+    { "<localLeader>l", "", desc = "+vimtex", ft = "tex" },
+    { "<Leader>K", "<plug>(vimtex-doc-package)", desc = "Vimtex Docs", silent = true, ft = "tex"},
   },
 }
