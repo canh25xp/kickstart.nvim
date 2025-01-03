@@ -3,6 +3,7 @@ return {
     "alker0/chezmoi.vim",
     init = function()
       vim.g["chezmoi#use_tmp_buffer"] = true
+      vim.g["chezmoi#source_dir_path"] = vim.env.HOME .. "/.local/share/chezmoi"
       require("nvim-treesitter.configs").setup({
         highlight = {
           disable = function()
@@ -41,7 +42,7 @@ return {
     init = function()
       -- run chezmoi edit on file enter
       vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-        pattern = { os.getenv("HOME") .. "/.local/share/chezmoi/*" },
+        pattern = { vim.env.HOME .. "/.local/share/chezmoi/*" },
         callback = function()
           vim.schedule(require("chezmoi.commands.__edit").watch)
         end,
