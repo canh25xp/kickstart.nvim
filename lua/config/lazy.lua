@@ -39,7 +39,7 @@ local opts = {
     { import = "plugins.luaSnip" },
     { import = "plugins.chezmoi" },
   },
-
+  lockfile = vim.fn.stdpath("config") .. "/.lazy-lock.json",
   dev = {
     path = "~/projects/lua",
   },
