@@ -12,7 +12,6 @@ vim.g.loaded_perl_provider = 0 -- Disable perl provider
 vim.g.loaded_ruby_provider = 0 -- Disable ruby provider
 vim.g.loaded_node_provider = 0 -- Disable node provider
 
--- vim.opt.swapfile = false
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.termguicolors = true -- True color support
@@ -35,7 +34,6 @@ vim.opt.cmdheight = 0 -- BUG: Lost command bar when press save (Ctrl - S)
 vim.opt.mousemoveevent = true
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 vim.opt.signcolumn = "yes:2" -- Always show the signcolumn, otherwise it would shift the text each time
--- vim.opt.statuscolumn = [[%!v:lua.require('common.ui').statuscolumn()]]
 vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
 vim.opt.clipboard = "" -- Don't Sync clipboard between OS and Neovim.
 vim.opt.breakindent = true
