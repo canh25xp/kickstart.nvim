@@ -7,19 +7,20 @@ local utils = require("common.utils")
 -- General Settings
 local general = augroup("General Settings", { clear = true })
 
-if vim.g.is_windows then
-  autocmd({ "RecordingEnter" }, {
-    callback = function()
-      vim.opt.cmdheight = 1
-    end,
-  })
-
-  autocmd({ "RecordingLeave" }, {
-    callback = function()
-      vim.opt.cmdheight = 0
-    end,
-  })
-end
+-- Change cmdheight when recording macro
+-- if vim.g.is_windows then
+--   autocmd({ "RecordingEnter" }, {
+--     callback = function()
+--       vim.opt.cmdheight = 1
+--     end,
+--   })
+--
+--   autocmd({ "RecordingLeave" }, {
+--     callback = function()
+--       vim.opt.cmdheight = 0
+--     end,
+--   })
+-- end
 
 autocmd("TermOpen", { command = "setlocal nonumber norelativenumber signcolumn=no" })
 
