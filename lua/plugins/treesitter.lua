@@ -41,9 +41,17 @@ return {
       enable = true,
       disable = { "ruby" },
     },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "<C-space>",
+        node_incremental = "<C-space>",
+        scope_incremental = false,
+        node_decremental = "<bs>",
+      },
+    },
   },
   config = function(_, opts)
-    ---@diagnostic disable-next-line: missing-fields
     require("nvim-treesitter.configs").setup(opts)
 
     -- There are additional nvim-treesitter modules that you can use to interact with nvim-treesitter.
