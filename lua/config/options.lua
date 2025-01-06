@@ -78,14 +78,6 @@ vim.diagnostic.config({
 
 vim.cmd.colorscheme("habamax")
 
-if vim.g.neovide then
-  vim.g.neovide_fullscreen = false
-  vim.g.neovide_scroll_animation_length = 0.3
-  vim.g.neovide_cursor_vfx_mode = "sonicboom"
-  vim.g.neovide_hide_mouse_when_typing = true
-  vim.g.neovide_transparency = 1.0
-end
-
 if vim.g.is_windows then
   vim.o.shell = vim.uv.os_gethostname() == "vancanh-ng02" and "powershell" or (vim.fn.executable("pwsh") and "pwsh" or "cmd")
   vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"

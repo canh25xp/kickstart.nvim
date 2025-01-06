@@ -4,8 +4,7 @@ if (vim.uv or vim.loop).fs_stat("~/.vimrc") then
   vim.cmd("source ~/.vimrc")
 end
 
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.g.mapleader = " "
+vim.g.mapleader = " " --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.maplocalleader = "\\"
 vim.g.have_nerd_font = true
 vim.g.load_lazy_plugins = true
@@ -27,4 +26,8 @@ end
 
 if vim.g.vscode then
   require("config.vscode")
+end
+
+if vim.g.neovide then
+  require("config.neovide")
 end
