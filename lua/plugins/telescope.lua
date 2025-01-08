@@ -89,7 +89,7 @@ return {
     end, opts)
 
     map("v", "<space>sg", function()
-      local text = vim.getVisualSelection()
+      local text = selected()
       builtin.live_grep({ default_text = text })
     end, opts)
   end,
