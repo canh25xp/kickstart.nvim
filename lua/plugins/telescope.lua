@@ -43,20 +43,23 @@ return {
     pcall(require("telescope").load_extension, "ui-select")
 
     -- See `:help telescope.builtin`
+    local map = vim.keymap.set
     local builtin = require("telescope.builtin")
-    vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "Search Help" })
-    vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "Search Keymaps" })
-    vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "Search Files" })
-    vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "Search Select Telescope" })
-    vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "Search current Word" })
-    vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "Search by Grep" })
-    vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "Search Diagnostics" })
-    vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "Search Resume" })
-    vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = "Search Recent Files" })
-    vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Find Files" })
+    local opts = { noremap = true, silent = true }
+
+    map("n", "<leader>sh", builtin.help_tags, { desc = "Search Help" })
+    map("n", "<leader>sk", builtin.keymaps, { desc = "Search Keymaps" })
+    map("n", "<leader>sf", builtin.find_files, { desc = "Search Files" })
+    map("n", "<leader>ss", builtin.builtin, { desc = "Search Select Telescope" })
+    map("n", "<leader>sw", builtin.grep_string, { desc = "Search current Word" })
+    map("n", "<leader>sg", builtin.live_grep, { desc = "Search by Grep" })
+    map("n", "<leader>sd", builtin.diagnostics, { desc = "Search Diagnostics" })
+    map("n", "<leader>sr", builtin.resume, { desc = "Search Resume" })
+    map("n", "<leader>s.", builtin.oldfiles, { desc = "Search Recent Files" })
+    map("n", "<leader><leader>", builtin.find_files, { desc = "Find Files" })
 
     -- Slightly advanced example of overriding default behavior and theme
-    vim.keymap.set("n", "<leader>/", function()
+    map("n", "<leader>/", function()
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.
       builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
         winblend = 10,
@@ -66,14 +69,14 @@ return {
 
     -- It's also possible to pass additional configuration options.
     --  See `:help telescope.builtin.live_grep()` for information about particular keys
-    vim.keymap.set("n", "<leader>s/", function()
+    map("n", "<leader>s/", function()
       builtin.live_grep({
         grep_open_files = true,
         prompt_title = "Live Grep in Open Files",
       })
     end, { desc = "Fuzzily search Open Files" })
 
-    vim.keymap.set("n", "<leader>sc", function()
+    map("n", "<leader>sc", function()
       builtin.find_files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "Search Neovim Config files" })
   end,
