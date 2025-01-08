@@ -17,6 +17,7 @@ map("n", "U", "<C-R>", { desc = "Redo" })
 
 map("n", "J", "mzJ`z", { desc = "Join without moving cursor" })
 map("n", "<leader>/", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change word under cursor" })
+map("v", "<leader>/", [[:<C-u>%s/\<C-r><C-r>=escape(@", '/')<CR>\>/<C-r><C-r>=escape(@", '/')<CR>/gI<Left><Left><Left>]], { desc = "Search and replace selected word" })
 
 -- Yank, Paste and Delete
 map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
