@@ -62,7 +62,7 @@ return {
     map("n", "<leader><leader>", builtin.find_files, { desc = "Find Files" })
 
     -- Slightly advanced example of overriding default behavior and theme
-    map("n", "<leader>/", function()
+    map("n", "<leader>sz", function()
       -- You can pass additional configuration to Telescope to change the theme, layout, etc.
       builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
         winblend = 10,
@@ -83,7 +83,7 @@ return {
       builtin.find_files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "Search Neovim Config files" })
 
-    map("v", "<space>sf", function()
+    map("v", "<space>sz", function()
       local text = selected()
       builtin.current_buffer_fuzzy_find({ default_text = text })
     end, opts)
