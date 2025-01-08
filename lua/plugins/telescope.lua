@@ -46,6 +46,7 @@ return {
 
     -- See `:help telescope.builtin`
     local map = vim.keymap.set
+    local selected = require("common.utils").getVisualSelection
     local builtin = require("telescope.builtin")
     local opts = { noremap = true, silent = true }
 
@@ -81,5 +82,15 @@ return {
     map("n", "<leader>sc", function()
       builtin.find_files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "Search Neovim Config files" })
+
+    map("v", "<space>sf", function()
+      local text = selected()
+      builtin.current_buffer_fuzzy_find({ default_text = text })
+    end, opts)
+
+    map("v", "<space>sg", function()
+      local text = vim.getVisualSelection()
+      builtin.live_grep({ default_text = text })
+    end, opts)
   end,
 }
