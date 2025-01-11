@@ -1,7 +1,6 @@
 return {
   "willothy/flatten.nvim",
   -- Ensure that it runs first to minimize delay when opening file from terminal
-  cond = false,
   lazy = false,
   priority = 1001,
   opts = {
