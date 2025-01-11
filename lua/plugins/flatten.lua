@@ -5,7 +5,7 @@ return {
   priority = 1001,
   opts = {
     window = {
-      open = "current",
+      open = "alternate",
       diff = "tab_vsplit",
       focus = "first",
     },
