@@ -44,6 +44,7 @@ require("lazy").setup({
     { import = "plugins.todo-comments" },
     { import = "plugins.url-open" },
     { import = "plugins.which-key" },
+    { import = "plugins.flatten" },
     { import = "plugins.peek" },
   },
   lockfile = vim.fn.stdpath("config") .. "/.lazy-lock.json",

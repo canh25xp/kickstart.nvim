@@ -12,6 +12,7 @@
   "conform.nvim": { "branch": "master", "commit": "28f7fc7b679438a7090e8f83aa9ba5f67df18146" },
   "dashboard-nvim": { "branch": "master", "commit": "ae309606940d26d8c9df8b048a6e136b6bbec478" },
   "fidget.nvim": { "branch": "main", "commit": "9238947645ce17d96f30842e61ba81147185b657" },
+  "flatten.nvim": { "branch": "main", "commit": "b17a3e65c2e4e2ecd1345a2d08435e80f982c4a6" },
   "friendly-snippets": { "branch": "main", "commit": "efff286dd74c22f731cdec26a70b46e5b203c619" },
   "fzf-lua": { "branch": "main", "commit": "c773fabeec3f58b2da0fbad558f6420795a1685e" },
   "gitsigns.nvim": { "branch": "main", "commit": "5f808b5e4fef30bd8aca1b803b4e555da07fc412" },
