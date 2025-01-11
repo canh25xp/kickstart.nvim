@@ -33,5 +33,5 @@ if vim.g.neovide then
 end
 
 if vim.fn.executable("nvr") == 1 then
-  vim.env.GIT_EDITOR = "nvr --remote-tab-wait +'set bufhidden=delete'"
+  vim.env.GIT_EDITOR = "nvr -l --remote-wait +'set bufhidden=delete'"
 end
