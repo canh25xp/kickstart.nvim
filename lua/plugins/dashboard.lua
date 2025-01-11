@@ -1,6 +1,7 @@
 return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
+  cond = not vim.g.is_windows,
   opts = function()
     local logo = require("common.ui").logo
     logo = string.rep("\n", 8) .. logo .. "\n\n"
