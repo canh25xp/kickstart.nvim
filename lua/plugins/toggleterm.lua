@@ -11,10 +11,20 @@ return {
     persist_size = true,
     close_on_exit = true,
   },
+  config = function(_, opts)
+    vim.api.nvim_create_autocmd("TermOpen", {
+      pattern = "term://*toggleterm*", -- "term://*" to apply for all terminal
+      desc = "toggleterm keymap",
+      callback = function()
+        vim.keymap.set("t", "jk", [[<C-\><C-n>]], { buffer = 0 })
+      end,
+    })
+    require("toggleterm").setup(opts)
+  end,
   cmd = "ToggleTerm",
   keys = {
     { "<C-\\>" },
-    { "<leader>t1", "<Cmd>1ToggleTerm<Cr>", desc = "Terminal #2" },
+    { "<leader>t1", "<Cmd>1ToggleTerm<Cr>", desc = "Terminal #1" },
     { "<leader>t2", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
     { "<leader>tt", "<Cmd>ToggleTerm direction=tab<Cr>", desc = "ToggleTerm in new tab" },
     -- {
