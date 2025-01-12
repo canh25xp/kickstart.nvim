@@ -2,9 +2,6 @@ local map = vim.keymap.set
 local utils = require("common.utils")
 local terminal = require("common.terminal")
 
-map("n", "<leader>cs", "<cmd>so<CR>", { desc = "Source this file" })
-map("v", "<leader>cs", "<cmd>'<,'>lua<CR>", { desc = "Source current selected file" })
-
 -- General
 map("i", "jk", "<esc>", { desc = "Escape insert mode" })
 map("n", "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and Clear hlsearch" })
@@ -14,7 +11,8 @@ map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map({ "i", "x", "n", "s" }, "<C-S>", "<cmd>wa<cr><esc>", { desc = "Save All" })
 map("n", "U", "<C-R>", { desc = "Redo" })
-
+map("n", "<leader>cs", "<cmd>so<CR>", { desc = "Source this file" })
+map("v", "<leader>cs", "<cmd>'<,'>lua<CR>", { desc = "Source current selected file" })
 map("n", "J", "mzJ`z", { desc = "Join without moving cursor" })
 map("n", "<leader>/", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change word under cursor" })
 map("v", "<leader>/", [[:<C-u>%s/\<C-r><C-r>=escape(@", '/')<CR>\>/<C-r><C-r>=escape(@", '/')<CR>/gI<Left><Left><Left>]], { desc = "Search and replace selected word" })
