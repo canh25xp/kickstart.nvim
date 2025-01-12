@@ -2,6 +2,7 @@ local exclude_ft = { "help", "git", "markdown", "snippets", "text", "gitconfig",
 
 return {
   "lukas-reineke/indent-blankline.nvim",
+  enabled = false,
   event = "VeryLazy",
   main = "ibl",
   ---@module "ibl"

@@ -1,5 +1,6 @@
 return {
   "aaronhallaert/advanced-git-search.nvim",
+  enabled = false,
   dependencies = {
     "nvim-telescope/telescope.nvim",
     -- to show diff splits and open commits in browser

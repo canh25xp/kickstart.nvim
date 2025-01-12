@@ -1,6 +1,6 @@
 return {
   "princejoogie/chafa.nvim",
-  enabled = true,
+  enabled = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
     "m00qek/baleia.nvim",

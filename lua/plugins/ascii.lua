@@ -1,6 +1,6 @@
 return {
   "MaximilianLloyd/ascii.nvim",
-  enabled = true,
+  enabled = false,
   lazy = true,
   dependencies = {
     "nvim-telescope/telescope.nvim",
