@@ -145,10 +145,9 @@ map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Focus Right Window" })
 -- map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
 -- windows
-map("n", "<leader>w", "<c-w>", { desc = "Windows", remap = true })
-map("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
-map("n", "<leader>\\", "<C-W>v", { desc = "Split Window Right", remap = true })
-map("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+map("n", "<leader>-", "<C-w>s", { desc = "Split Window Below", remap = true })
+map("n", "<leader>\\", "<C-w>v", { desc = "Split Window Right", remap = true })
+map("n", "<leader>wd", "<C-w>c", { desc = "Delete Window", remap = true })
 
 -- tabs
 map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
