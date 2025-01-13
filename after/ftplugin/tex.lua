@@ -1,4 +1,6 @@
 local map = vim.keymap.set
+local mp = require("mini.pairs")
+mp.map_buf(0, "i", "$", { action = "closeopen", pair = "$$" })
 
 vim.o.textwidth = 120
 vim.o.wrap = true
