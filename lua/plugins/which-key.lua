@@ -46,5 +46,12 @@ return {
       end,
       desc = "Buffer Local Keymaps (which-key)",
     },
+    {
+      "<c-w><space>",
+      function()
+        require("which-key").show({ keys = "<c-w>", loop = true })
+      end,
+      desc = "Window Hydra Mode (which-key)",
+    },
   },
 }
