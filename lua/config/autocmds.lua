@@ -4,7 +4,6 @@ local augroup = vim.api.nvim_create_augroup
 local map = vim.keymap.set
 local utils = require("common.utils")
 
--- General Settings
 local general = augroup("General Settings", { clear = true })
 
 if vim.g.is_windows then
@@ -22,7 +21,7 @@ end
 autocmd("TermOpen", { command = "setlocal nonumber norelativenumber signcolumn=no" })
 autocmd("TermClose", { command = "bdelete" })
 
--- autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert" })
+autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert" , desc = "Auto insert in terminal"})
 
 autocmd("BufEnter", {
   pattern = "",
