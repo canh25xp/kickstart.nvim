@@ -16,6 +16,7 @@ map("v", "<leader>cs", "<cmd>'<,'>lua<CR>", { desc = "Source current selected fi
 map("n", "J", "mzJ`z", { desc = "Join without moving cursor" })
 map("n", "<leader>/", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change word under cursor" })
 map("v", "<leader>/", [[:<C-u>%s/\<C-r><C-r>=escape(@", '/')<CR>\>/<C-r><C-r>=escape(@", '/')<CR>/gI<Left><Left><Left>]], { desc = "Search and replace selected word" })
+map("n", "g|", "<CMD>vsplit<CR><C-]>", { desc = "Open in Split" })
 
 -- Yank, Paste and Delete
 map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
