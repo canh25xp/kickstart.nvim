@@ -67,6 +67,21 @@ return {
       { "<leader>ds", function() require("dap").session() end, desc = "Debug: Session" },
       { "<leader>dt", function() require("dap").terminate() end, desc = "Debug: Terminate" },
       { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Debug: Widgets" },
+      --[[ .exit                      Closes the REPL ]]
+      --[[ .c or .continue            Same as |dap.continue| ]]
+      --[[ .n or .next                Same as |dap.step_over| ]]
+      --[[ .into                      Same as |dap.step_into| ]]
+      --[[ .into_target               Same as |dap.step_into{askForTargets=true}| ]]
+      --[[ .out                       Same as |dap.step_out| ]]
+      --[[ .up                        Same as |dap.up| ]]
+      --[[ .down                      Same as |dap.down| ]]
+      --[[ .goto                      Same as |dap.goto_| ]]
+      --[[ .scopes                    Prints the variables in the current scopes ]]
+      --[[ .threads                   Prints all threads ]]
+      --[[ .frames                    Print the stack frames ]]
+      --[[ .capabilities              Print the capabilities of the debug adapter ]]
+      --[[ .b or .back                Same as |dap.step_back| ]]
+      --[[ .rc or .reverse-continue   Same as |dap.reverse_continue| ]]
     },
     config = function()
       local dap = require("dap")
