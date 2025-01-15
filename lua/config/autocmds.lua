@@ -8,20 +8,23 @@ local general = augroup("General Settings", { clear = true })
 
 if vim.g.is_windows then
   autocmd({ "CmdlineEnter", "RecordingEnter" }, {
-    callback = function() vim.opt.cmdheight = 1 end,
-    desc = "Change cmdheight when typing macro or command"
+    callback = function()
+      vim.opt.cmdheight = 1
+    end,
+    desc = "Change cmdheight when typing macro or command",
   })
 
   autocmd({ "CmdlineLeave", "RecordingLeave" }, {
-    callback = function() vim.opt.cmdheight = 0 end,
-    desc = "Change cmdheight when leaving macro or command"
+    callback = function()
+      vim.opt.cmdheight = 0
+    end,
+    desc = "Change cmdheight when leaving macro or command",
   })
 end
 
 autocmd("TermOpen", { command = "setlocal nonumber norelativenumber signcolumn=no" })
 autocmd("TermClose", { command = "bdelete" })
-
-autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert" , desc = "Auto insert in terminal"})
+autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert", desc = "Auto insert in terminal" })
 
 autocmd("BufEnter", {
   pattern = "",
@@ -32,8 +35,8 @@ autocmd("BufEnter", {
   end,
 })
 
--- resize splits if window got resized
 autocmd({ "VimResized" }, {
+  desc = "Resize splits if window got resized",
   group = general,
   callback = function()
     local current_tab = vim.fn.tabpagenr()
@@ -43,7 +46,7 @@ autocmd({ "VimResized" }, {
 })
 
 autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
+  desc = "Highlight yanked text",
   group = general,
   callback = function()
     vim.highlight.on_yank()
@@ -56,15 +59,14 @@ autocmd("FileType", {
     "help",
     "checkhealth",
     "netrw",
-    "dap-float"
+    "dap-float",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
-    map("n", "q", "<cmd>close<cr>", {
+    map("n", "qq", "<cmd>close<cr>", {
       buffer = event.buf,
       silent = true,
       desc = "Quick Quit buffer",
     })
   end,
 })
-
