@@ -53,6 +53,15 @@ autocmd("TextYankPost", {
   end,
 })
 
+autocmd("BufEnter", {
+  pattern = { "*.md", "*.txt" },
+  callback = function()
+    vim.opt_local.spell = true
+  end,
+  group = general,
+  desc = "Enable spell checking",
+})
+
 autocmd("FileType", {
   group = general,
   pattern = {
