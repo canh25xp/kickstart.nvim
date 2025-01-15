@@ -8,19 +8,19 @@ local utils = require("common.utils")
 local general = augroup("General Settings", { clear = true })
 
 -- Change cmdheight when recording macro
--- if vim.g.is_windows then
---   autocmd({ "RecordingEnter" }, {
---     callback = function()
---       vim.opt.cmdheight = 1
---     end,
---   })
---
---   autocmd({ "RecordingLeave" }, {
---     callback = function()
---       vim.opt.cmdheight = 0
---     end,
---   })
--- end
+if vim.g.is_windows then
+  autocmd({ "RecordingEnter" }, {
+    callback = function()
+      vim.opt.cmdheight = 1
+    end,
+  })
+
+  autocmd({ "RecordingLeave" }, {
+    callback = function()
+      vim.opt.cmdheight = 0
+    end,
+  })
+end
 
 autocmd("TermOpen", { command = "setlocal nonumber norelativenumber signcolumn=no" })
 
