@@ -23,14 +23,9 @@ if vim.g.is_windows then
 end
 
 autocmd("TermOpen", { command = "setlocal nonumber norelativenumber signcolumn=no" })
+autocmd("TermClose", { command = "bdelete" })
 
 -- autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert" })
-
-autocmd("TermClose", {
-  callback = function()
-    vim.cmd("bdelete")
-  end,
-})
 
 autocmd("BufEnter", {
   pattern = "",
