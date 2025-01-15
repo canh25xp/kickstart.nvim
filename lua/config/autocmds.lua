@@ -7,8 +7,20 @@ local utils = require("common.utils")
 -- General Settings
 local general = augroup("General Settings", { clear = true })
 
--- Change cmdheight when recording macro
+-- Change cmdheight when recording macro typing command
 if vim.g.is_windows then
+  autocmd({ "CmdlineEnter" }, {
+    callback = function()
+      vim.opt.cmdheight = 1
+    end,
+  })
+
+  autocmd({ "CmdlineLeave" }, {
+    callback = function()
+      vim.opt.cmdheight = 0
+    end,
+  })
+
   autocmd({ "RecordingEnter" }, {
     callback = function()
       vim.opt.cmdheight = 1
