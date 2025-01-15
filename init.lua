@@ -1,6 +1,6 @@
 vim.opt.runtimepath:prepend("~/.vim/after")
 vim.opt.packpath = vim.opt.runtimepath:get()
-if (vim.uv or vim.loop).fs_stat("~/.vimrc") then
+if vim.fn.filereadable("~/.vimrc") then
   vim.cmd("source ~/.vimrc")
 end
 
