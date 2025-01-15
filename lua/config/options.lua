@@ -77,8 +77,6 @@ vim.diagnostic.config({
   severity_sort = true,
 })
 
-vim.cmd.colorscheme("habamax")
-
 if vim.g.is_windows then
   vim.o.shell = vim.uv.os_gethostname() == "vancanh-ng02" and "powershell" or (vim.fn.executable("pwsh") and "pwsh" or "cmd")
   vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
