@@ -46,7 +46,7 @@ return {
 
     -- See `:help telescope.builtin`
     local map = vim.keymap.set
-    local selected = require("common.utils").getVisualSelection
+    local selected = require("common.utils").get_visual_selection
     local builtin = require("telescope.builtin")
     local opts = { noremap = true, silent = true }
 

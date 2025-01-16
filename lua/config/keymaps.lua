@@ -32,7 +32,7 @@ map("n", "<leader>e", ":Lexplore<CR>", { desc = "Netrw Explorer (root)" })
 map("n", "<leader>E", ":Lexplore %:p:h<CR>", { desc = "Netrw Explorer (cwd)" })
 
 -- Lazy
-map("n", "<leader>ll", utils.Load_Lazy, { desc = "Load Lazy Plugins" })
+map("n", "<leader>ll", utils.lazy_load, { desc = "Load Lazy Plugins" })
 map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- New file
@@ -43,23 +43,23 @@ map("n", "<leader>qr", ":source Session.vim<cr>", { desc = "Restore Session" })
 map("n", "<leader>qs", ":mksession!<cr>", { desc = "Save Session" })
 
 -- UI
-map("n", "<leader>us", utils.Toggle_Signcolumn, { desc = "Toggle Signcolumn" })
+map("n", "<leader>us", utils.toggle_signcolmn, { desc = "Toggle Signcolumn" })
 map("n", "<leader>ur", ":nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 
 -- Diagnostic
 -- stylua: ignore
 map("n", "<leader>cd", function() vim.diagnostic.open_float({ border = "rounded" }) end, { desc = "Code Diagnostics" })
 map("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Code Quickfix list" })
-map("n", "]d", utils.DiagnosticGoto(true), { desc = "Next Diagnostic" })
-map("n", "[d", utils.DiagnosticGoto(false), { desc = "Prev Diagnostic" })
-map("n", "]e", utils.DiagnosticGoto(true, "ERROR"), { desc = "Next Error" })
-map("n", "[e", utils.DiagnosticGoto(false, "ERROR"), { desc = "Prev Error" })
-map("n", "]w", utils.DiagnosticGoto(true, "WARN"), { desc = "Next Warning" })
-map("n", "[w", utils.DiagnosticGoto(false, "WARN"), { desc = "Prev Warning" })
-map("n", "]i", utils.DiagnosticGoto(true, "INFO"), { desc = "Next Info" })
-map("n", "[i", utils.DiagnosticGoto(false, "INFO"), { desc = "Prev Info" })
-map("n", "]h", utils.DiagnosticGoto(true, "HINT"), { desc = "Next Hint" })
-map("n", "[h", utils.DiagnosticGoto(false, "HINT"), { desc = "Prev Hint" })
+map("n", "]d", utils.diagnostic_goto(true), { desc = "Next Diagnostic" })
+map("n", "[d", utils.diagnostic_goto(false), { desc = "Prev Diagnostic" })
+map("n", "]e", utils.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+map("n", "[e", utils.diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+map("n", "]w", utils.diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+map("n", "[w", utils.diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+map("n", "]i", utils.diagnostic_goto(true, "INFO"), { desc = "Next Info" })
+map("n", "[i", utils.diagnostic_goto(false, "INFO"), { desc = "Prev Info" })
+map("n", "]h", utils.diagnostic_goto(true, "HINT"), { desc = "Next Hint" })
+map("n", "[h", utils.diagnostic_goto(false, "HINT"), { desc = "Prev Hint" })
 
 -- Better scroll
 -- map("n", "<C-d>", "<C-d>zz")
@@ -123,16 +123,16 @@ map("n", "H", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "L", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 map("n", "<leader>bd", "<cmd>bp|bd #<cr>", { desc = "Delete Current Buffer" })
-map("n", "<leader>bo", utils.Delete_Other_Buffers, { desc = "Delete Other Buffer" })
+map("n", "<leader>bo", utils.delete_other_buffers, { desc = "Delete Other Buffer" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
 -- map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 -- map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- Terminal Mappings
-map("n", "<leader>tt", utils.TabTerminal, { desc = "New Tab Terminal" })
-map("n", "<leader>md", utils.Glow, { desc = "Markdown Preview with Glow" })
-map("n", "<leader>gg", utils.LazyGit, { desc = "Lazygit" })
-map("n", "<leader>gl", utils.LazyGit_Log, { desc = "Lazygit Log" })
+map("n", "<leader>tt", utils.tab_terminal, { desc = "New Tab Terminal" })
+map("n", "<leader>md", utils.glow, { desc = "Markdown Preview with Glow" })
+map("n", "<leader>gg", utils.lazygit, { desc = "Lazygit" })
+map("n", "<leader>gl", utils.lazygit_log, { desc = "Lazygit Log" })
 -- map("n", "<C-\\>", "<cmd>split|terminal<CR>", { desc = "New Terminal" })
 -- map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map({"n", "t"}, "<C-\\>", terminal.Toggle, { desc = "Toggle Terminal" })

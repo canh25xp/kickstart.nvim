@@ -1,8 +1,6 @@
-local fn = vim.fn
-local version = vim.version
 local M = {}
 
-function M.getPath()
+function M.get_env_path()
   local path = vim.env.PATH
   local pattern = "([^" .. vim.g.path_sep .. "]+)"
   for word in string.gmatch(path, pattern) do
@@ -10,7 +8,7 @@ function M.getPath()
   end
 end
 
-function M.getVisualSelection()
+function M.get_visual_selection()
   vim.cmd('noau normal! "vy"')
   local text = vim.fn.getreg("v")
   vim.fn.setreg("v", {})
@@ -24,7 +22,7 @@ function M.getVisualSelection()
 end
 
 function M.executable(name)
-  if fn.executable(name) > 0 then
+  if vim.fn.executable(name) > 0 then
     return true
   end
 
@@ -35,7 +33,7 @@ end
 --- @param feat string the feature name, like `nvim-0.7` or `unix`.
 --- @return boolean
 M.has = function(feat)
-  if fn.has(feat) == 1 then
+  if vim.fn.has(feat) == 1 then
     return true
   end
 
@@ -46,7 +44,7 @@ function M.pick_chezmoi()
   require("telescope").extensions.chezmoi.find_files()
 end
 
-function M.Delete_Other_Buffers()
+function M.delete_other_buffers()
   local bufs = vim.api.nvim_list_bufs()
   local current_buf = vim.api.nvim_get_current_buf()
   for _, i in ipairs(bufs) do
@@ -56,7 +54,7 @@ function M.Delete_Other_Buffers()
   end
 end
 
-function M.Load_Lazy()
+function M.lazy_load()
   if not vim.g.load_lazy_plugins then
     require("config.lazy")
     vim.g.load_lazy_plugins = true
@@ -65,7 +63,7 @@ function M.Load_Lazy()
   end
 end
 
-function M.Toggle_Theme()
+function M.toggle_theme()
   if vim.g.colors_name == "catppuccin-mocha" then
     vim.cmd.colorscheme("catppuccin-frappe")
   else
@@ -73,40 +71,40 @@ function M.Toggle_Theme()
   end
 end
 
-function M.Toggle_Signcolumn()
+function M.toggle_signcolmn()
   vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"
 end
 
-function M.TabTerminal()
+function M.tab_terminal()
   vim.cmd("tab terminal")
 end
 
-function M.Glow()
+function M.glow()
   vim.cmd("tab terminal glow")
   -- vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
   vim.keymap.set("t", "<esc>", "<esc>", { buffer = 0, nowait = true })
 end
 
-function M.LazyGit()
+function M.lazygit()
   vim.cmd("tab terminal lazygit")
   vim.cmd("startinsert")
   -- vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
   vim.keymap.set("t", "<esc>", "<esc>", { buffer = 0, nowait = true })
 end
 
-function M.LazyGit_Log()
+function M.lazygit_log()
   vim.cmd("tab terminal lazygit log")
   vim.cmd("startinsert")
   -- vim.keymap.set("t", "j", "j", { buffer = 0, nowait = true })
   vim.keymap.set("t", "<esc>", "<esc>", { buffer = 0, nowait = true })
 end
 
-function M.ReloadConfig()
+function M.reload_config()
   vim.cmd("luafile %")
   vim.notify("Nvim configuration reloaded", vim.log.levels.INFO)
 end
 
-M.DiagnosticGoto = function(next, severity)
+function M.diagnostic_goto(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
@@ -159,7 +157,6 @@ function M.delete_buffer(buf)
   vim.api.nvim_command("bwipeout " .. buf)
 end
 
---- Switch to the previous buffer
 function M.switch_to_other_buffer()
   local ok, _ = pcall(function()
     vim.cmd("buffer #")
