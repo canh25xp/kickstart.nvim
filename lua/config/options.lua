@@ -37,6 +37,7 @@ vim.opt.linebreak = true -- Wrap lines at convenient points
 vim.opt.splitright = true -- New splits should be opened right
 vim.opt.splitbelow = true -- New splits should be opened below
 vim.opt.list = true -- Display tabs, trailing spaces and non-breakable space characters.
+vim.opt.wildignore:prepend("*.o", "*.obj", "*.pyc")
 
 if vim.g.have_nerd_font then
   vim.opt.showbreak = "↳"
