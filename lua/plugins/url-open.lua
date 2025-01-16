@@ -1,6 +1,7 @@
 return {
-  "sontungexpt/url-open",
-  branch = "mini",
+  "canh25xp/url-open",
+  dev = false,
+  branch = "main",
   event = "VeryLazy",
   cmd = "URLOpenUnderCursor",
   opts = {},
