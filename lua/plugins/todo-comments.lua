@@ -3,7 +3,8 @@ return {
   event = "VimEnter",
   dependencies = { "nvim-lua/plenary.nvim" },
   opts = {
-    signs = false,
+    signs = true,
+    sign_priority = 8,
   },
   -- stylua: ignore
   keys = {
