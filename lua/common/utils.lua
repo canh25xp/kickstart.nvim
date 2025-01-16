@@ -72,7 +72,7 @@ function M.toggle_theme()
 end
 
 function M.toggle_signcolmn()
-  vim.o.signcolumn = vim.o.signcolumn == "yes" and "no" or "yes"
+  vim.wo.signcolumn = vim.wo.signcolumn == "yes:2" and "no" or "yes:2"
 end
 
 function M.tab_terminal()
