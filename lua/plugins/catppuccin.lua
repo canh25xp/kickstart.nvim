@@ -28,6 +28,7 @@ return {
     },
   },
   opts = {
+    compile_path = vim.fn.stdpath("config") .. "/.catppuccin",
     flavour = "auto", -- latte, frappe, macchiato, mocha
     transparent_background = true,
     term_colors = true, -- sets terminal colors (e.g. `g:terminal_color_0`)
