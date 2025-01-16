@@ -63,7 +63,7 @@ return {
         ["<CR>"] = cmp.mapping.confirm({ select = true }),
         ["<C-e>"] = cmp.mapping.abort(),
         ["<C-Space>"] = cmp.mapping.complete({}),
-        ["<C-j>"] = function()
+        ["<F1>"] = function()
           if cmp.visible_docs() then
             cmp.close_docs()
           else
