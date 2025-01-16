@@ -2,6 +2,14 @@ local fn = vim.fn
 local version = vim.version
 local M = {}
 
+function M.getPath()
+  local path = vim.env.PATH
+  local pattern = "([^" .. vim.g.path_sep .. "]+)"
+  for word in string.gmatch(path, pattern) do
+    print(word)
+  end
+end
+
 function M.getVisualSelection()
   vim.cmd('noau normal! "vy"')
   local text = vim.fn.getreg("v")
