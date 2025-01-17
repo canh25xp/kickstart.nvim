@@ -29,6 +29,7 @@ map("n", "<leader>p", [["+p]], { desc = "Paste from system clipboard" })
 map("i", "<C-r><C-r>", [[<C-o>"+p]], { desc = "Paste form system clipboard" })
 map("x", "<leader>p", [["_dP]], { desc = "Delete and Paste" })
 map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete" })
+map("n", "<leader>0", [["0p"]], { desc = "Paste last yank" })
 
 -- Netrw
 map("n", "<leader>e", "<cmd>Lexplore<CR>", { desc = "Netrw Explorer (root)" })
