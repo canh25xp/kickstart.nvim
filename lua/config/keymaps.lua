@@ -30,8 +30,8 @@ map("x", "<leader>p", [["_dP]], { desc = "Delete and Paste" })
 map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete" })
 
 -- Netrw
-map("n", "<leader>e", ":Lexplore<CR>", { desc = "Netrw Explorer (root)" })
-map("n", "<leader>E", ":Lexplore %:p:h<CR>", { desc = "Netrw Explorer (cwd)" })
+map("n", "<leader>e", "<cmd>Lexplore<CR>", { desc = "Netrw Explorer (root)" })
+map("n", "<leader>E", "<cmd>Lexplore %:p:h<CR>", { desc = "Netrw Explorer (cwd)" })
 
 -- Lazy
 map("n", "<leader>ll", utils.lazy_load, { desc = "Load Lazy Plugins" })
@@ -41,12 +41,12 @@ map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
 map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- Sessions
-map("n", "<leader>qr", ":source Session.vim<cr>", { desc = "Restore Session" })
-map("n", "<leader>qs", ":mksession!<cr>", { desc = "Save Session" })
+map("n", "<leader>qr", "<cmd>source Session.vim<cr>", { desc = "Restore Session" })
+map("n", "<leader>qs", "<cmd>mksession!<cr>", { desc = "Save Session" })
 
 -- UI
 map("n", "<leader>us", utils.toggle_signcolmn, { desc = "Toggle Signcolumn" })
-map("n", "<leader>ur", ":nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
+map("n", "<leader>ur", "<cmd>nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 
 -- Diagnostic
 -- stylua: ignore
@@ -94,12 +94,12 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 -- stylua: ignore start
 map("n", "<A-k>", "<cmd>m .-2<cr>==",         { desc = "Move Line Up" })
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi",  { desc = "Move Line Up" })
-map("v", "<A-k>", ":m '<-2<cr>gv=gv",         { desc = "Move Line Up" })
-map("v", "K",     ":m '<-2<CR>gv=gv",         { desc = "Move Line Up" })
+map("v", "<A-k>", "<cmd>m '<-2<cr>gv=gv",         { desc = "Move Line Up" })
+map("v", "K",     "<cmd>m '<-2<CR>gv=gv",         { desc = "Move Line Up" })
 map("n", "<A-j>", "<cmd>m .+1<cr>==",         { desc = "Move Line Down" })
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi",  { desc = "Move Line Down" })
-map("v", "<A-j>", ":m '>+1<cr>gv=gv",         { desc = "Move Line Down" })
-map("v", "J",     ":m '>+1<CR>gv=gv",         { desc = "Move Line Down" })
+map("v", "<A-j>", "<cmd>m '>+1<cr>gv=gv",         { desc = "Move Line Down" })
+map("v", "J",     "<cmd>m '>+1<CR>gv=gv",         { desc = "Move Line Down" })
 -- stylua: ignore stop
 
 -- Srolling
