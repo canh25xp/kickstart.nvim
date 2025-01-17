@@ -9,11 +9,11 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 map("n", "<leader>QQ", "<cmd>wqa<cr>", { desc = "Write Quit All" })
 map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>wa<cr><esc>", { desc = "Save Files" })
-map("n", "U", "<C-R>", { desc = "Redo" })
+map("n", "U", "<C-r>", { desc = "Redo" })
 map("n", "J", "mzJ`z", { desc = "Join without moving cursor" })
 map("n", "<leader>/", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change word under cursor" })
-map("v", "<leader>/", [[:<C-u>%s/\<C-r><C-r>=escape(@", '/')<CR>\>/<C-r><C-r>=escape(@", '/')<CR>/gI<Left><Left><Left>]], { desc = "Search and replace selected word" })
-map("n", "g|", "<CMD>vsplit<CR><C-]>", { desc = "Open in Split" })
+map("v", "<leader>/", [[:<C-u>%s/\<C-r><C-r>=escape(@", '/')<cr>\>/<C-r><C-r>=escape(@", '/')<cr>/gI<Left><Left><Left>]], { desc = "Search and replace selected word" }) -- BUG: AI generated, doesnt work
+map("n", "g|", "<cmd>vsplit<cr><C-]>", { desc = "Open in Split" })
 map("n", "<leader>lp", ":lua =", { desc = "Lua print" })
 map("n", "<leader>lo", ":lua =vim.opt.:get()<left><left><left><left><left><left>", { desc = "Lua print opts" })
 map("n", "<leader>:", "gQ", { desc = "Enter Ex mode" })
@@ -29,8 +29,8 @@ map({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete" })
 map("n", "<leader>0", [["0p"]], { desc = "Paste last yank" })
 
 -- Netrw
-map("n", "<leader>e", "<cmd>Lexplore<CR>", { desc = "Netrw Explorer (root)" })
-map("n", "<leader>E", "<cmd>Lexplore %:p:h<CR>", { desc = "Netrw Explorer (cwd)" })
+map("n", "<leader>e", "<cmd>Lexplore<cr>", { desc = "Netrw Explorer (root)" })
+map("n", "<leader>E", "<cmd>Lexplore %:p:h<cr>", { desc = "Netrw Explorer (cwd)" })
 
 -- Lazy
 map("n", "<leader>ll", utils.lazy_load, { desc = "Load Lazy Plugins" })
@@ -45,7 +45,7 @@ map("n", "<leader>qs", "<cmd>mksession!<cr>", { desc = "Save Session" })
 
 -- UI
 map("n", "<leader>us", utils.toggle_signcolmn, { desc = "Toggle Signcolumn" })
-map("n", "<leader>ur", "<cmd>nohlsearch|diffupdate|normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
+map("n", "<leader>ur", "<cmd>nohlsearch|diffupdate|normal! <C-l><cr>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 
 -- Diagnostic
 -- stylua: ignore
@@ -94,11 +94,11 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 map("n", "<A-k>", "<cmd>m .-2<cr>==",         { desc = "Move Line Up" })
 map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi",  { desc = "Move Line Up" })
 map("v", "<A-k>", "<cmd>m '<-2<cr>gv=gv",         { desc = "Move Line Up" })
-map("v", "K",     "<cmd>m '<-2<CR>gv=gv",         { desc = "Move Line Up" })
+map("v", "K",     "<cmd>m '<-2<cr>gv=gv",         { desc = "Move Line Up" })
 map("n", "<A-j>", "<cmd>m .+1<cr>==",         { desc = "Move Line Down" })
 map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi",  { desc = "Move Line Down" })
 map("v", "<A-j>", "<cmd>m '>+1<cr>gv=gv",         { desc = "Move Line Down" })
-map("v", "J",     "<cmd>m '>+1<CR>gv=gv",         { desc = "Move Line Down" })
+map("v", "J",     "<cmd>m '>+1<cr>gv=gv",         { desc = "Move Line Down" })
 -- stylua: ignore stop
 
 -- Srolling
@@ -134,7 +134,7 @@ map("n", "<leader>tt", utils.tab_terminal, { desc = "New Tab Terminal" })
 map("n", "<leader>md", utils.glow, { desc = "Markdown Preview with Glow" })
 map("n", "<leader>gg", utils.lazygit, { desc = "Lazygit" })
 map("n", "<leader>gl", utils.lazygit_log, { desc = "Lazygit Log" })
--- map("n", "<C-\\>", "<cmd>split|terminal<CR>", { desc = "New Terminal" })
+-- map("n", "<C-\\>", "<cmd>split|terminal<cr>", { desc = "New Terminal" })
 -- map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
 map({"n", "t"}, "<C-\\>", terminal.Toggle, { desc = "Toggle Terminal" })
 -- map("t", "jk", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
