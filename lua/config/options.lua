@@ -5,6 +5,7 @@ vim.opt.termguicolors = true -- True color support
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
+vim.opt.selectmode = "mouse"
 vim.opt.pumblend = 0 -- Popup blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.pumwidth = 15 -- Minimum width for the popup menu
