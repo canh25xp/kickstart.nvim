@@ -119,16 +119,6 @@ map("n", "<C-Down>", "<cmd>resize -1<cr>", { desc = "Decrease Window Height" })
 map("n", "<C-Left>", "<cmd>vertical resize -1<cr>", { desc = "Decrease Window Width" })
 map("n", "<C-Right>", "<cmd>vertical resize +1<cr>", { desc = "Increase Window Width" })
 
--- buffers
-map("n", "H", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "L", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>bd", "<cmd>bp|bd #<cr>", { desc = "Delete Current Buffer" })
-map("n", "<leader>bo", utils.delete_other_buffers, { desc = "Delete Other Buffer" })
-map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
--- map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
--- map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-
 -- Terminal Mappings
 map("n", "<leader>tt", utils.tab_terminal, { desc = "New Tab Terminal" })
 map("n", "<leader>md", utils.glow, { desc = "Markdown Preview with Glow" })
@@ -145,6 +135,16 @@ map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Focus Lower Window" })
 map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Focus Upper Window" })
 map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Focus Right Window" })
 -- map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
+
+-- buffers
+map("n", "H", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+map("n", "L", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "<tab>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+map("n", "<leader>bd", "<cmd>bp|bd #<cr>", { desc = "Delete Current Buffer" })
+map("n", "<leader>bo", utils.delete_other_buffers, { desc = "Delete Other Buffer" })
+map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete Buffer and Window" })
+-- map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+-- map("n", "<leader>`", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- windows
 map("n", "<leader>-", "<C-w>s", { desc = "Split Window Below", remap = true })
