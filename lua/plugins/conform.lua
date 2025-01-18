@@ -47,6 +47,7 @@ return {
       javascript = { "prettierd", "prettier", stop_after_first = true },
       html = { "prettierd" },
       yaml = { "prettierd" },
+      toml = { "taplo" }
     },
     formatters = {
       pwsh_formatter = {
