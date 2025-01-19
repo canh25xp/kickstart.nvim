@@ -2,7 +2,7 @@ return {
   {
     "folke/noice.nvim",
     enabled = true,
-    cond = not vim.g.is_windows,
+    cond = not vim.g.dynamic_cmdheight,
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -56,7 +56,7 @@ return {
   {
     "rcarriga/nvim-notify",
     enabled = true,
-    cond = not vim.g.is_windows,
+    cond = not vim.g.dynamic_cmdheight,
     keys = {
       {
         "<leader>ua",
