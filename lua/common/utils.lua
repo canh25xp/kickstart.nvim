@@ -1,5 +1,13 @@
 local M = {}
 
+function M.macro_recording()
+  local reg = vim.fn.reg_recording()
+  if reg == "" then
+    return ""
+  end
+  return "recording @" .. reg
+end
+
 function M.get_env_path()
   local path = vim.env.PATH
   local pattern = "([^" .. vim.g.path_sep .. "]+)"

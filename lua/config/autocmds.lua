@@ -7,13 +7,13 @@ local utils = require("common.utils")
 local general = augroup("General Settings", { clear = true })
 
 if vim.g.dynamic_cmdheight then
-  autocmd({ "CmdlineEnter", "RecordingEnter" }, {
+  autocmd({ "CmdlineEnter" }, {
     callback = function()
       vim.opt.cmdheight = 1
     end,
     desc = "Change cmdheight when typing macro or command",
   })
-  autocmd({ "CmdlineLeave", "RecordingLeave" }, {
+  autocmd({ "CmdlineLeave" }, {
     callback = function()
       vim.opt.cmdheight = 0
     end,

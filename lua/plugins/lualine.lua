@@ -1,4 +1,5 @@
 local ui = require("common.ui")
+local recording_macro = require("common.utils").macro_recording
 local icons = ui.icons
 local git = {
   added = icons.git.added,
@@ -24,7 +25,7 @@ return {
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
     },
-    extensions = { "neo-tree", "lazy", "toggleterm" },
+    extensions = { "neo-tree", "lazy", "toggleterm", "mason", "nvim-dap-ui", "quickfix" },
     sections = {
       lualine_a = { "mode" },
       lualine_b = {
@@ -51,22 +52,12 @@ return {
       },
 
       lualine_x = {
-        -- stylua: ignore start
-        {
-          function() return require("noice").api.status.mode.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-          color = { fg = "#ff9e64" },
-          separator = " "
-        },
-        {
-          function() return require("noice").api.status.command.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-        },
+        { recording_macro, color = { fg = "#ff9e64" }, separator = " " },
+        -- stylua: ignore
         {
           function() return "  " .. require("dap").status() end,
           cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
         },
-        -- stylua: ignore stop
       },
       lualine_y = {
         { "searchcount", separator = " ", padding = { left = 1, right = 0 } },
