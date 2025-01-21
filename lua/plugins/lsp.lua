@@ -165,6 +165,25 @@ return {
         })
       end
 
+      if utils.executable("yaml-language-server") then
+        lspconfig.yamlls.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
+          settings = {
+            yaml = {
+              schemaStore = {
+                -- You must disable built-in schemaStore support if you want to use
+                -- this plugin and its advanced options like `ignore`.
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "",
+              },
+              schemas = require("schemastore").yaml.schemas(),
+            },
+          },
+        })
+      end
+
       if utils.executable("lua-language-server") then
         lspconfig.lua_ls.setup({
           on_attach = lsp_attach,
