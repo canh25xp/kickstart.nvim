@@ -24,10 +24,12 @@ return {
     config = function(_, opts)
       local tools_bin = vim.fn.stdpath("data") .. "/tools"
       local luals_bin = tools_bin .. "/lua-language-server/bin"
+      local jdtls_bin = tools_bin .. "/jdtls/bin"
       local clangd_bin = tools_bin .. "/clangd/bin"
       local texlab_bin = tools_bin .. "/texlab"
       local powershell_es_bundle = tools_bin .. "/powershell-editor-services"
       vim.env.PATH = vim.env.PATH .. sep .. luals_bin
+      vim.env.PATH = vim.env.PATH .. sep .. jdtls_bin .. sep
       vim.env.PATH = vim.env.PATH .. sep .. clangd_bin .. sep
       vim.env.PATH = vim.env.PATH .. sep .. texlab_bin .. sep
 
@@ -185,6 +187,13 @@ return {
               schemas = require("schemastore").yaml.schemas(),
             },
           },
+        })
+      end
+
+      if utils.executable("jdtls") then
+        lspconfig.jdtls.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
         })
       end
 
