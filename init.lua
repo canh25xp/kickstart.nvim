@@ -1,8 +1,9 @@
-vim.opt.runtimepath:prepend("~/.vim/after")
-vim.opt.packpath = vim.opt.runtimepath:get()
-if vim.fn.filereadable("~/.vimrc") then
-  vim.cmd("source ~/.vimrc")
-end
+-- Use this to migrate vim to neovim
+-- vim.opt.runtimepath:prepend("~/.vim/after")
+-- vim.opt.packpath = vim.opt.runtimepath:get()
+-- if vim.fn.filereadable("~/.vimrc") then
+--   vim.cmd("source ~/.vimrc")
+-- end
 
 vim.g.mapleader = " " --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.maplocalleader = "\\"
