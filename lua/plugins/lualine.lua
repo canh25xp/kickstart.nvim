@@ -1,30 +1,7 @@
 local ui = require("common.ui")
-local recording_macro = require("common.utils").macro_recording
+local utils = require("common.utils")
 local icons = ui.icons
-local git = {
-  added = icons.git.added,
-  modified = icons.git.modified,
-  removed = icons.git.removed,
-}
-
-local diagnostics = {
-  error = icons.diagnostics.Error,
-  warn = icons.diagnostics.Warn,
-  info = icons.diagnostics.Info,
-  hint = icons.diagnostics.Hint,
-}
-
-local colors = {
-  yellow = "#ECBE7B",
-  cyan = "#008080",
-  darkblue = "#081633",
-  green = "#98be65",
-  orange = "#FF8800",
-  violet = "#a9a1e1",
-  magenta = "#c678dd",
-  blue = "#51afef",
-  red = "#ec5f67",
-}
+local colors = ui.colors
 
 return {
   "nvim-lualine/lualine.nvim",
@@ -45,7 +22,7 @@ return {
         { "branch" },
         {
           "diff",
-          symbols = git,
+          symbols = icons.git,
           source = function()
             local gitsigns = vim.b.gitsigns_status_dict
             if gitsigns then
@@ -61,7 +38,7 @@ return {
       lualine_c = {
         { "filetype", padding = { left = 1, right = 0 }, separator = " ", icon_only = true },
         { "filename", padding = { left = 0, right = 1 } },
-        { "diagnostics", symbols = diagnostics },
+        { "diagnostics", symbols = icons.diagnostics },
         {
           "lsp_progress",
           display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
@@ -88,7 +65,7 @@ return {
       },
 
       lualine_x = {
-        { recording_macro, color = { fg = "#ff9e64" }, separator = " " },
+        { utils.macro_recording, color = { fg = "#ff9e64" }, separator = " " },
         -- stylua: ignore
         {
           function() return "  " .. require("dap").status() end,

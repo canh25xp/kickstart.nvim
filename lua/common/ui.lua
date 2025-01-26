@@ -22,7 +22,6 @@ M.colors = {
   grey   = '#303446',
 }
 
--- icons used by other plugins
 -- stylua: ignore
 M.icons = {
   misc = {
