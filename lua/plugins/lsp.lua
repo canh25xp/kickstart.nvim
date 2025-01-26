@@ -11,7 +11,6 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "hrsh7th/cmp-nvim-lsp",
-      "j-hui/fidget.nvim",
       "ray-x/lsp_signature.nvim",
     },
     event = { "BufRead", "BufNewFile" },
@@ -439,6 +438,7 @@ return {
   {
     "j-hui/fidget.nvim",
     lazy = true,
+    enabled = false,
     opts = {},
   },
 }
