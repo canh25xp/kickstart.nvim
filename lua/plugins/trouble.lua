@@ -1,6 +1,7 @@
 return {
   "folke/trouble.nvim",
-  enabled = false,
+  enabled = true,
+  version = "*",
   cmd = { "Trouble" },
   opts = {
     modes = {
