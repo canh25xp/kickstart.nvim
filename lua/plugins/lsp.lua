@@ -1,10 +1,3 @@
-local api = vim.api
-local lsp = vim.lsp
-local diagnostic = vim.diagnostic
-local sep = vim.g.path_sep
-local utils = require("common.utils")
-local icons = require("common.ui").icons
-
 return {
   {
     "neovim/nvim-lspconfig",
@@ -21,6 +14,13 @@ return {
       },
     },
     config = function(_, opts)
+      local api = vim.api
+      local lsp = vim.lsp
+      local diagnostic = vim.diagnostic
+      local sep = vim.g.path_sep
+      local utils = require("common.utils")
+      local icons = require("common.ui").icons
+
       local tools_bin = vim.fn.stdpath("data") .. "/tools"
       local luals_bin = tools_bin .. "/lua-language-server/bin"
       local jdtls_bin = tools_bin .. "/jdtls/bin"
@@ -423,7 +423,7 @@ return {
       inlay_hints = {
         inline = false,
       },
-      ast = icons.ast,
+      ast = require("common.ui").icons.ast,
       memory_usage = {
         border = "rounded",
       },
