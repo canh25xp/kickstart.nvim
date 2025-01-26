@@ -14,9 +14,22 @@ local diagnostics = {
   hint = icons.diagnostics.Hint,
 }
 
+local colors = {
+  yellow = "#ECBE7B",
+  cyan = "#008080",
+  darkblue = "#081633",
+  green = "#98be65",
+  orange = "#FF8800",
+  violet = "#a9a1e1",
+  magenta = "#c678dd",
+  blue = "#51afef",
+  red = "#ec5f67",
+}
+
 return {
   "nvim-lualine/lualine.nvim",
   enabled = true,
+  dependencies = "arkav/lualine-lsp-progress",
   opts = {
     options = {
       theme = "catppuccin",
@@ -49,6 +62,29 @@ return {
         { "filetype", padding = { left = 1, right = 0 }, separator = " ", icon_only = true },
         { "filename", padding = { left = 0, right = 1 } },
         { "diagnostics", symbols = diagnostics },
+        {
+          "lsp_progress",
+          display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
+          colors = {
+            percentage = colors.cyan,
+            title = colors.cyan,
+            message = colors.cyan,
+            spinner = colors.cyan,
+            lsp_client_name = colors.magenta,
+            use = true,
+          },
+          separators = {
+            component = " ",
+            progress = " | ",
+            percentage = { pre = "", post = "%% " },
+            title = { pre = "", post = ": " },
+            lsp_client_name = { pre = "[", post = "]" },
+            spinner = { pre = "", post = "" },
+            message = { commenced = "In Progress", completed = "Completed" },
+          },
+          timer = { progress_enddelay = 300, spinner = 1000, lsp_client_name_enddelay = 3000 },
+          spinner_symbols = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
+        },
       },
 
       lualine_x = {
