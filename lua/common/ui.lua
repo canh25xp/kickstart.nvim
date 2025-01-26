@@ -126,6 +126,9 @@ M.icons = {
   },
 }
 
+-- M.spinner = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " }
+M.spinner = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+
 function M.statuscolumn()
   local components = { "", "", "" } -- left, middle, right
   local win = vim.g.statusline_winid

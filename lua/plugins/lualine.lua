@@ -59,8 +59,8 @@ return {
             spinner = { pre = "", post = "" },
             message = { commenced = "In Progress", completed = "Completed" },
           },
-          timer = { progress_enddelay = 300, spinner = 1000, lsp_client_name_enddelay = 3000 },
-          spinner_symbols = { "🌑 ", "🌒 ", "🌓 ", "🌔 ", "🌕 ", "🌖 ", "🌗 ", "🌘 " },
+          timer = { progress_enddelay = 1000, spinner = 100, lsp_client_name_enddelay = 3000 },
+          spinner_symbols = ui.spinner
         },
       },
 
