@@ -80,6 +80,27 @@ require("lazy").setup({
     border = "rounded",
     size = { width = 0.9, height = 0.8 },
     icons = vim.g.have_nerd_font and {} or icons.lazy,
+    custom_keys = {
+      ["<localleader>o"] = {
+        function(plugin)
+          -- TODO: this worth refactor as a function
+          local app = vim.g.is_windows and "start" or "xdg-open"
+          local url = plugin.url
+          local command = app .. " " .. vim.fn.shellescape(url)
+          vim.fn.jobstart(command, {
+            detach = not vim.g.is_windows,
+            on_exit = function(_, code, _)
+              if code ~= 0 then
+                require("url-open.modules.logger").error("Failed to open " .. url)
+              else
+                require("url-open.modules.logger").info("Opening " .. url)
+              end
+            end,
+          })
+        end,
+        desc = "Open plugins in the explorer",
+      },
+    },
   },
   rocks = {
     enabled = false,
