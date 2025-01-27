@@ -156,10 +156,14 @@ return {
             },
           },
         })
+      end
+      if utils.executable("vscode-html-language-server") then
         require("lspconfig").eslint.setup({
           on_attach = lsp_attach,
           capabilities = capabilities,
         })
+      end
+      if utils.executable("vscode-eslint-language-server") then
         require("lspconfig").html.setup({
           on_attach = lsp_attach,
           capabilities = capabilities,
