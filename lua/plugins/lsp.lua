@@ -100,6 +100,10 @@ return {
           }, bufnr)
         end
 
+        if client.name == "ruff" then
+          client.server_capabilities.hoverProvider = false -- Disable hover in favor of Pyright
+        end
+
         -- require("clangd_extensions.inlay_hints").setup_autocmd()
         -- require("clangd_extensions.inlay_hints").set_inlay_hints()
         -- local group = vim.api.nvim_create_augroup("clangd_no_inlay_hints_in_insert", { clear = true })
