@@ -252,12 +252,30 @@ return {
         })
       end
 
+      if utils.executable("ruff") then
+        lspconfig.ruff.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
+        })
+      end
       if utils.executable("pyright") then
         lspconfig.pyright.setup({
           on_attach = lsp_attach,
           capabilities = capabilities,
+          settings = {
+            pyright = {
+              disableOrganizeImports = true, -- Using Ruff's import organizer
+            },
+            python = {
+              analysis = {
+                ignore = { "*" }, -- Ignore all files for analysis to exclusively use Ruff for linting
+              },
+            },
+          },
         })
-      elseif utils.executable("pylsp") then
+      end
+
+      if utils.executable("pylsp") then
         local venv_path = os.getenv("VIRTUAL_ENV")
         local py_path = nil
         -- decide which python executable to use for mypy
