@@ -118,7 +118,9 @@ return {
             else
               vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
             end
-          end, "Clang Inlay Hints toggle")
+          end, "Clangd Inlay Hints toggle")
+
+          map("n", "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", "Clangd Switch Source/Header")
         end
       end
 
