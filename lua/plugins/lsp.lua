@@ -476,4 +476,22 @@ return {
     enabled = false,
     opts = {},
   },
+  {
+    "nvimtools/none-ls.nvim",
+    opts = function(_, opts)
+      local null_ls = require("null-ls")
+      local code_actions = null_ls.builtins.code_actions
+      local diagnostics = null_ls.builtins.diagnostics
+      local formatting = null_ls.builtins.formatting
+      local hover = null_ls.builtins.hover
+      local completion = null_ls.builtins.completion
+      opts.root_dir = opts.root_dir or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
+      opts.sources = vim.list_extend(opts.sources or {}, {
+        formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+        code_actions.gitsigns,
+        hover.dictionary,
+        hover.printenv,
+      })
+    end,
+  },
 }
