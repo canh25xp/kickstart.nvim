@@ -23,6 +23,7 @@ vim.g.loaded_node_provider = 0 -- Disable node provider
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
+require("config.usercommands")
 if vim.g.load_lazy_plugins then
   require("config.lazy")
 end

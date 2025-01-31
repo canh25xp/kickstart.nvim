@@ -17,6 +17,7 @@ map("n", "g|", "<cmd>vsplit<cr><C-]>", { desc = "Open in Split" })
 map("n", "<leader>lp", ":lua =", { desc = "Lua print" })
 map("n", "<leader>lo", ":lua =vim.opt.:get()<left><left><left><left><left><left>", { desc = "Lua print opts" })
 map("n", "<leader>:", "gQ", { desc = "Enter Ex mode" })
+map("n", "<leader>rc", [[<cmd>%s/\r//g<CR>]], { desc = "Remove carriage return (^M)" }) -- ^M is <C-v><C-M>
 
 -- Yank, Paste and Delete
 map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
