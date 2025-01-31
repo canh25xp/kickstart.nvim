@@ -12,6 +12,7 @@ return {
       c = true,
       cpp = true,
       lua = true,
+      tex = true,
     }
   end,
 }
