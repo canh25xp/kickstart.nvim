@@ -23,8 +23,8 @@ return {
     notify_on_error = false,
     default_format_opts = {
       timeout_ms = 3000,
-      async = false,           -- not recommended to change
-      quiet = false,           -- not recommended to change
+      async = false, -- not recommended to change
+      quiet = false, -- not recommended to change
       lsp_format = "fallback", -- not recommended to change
     },
     -- format_on_save = function(bufnr)
@@ -43,12 +43,12 @@ return {
       lua = { "stylua" },
       sh = { "shfmt" },
       python = { "ruff_format", "isort", "black", stop_after_first = true },
-      markdown = { "markdownlint" },
+      markdown = { "prettierd", "markdownlint" },
       javascript = { "prettierd", "prettier", stop_after_first = true },
       css = { "prettierd" },
       html = { "prettierd" },
       yaml = { "prettierd" },
-      toml = { "taplo" }
+      toml = { "taplo" },
     },
     formatters = {
       pwsh_formatter = {
@@ -60,7 +60,7 @@ return {
           "$FILENAME",
         },
         stdin = false,
-      }
+      },
     },
   },
 }
