@@ -478,6 +478,7 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
+    cond = not vim.g.is_windows,
     opts = function(_, opts)
       local null_ls = require("null-ls")
       opts.root_dir = opts.root_dir or require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git")
