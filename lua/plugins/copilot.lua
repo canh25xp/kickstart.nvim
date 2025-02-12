@@ -13,6 +13,7 @@ return {
       cpp = true,
       lua = true,
       tex = true,
+      markdown = true,
     }
   end,
 }
