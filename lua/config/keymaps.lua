@@ -18,6 +18,7 @@ map("n", "<leader>lp", ":lua =", { desc = "Lua print" })
 map("n", "<leader>lo", ":lua =vim.opt.:get()<left><left><left><left><left><left>", { desc = "Lua print opts" })
 map("n", "<leader>:", "gQ", { desc = "Enter Ex mode" })
 map("n", "<leader>rc", [[<cmd>%s/\r//g<CR>]], { desc = "Remove carriage return (^M)" }) -- ^M is <C-v><C-M>
+map("n", "<leader>rw", [[<cmd>%s/\s\+$//e<CR>]], { desc = "Remove trailing whitespaces" })
 
 -- Yank, Paste and Delete
 map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
