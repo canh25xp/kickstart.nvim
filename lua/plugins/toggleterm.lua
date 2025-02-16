@@ -32,29 +32,36 @@ return {
     { "<leader>t1", "<Cmd>1ToggleTerm<Cr>", desc = "Terminal #1" },
     { "<leader>t2", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
     { "<leader>tt", "<Cmd>ToggleTerm direction=tab<Cr>", desc = "ToggleTerm in new tab" },
-    -- {
-    --   "<leader>gg",
-    --   function()
-    --     local lazygit = require("toggleterm.terminal").Terminal:new({
-    --       cmd = "lazygit",
-    --       dir = "git_dir",
-    --       direction = "tab",
-    --     })
-    --     lazygit:toggle()
-    --   end,
-    --   desc = "Lazygit",
-    -- },
-    -- {
-    --   "<leader>gl",
-    --   function()
-    --     local lazygit = require("toggleterm.terminal").Terminal:new({
-    --       cmd = "lazygit log",
-    --       dir = "git_dir",
-    --       direction = "tab",
-    --     })
-    --     lazygit:toggle()
-    --   end,
-    --   desc = "Lazygit log",
-    -- },
+    {
+      "<leader>gg",
+      function()
+        local lazygit = require("toggleterm.terminal").Terminal:new({
+          cmd = "lazygit",
+          dir = "git_dir",
+          direction = "float",
+          on_open = function(term)
+            vim.cmd("startinsert!")
+            vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+          end,
+          on_close = function(term)
+            vim.cmd("startinsert!")
+          end,
+        })
+        lazygit:toggle()
+      end,
+      desc = "Lazygit",
+    },
+    {
+      "<leader>gl",
+      function()
+        local lazygit = require("toggleterm.terminal").Terminal:new({
+          cmd = "lazygit log",
+          dir = "git_dir",
+          direction = "float",
+        })
+        lazygit:toggle()
+      end,
+      desc = "Lazygit log",
+    },
   },
 }
