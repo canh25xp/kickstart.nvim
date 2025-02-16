@@ -38,6 +38,7 @@ return {
     local lazygit = require("toggleterm.terminal").Terminal:new({
       cmd = "lazygit",
       dir = "git_dir",
+      hidden = true,
       direction = "tab",
       on_create = function(term)
         local bn = term.bufnr
@@ -55,7 +56,8 @@ return {
     local lazygit_log = require("toggleterm.terminal").Terminal:new({
       cmd = "lazygit log",
       dir = "git_dir",
-      direction = "float",
+      hidden = true,
+      direction = "tab",
       display_name = "Lazygit Log",
       on_create = function(term)
         local bn = term.bufnr
