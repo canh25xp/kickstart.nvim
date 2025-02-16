@@ -16,6 +16,10 @@ return {
     insert_mappings = true,
     persist_size = true,
     close_on_exit = true,
+    float_opts = {
+      title_pos = "center",
+      border = "curved",
+    },
   },
   config = function(_, opts)
     vim.api.nvim_create_autocmd("TermOpen", {
@@ -69,9 +73,7 @@ return {
           cmd = "lazygit log",
           dir = "git_dir",
           direction = "float",
-          float_opts = {
-            border = "double",
-          },
+          display_name = "Lazygit Log",
           on_create = function(term)
             local bn = term.bufnr
             vim.api.nvim_buf_set_keymap(bn, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true }) -- NOTE: hide terminal instead of quit lazygit
