@@ -40,8 +40,11 @@ return {
           dir = "git_dir",
           direction = "float",
           on_open = function(term)
-            vim.cmd("startinsert!")
+            vim.cmd("startinsert!") -- NOTE:This is a little redundant, maybe remove it
             vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+            vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
+            vim.api.nvim_buf_set_keymap(term.bufnr, "t", "j", "j", { noremap = true, silent = true, nowait = true })
+            -- vim.api.nvim_buf_del_keymap(term.bufnr, "t", "jk") -- NOTE: Don't use this, causing error delete non-exist keymap
           end,
           on_close = function(term)
             vim.cmd("startinsert!")
@@ -58,6 +61,14 @@ return {
           cmd = "lazygit log",
           dir = "git_dir",
           direction = "float",
+          on_open = function(term)
+            vim.cmd("startinsert!")
+            vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
+            vim.api.nvim_buf_set_keymap(term.bufnr, "t", "j", "j", { noremap = true, silent = true, nowait = true })
+          end,
+          on_close = function(term)
+            vim.cmd("startinsert!")
+          end,
         })
         lazygit:toggle()
       end,
