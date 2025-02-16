@@ -9,7 +9,6 @@ map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit All" })
 map("n", "<leader>QQ", "<cmd>wqa<cr>", { desc = "Write Quit All" })
 map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg (man page)" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>wa<cr><esc>", { desc = "Save Files" })
-map("n", "U", "<C-r>", { desc = "Redo" })
 map("n", "J", "mzJ`z", { desc = "Join without moving cursor" })
 map("n", "<leader>/", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Change word under cursor" })
 map("v", "<leader>/", [[:<C-u>%s/\<C-r><C-r>=escape(@", '/')<cr>\>/<C-r><C-r>=escape(@", '/')<cr>/gI<Left><Left><Left>]], { desc = "Search and replace selected word" }) -- BUG: AI generated, doesnt work
