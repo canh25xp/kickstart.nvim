@@ -19,6 +19,7 @@ map("n", "<leader>lo", ":lua =vim.opt.:get()<left><left><left><left><left><left>
 map("n", "<leader>:", "gQ", { desc = "Enter Ex mode" })
 map("n", "<leader>rc", [[<cmd>%s/\r//g<CR>]], { desc = "Remove carriage return (^M)" }) -- ^M is <C-v><C-M>
 map("n", "<leader>rw", [[<cmd>%s/\s\+$//e<CR>]], { desc = "Remove trailing whitespaces" })
+map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
 
 -- Yank, Paste and Delete
 map({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
@@ -38,9 +39,6 @@ map("n", "<leader>E", "<cmd>Lexplore %:p:h<cr>", { desc = "Netrw Explorer (cwd)"
 map("n", "<leader>ll", utils.lazy_load, { desc = "Load Lazy Plugins" })
 map("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
--- New file
-map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New File" })
-
 -- Sessions
 map("n", "<leader>qr", "<cmd>source Session.vim<cr>", { desc = "Restore Session" })
 map("n", "<leader>qs", "<cmd>mksession!<cr>", { desc = "Save Session" })
@@ -51,8 +49,7 @@ map("n", "<leader>uw", "<cmd>set wrap!<cr>", { desc = "Toggle Wrap" })
 map("n", "<leader>ur", "<cmd>nohlsearch|diffupdate|normal! <C-l><cr>", { desc = "Redraw / Clear hlsearch / Diff Update" })
 
 -- Diagnostic
--- stylua: ignore
-map("n", "<leader>cd", function() vim.diagnostic.open_float({ border = "rounded" }) end, { desc = "Code Diagnostics" })
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Code Diagnostics" })
 map("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Code Quickfix list" })
 map("n", "]d", utils.diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", utils.diagnostic_goto(false), { desc = "Prev Diagnostic" })
