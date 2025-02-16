@@ -63,8 +63,8 @@ map("n", "]h", utils.diagnostic_goto(true, "HINT"), { desc = "Next Hint" })
 map("n", "[h", utils.diagnostic_goto(false, "HINT"), { desc = "Prev Hint" })
 
 -- Better scroll
--- map("n", "<C-d>", "<C-d>zz")
--- map("n", "<C-u>", "<C-u>zz")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
 
 -- Better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
