@@ -40,17 +40,12 @@ return {
       dir = "git_dir",
       hidden = true,
       direction = "tab",
+      display_name = "Lazygit",
       on_create = function(term)
         local bn = term.bufnr
         vim.api.nvim_buf_set_keymap(bn, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true }) -- NOTE: hide terminal instead of quit lazygit
         vim.api.nvim_buf_del_keymap(bn, "t", "jk")
         vim.api.nvim_buf_set_keymap(bn, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
-      end,
-      on_open = function(_)
-        vim.cmd("startinsert!") -- NOTE:This is a little redundant, maybe remove it
-      end,
-      on_close = function(_)
-        vim.cmd("startinsert!")
       end,
     })
     local lazygit_log = require("toggleterm.terminal").Terminal:new({
@@ -64,12 +59,6 @@ return {
         vim.api.nvim_buf_set_keymap(bn, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true }) -- NOTE: hide terminal instead of quit lazygit
         vim.api.nvim_buf_del_keymap(bn, "t", "jk")
         vim.api.nvim_buf_set_keymap(bn, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
-      end,
-      on_open = function(_)
-        vim.cmd("startinsert!") -- NOTE:This is a little redundant, maybe remove it
-      end,
-      on_close = function(_)
-        vim.cmd("startinsert!")
       end,
     })
     function _LazygitLogToggle()
