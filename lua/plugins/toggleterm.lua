@@ -35,6 +35,47 @@ return {
       end,
     })
     require("toggleterm").setup(opts)
+    local lazygit = require("toggleterm.terminal").Terminal:new({
+      cmd = "lazygit",
+      dir = "git_dir",
+      direction = "tab",
+      on_create = function(term)
+        local bn = term.bufnr
+        vim.api.nvim_buf_set_keymap(bn, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true }) -- NOTE: hide terminal instead of quit lazygit
+        vim.api.nvim_buf_del_keymap(bn, "t", "jk")
+        vim.api.nvim_buf_set_keymap(bn, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
+      end,
+      on_open = function(_)
+        vim.cmd("startinsert!") -- NOTE:This is a little redundant, maybe remove it
+      end,
+      on_close = function(_)
+        vim.cmd("startinsert!")
+      end,
+    })
+    local lazygit_log = require("toggleterm.terminal").Terminal:new({
+      cmd = "lazygit log",
+      dir = "git_dir",
+      direction = "float",
+      display_name = "Lazygit Log",
+      on_create = function(term)
+        local bn = term.bufnr
+        vim.api.nvim_buf_set_keymap(bn, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true }) -- NOTE: hide terminal instead of quit lazygit
+        vim.api.nvim_buf_del_keymap(bn, "t", "jk")
+        vim.api.nvim_buf_set_keymap(bn, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
+      end,
+      on_open = function(_)
+        vim.cmd("startinsert!") -- NOTE:This is a little redundant, maybe remove it
+      end,
+      on_close = function(_)
+        vim.cmd("startinsert!")
+      end,
+    })
+    function _LazygitLogToggle()
+      lazygit_log:toggle()
+    end
+    function _LazygitToggle()
+      lazygit:toggle()
+    end
   end,
   cmd = "ToggleTerm",
   keys = {
@@ -42,54 +83,7 @@ return {
     { "<leader>t1", "<Cmd>1ToggleTerm<Cr>", desc = "Terminal #1" },
     { "<leader>t2", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
     { "<leader>tt", "<Cmd>ToggleTerm direction=tab<Cr>", desc = "ToggleTerm in new tab" },
-    {
-      "<leader>gg",
-      function()
-        local lazygit = require("toggleterm.terminal").Terminal:new({
-          cmd = "lazygit",
-          dir = "git_dir",
-          direction = "tab",
-          on_create = function(term)
-            local bn = term.bufnr
-            vim.api.nvim_buf_set_keymap(bn, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true }) -- NOTE: hide terminal instead of quit lazygit
-            vim.api.nvim_buf_del_keymap(bn, "t", "jk")
-            vim.api.nvim_buf_set_keymap(bn, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
-          end,
-          on_open = function(_)
-            vim.cmd("startinsert!") -- NOTE:This is a little redundant, maybe remove it
-          end,
-          on_close = function(_)
-            vim.cmd("startinsert!")
-          end,
-        })
-        lazygit:toggle()
-      end,
-      desc = "Lazygit",
-    },
-    {
-      "<leader>gl",
-      function()
-        local lazygit = require("toggleterm.terminal").Terminal:new({
-          cmd = "lazygit log",
-          dir = "git_dir",
-          direction = "float",
-          display_name = "Lazygit Log",
-          on_create = function(term)
-            local bn = term.bufnr
-            vim.api.nvim_buf_set_keymap(bn, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true }) -- NOTE: hide terminal instead of quit lazygit
-            vim.api.nvim_buf_del_keymap(bn, "t", "jk")
-            vim.api.nvim_buf_set_keymap(bn, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
-          end,
-          on_open = function(_)
-            vim.cmd("startinsert!") -- NOTE:This is a little redundant, maybe remove it
-          end,
-          on_close = function(_)
-            vim.cmd("startinsert!")
-          end,
-        })
-        lazygit:toggle()
-      end,
-      desc = "Lazygit log",
-    },
+    { "<leader>gg", "<cmd>lua _LazygitToggle()<CR>", desc = "Lazygit" },
+    { "<leader>gl", "<cmd>lua _LazygitLogToggle()<CR>", desc = "Lazygit Log" },
   },
 }
