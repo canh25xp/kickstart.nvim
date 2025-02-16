@@ -39,15 +39,15 @@ return {
           cmd = "lazygit",
           dir = "git_dir",
           direction = "tab",
-          on_open = function(term)
+          on_create = function(term)
             local bn = term.bufnr
-            vim.cmd("startinsert!") -- NOTE:This is a little redundant, maybe remove it
-            vim.api.nvim_buf_set_keymap(bn, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+            vim.api.nvim_buf_del_keymap(bn, "t", "jk")
             vim.api.nvim_buf_set_keymap(bn, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
-            vim.api.nvim_buf_set_keymap(bn, "t", "j", "j", { noremap = true, silent = true, nowait = true })
-            -- vim.api.nvim_buf_del_keymap(term.bufnr, "t", "jk") -- NOTE: Don't use this, causing error delete non-exist keymap
           end,
-          on_close = function(term)
+          on_open = function(_)
+            vim.cmd("startinsert!") -- NOTE:This is a little redundant, maybe remove it
+          end,
+          on_close = function(_)
             vim.cmd("startinsert!")
           end,
         })
@@ -65,13 +65,15 @@ return {
           float_opts = {
             border = "double",
           },
-          on_open = function(term)
+          on_create = function(term)
             local bn = term.bufnr
-            vim.cmd("startinsert!")
+            vim.api.nvim_buf_del_keymap(bn, "t", "jk")
             vim.api.nvim_buf_set_keymap(bn, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
-            vim.api.nvim_buf_set_keymap(bn, "t", "j", "j", { noremap = true, silent = true, nowait = true })
           end,
-          on_close = function(term)
+          on_open = function(_)
+            vim.cmd("startinsert!") -- NOTE:This is a little redundant, maybe remove it
+          end,
+          on_close = function(_)
             vim.cmd("startinsert!")
           end,
         })
