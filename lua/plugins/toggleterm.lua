@@ -38,7 +38,7 @@ return {
         local lazygit = require("toggleterm.terminal").Terminal:new({
           cmd = "lazygit",
           dir = "git_dir",
-          direction = "float",
+          direction = "tab",
           on_open = function(term)
             vim.cmd("startinsert!") -- NOTE:This is a little redundant, maybe remove it
             vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
@@ -61,6 +61,9 @@ return {
           cmd = "lazygit log",
           dir = "git_dir",
           direction = "float",
+          float_opts = {
+            border = "double",
+          },
           on_open = function(term)
             vim.cmd("startinsert!")
             vim.api.nvim_buf_set_keymap(term.bufnr, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
