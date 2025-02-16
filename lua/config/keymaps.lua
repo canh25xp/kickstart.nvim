@@ -110,11 +110,11 @@ map("n", "<right>", "zl", { desc = "Scroll right" })
 map("n", "<up>", "<C-y>", { desc = "Scroll up" })
 map("n", "<down>", "<C-e>", { desc = "Scroll down" })
 
--- Move focus
-map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+-- Focusing
+map("n", "<C-h>", "<C-w><C-h>", { desc = "Focus left" })
+map("n", "<C-l>", "<C-w><C-l>", { desc = "Focus right" })
+map("n", "<C-j>", "<C-w><C-j>", { desc = "Focus lower" })
+map("n", "<C-k>", "<C-w><C-k>", { desc = "Focus upper" })
 
 -- Resizing
 map("n", "<C-Up>", "<cmd>resize +1<cr>", { desc = "Increase Window Height" })
