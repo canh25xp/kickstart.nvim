@@ -27,10 +27,11 @@ return {
       desc = "toggleterm keymap",
       callback = function()
         vim.keymap.set("t", "jk", [[<C-\><C-n>]], { buffer = 0 })
-        -- vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], { buffer = 0 })
-        -- vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { buffer = 0 })
-        -- vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { buffer = 0 })
-        -- vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], { buffer = 0 })
+        vim.keymap.set("t", "<esc><esc>", [[<C-\><C-n>]], { buffer = 0 })
+        vim.keymap.set("t", "<C-h>", [[<cmd>wincmd h<cr>]], { buffer = 0, desc = "Focus left" })
+        vim.keymap.set("t", "<C-l>", [[<cmd>wincmd l<cr>]], { buffer = 0, desc = "Focus right" })
+        vim.keymap.set("t", "<C-j>", [[<cmd>wincmd j<cr>]], { buffer = 0, desc = "Focus lower" })
+        vim.keymap.set("t", "<C-k>", [[<cmd>wincmd k<cr>]], { buffer = 0, desc = "Focus upper" })
         -- vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], { buffer = 0 })
       end,
     })
@@ -45,7 +46,7 @@ return {
         local bn = term.bufnr
         vim.api.nvim_buf_set_keymap(bn, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true }) -- NOTE: hide terminal instead of quit lazygit
         vim.api.nvim_buf_del_keymap(bn, "t", "jk")
-        vim.api.nvim_buf_set_keymap(bn, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
+        vim.api.nvim_buf_del_keymap(bn, "t", "<esc><esc>")
       end,
     })
     local lazygit_log = require("toggleterm.terminal").Terminal:new({
@@ -58,7 +59,7 @@ return {
         local bn = term.bufnr
         vim.api.nvim_buf_set_keymap(bn, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true }) -- NOTE: hide terminal instead of quit lazygit
         vim.api.nvim_buf_del_keymap(bn, "t", "jk")
-        vim.api.nvim_buf_set_keymap(bn, "t", "<esc>", "<esc>", { noremap = true, silent = true, nowait = true })
+        vim.api.nvim_buf_del_keymap(bn, "t", "<esc><esc>")
       end,
     })
     function _LazygitLogToggle()

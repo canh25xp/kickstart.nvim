@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 local utils = require("common.utils")
-local terminal = require("common.terminal")
+-- local terminal = require("common.terminal")
 
 -- General
 map("i", "jk", "<esc>", { desc = "Escape insert mode" })
@@ -122,22 +122,21 @@ map("n", "<C-Down>", "<cmd>resize -1<cr>", { desc = "Decrease Window Height" })
 map("n", "<C-Left>", "<cmd>vertical resize -1<cr>", { desc = "Decrease Window Width" })
 map("n", "<C-Right>", "<cmd>vertical resize +1<cr>", { desc = "Increase Window Width" })
 
--- TODO: these commands get overide by toggleterm anyways, maybe remove it
 -- Terminal Mappings
-map("n", "<leader>tt", utils.tab_terminal, { desc = "New Tab Terminal" })
-map("n", "<leader>md", utils.glow, { desc = "Markdown Preview with Glow" })
-map("n", "<leader>gg", utils.lazygit, { desc = "Lazygit" })
-map("n", "<leader>gl", utils.lazygit_log, { desc = "Lazygit Log" })
+-- map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Focus left" })
+-- map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Focus right" })
+-- map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Focus lower" })
+-- map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Focus upper" })
+-- map("n", "<leader>tt", utils.tab_terminal, { desc = "New Tab Terminal" })
+-- map("n", "<leader>md", utils.glow, { desc = "Markdown Preview with Glow" })
+-- map("n", "<leader>gg", utils.lazygit, { desc = "Lazygit" })
+-- map("n", "<leader>gl", utils.lazygit_log, { desc = "Lazygit Log" })
 -- map("n", "<C-\\>", "<cmd>split|terminal<cr>", { desc = "New Terminal" })
 -- map("t", "<C-\\>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-map({"n", "t"}, "<C-\\>", terminal.Toggle, { desc = "Toggle Terminal" })
+-- map({"n", "t"}, "<C-\\>", terminal.Toggle, { desc = "Toggle Terminal" })
 -- map("t", "jk", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
-map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
-map("t", "<C-_>", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
-map("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Focus Left Window" })
-map("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Focus Lower Window" })
-map("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Focus Upper Window" })
-map("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Focus Right Window" })
+-- map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
+-- map("t", "<C-_>", "<c-\\><c-n>", { desc = "Exit Terminal Mode" })
 -- map("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
 -- buffers
