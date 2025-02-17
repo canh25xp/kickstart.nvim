@@ -89,16 +89,21 @@ map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
 -- Move Lines
--- stylua: ignore start
-map("n", "<A-k>", "<cmd>m .-2<cr>==",         { desc = "Move Line Up" })
-map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi",  { desc = "Move Line Up" })
-map("v", "<A-k>", "<cmd>m '<-2<cr>gv=gv",         { desc = "Move Line Up" })
-map("v", "K",     "<cmd>m '<-2<cr>gv=gv",         { desc = "Move Line Up" })
-map("n", "<A-j>", "<cmd>m .+1<cr>==",         { desc = "Move Line Down" })
-map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi",  { desc = "Move Line Down" })
-map("v", "<A-j>", "<cmd>m '>+1<cr>gv=gv",         { desc = "Move Line Down" })
-map("v", "J",     "<cmd>m '>+1<cr>gv=gv",         { desc = "Move Line Down" })
--- stylua: ignore stop
+map("n", "<leader>k", "<cmd>m .-2<cr>==", { desc = "Move Line Up" })
+map("n", "<leader>j", "<cmd>m .+1<cr>==", { desc = "Move Line Down" })
+
+map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move Line Up" })
+map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Line Down" })
+
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Line Up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Line Down" })
+
+-- BUG: these visual mode move lines is messed up
+map("v", "<A-k>", "<cmd>m '<-2<cr>gv=gv", { desc = "Move Line Up" })
+map("v", "<A-j>", "<cmd>m '>+1<cr>gv=gv", { desc = "Move Line Down" })
+
+map("v", "K", "<cmd>m '<-2<cr>gv=gv", { desc = "Move Line Up" })
+map("v", "J", "<cmd>m '>+1<cr>gv=gv", { desc = "Move Line Down" })
 
 -- Srolling
 map("n", "<left>", "zh", { desc = "Scroll left" })
