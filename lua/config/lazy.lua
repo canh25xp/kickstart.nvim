@@ -52,6 +52,7 @@ require("lazy").setup({
   ---@diagnostic disable-next-line: assign-type-mismatch
   dev = {
     path = "~/projects/lua",
+    fallback = true,
   },
   defaults = {
     version = "*", -- try installing the latest stable version for plugins that support semver
