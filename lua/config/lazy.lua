@@ -53,6 +53,9 @@ require("lazy").setup({
   dev = {
     path = "~/projects/lua",
   },
+  defaults = {
+    version = "*", -- try installing the latest stable version for plugins that support semver
+  },
   checker = { enabled = false }, -- Don't automatically check for plugin updates
   change_detection = {
     enabled = true, -- automatically check for config file changes and reload the ui
