@@ -1,5 +1,6 @@
 return {
   "stevearc/conform.nvim",
+  version = "*",
   dependencies = { "williamboman/mason.nvim" },
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
@@ -42,6 +43,7 @@ return {
       ps1 = { "pwsh_formatter" },
       lua = { "stylua" },
       sh = { "shfmt" },
+      tex = { "latexindent" },
       python = { "ruff_format", "isort", "black", stop_after_first = true },
       markdown = { "prettierd", "markdownlint" },
       javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -60,6 +62,9 @@ return {
           "$FILENAME",
         },
         stdin = false,
+      },
+      latexindent = {
+        prepend_args = { "-l", "-m" },
       },
     },
   },
