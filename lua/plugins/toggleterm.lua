@@ -44,7 +44,7 @@ return {
       display_name = "Lazygit",
       on_create = function(term)
         local bn = term.bufnr
-        vim.api.nvim_buf_set_keymap(bn, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true }) -- NOTE: hide terminal instead of quit lazygit
+        vim.api.nvim_buf_set_keymap(bn, "t", "<C-q>", "<cmd>close<CR>", { noremap = true, silent = true })
         vim.api.nvim_buf_del_keymap(bn, "t", "jk")
         vim.api.nvim_buf_del_keymap(bn, "t", "<esc><esc>")
       end,
@@ -57,7 +57,7 @@ return {
       display_name = "Lazygit Log",
       on_create = function(term)
         local bn = term.bufnr
-        vim.api.nvim_buf_set_keymap(bn, "t", "q", "<cmd>close<CR>", { noremap = true, silent = true }) -- NOTE: hide terminal instead of quit lazygit
+        vim.api.nvim_buf_set_keymap(bn, "t", "<C-q>", "<cmd>close<CR>", { noremap = true, silent = true })
         vim.api.nvim_buf_del_keymap(bn, "t", "jk")
         vim.api.nvim_buf_del_keymap(bn, "t", "<esc><esc>")
       end,
