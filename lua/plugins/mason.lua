@@ -10,6 +10,7 @@ return {
       icons = require("common.ui").icons.mason,
       keymaps = {
         toggle_help = "?",
+        uninstall_package = "x",
       },
     },
   },
