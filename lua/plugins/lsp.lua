@@ -408,6 +408,13 @@ return {
         })
       end
 
+      if utils.executable("taplo") then
+        lspconfig.taplo.setup({
+          on_attach = lsp_attach,
+          capabilities = capabilities,
+        })
+      end
+
       diagnostic.config({
         signs = {
           text = {
