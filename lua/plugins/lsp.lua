@@ -27,10 +27,10 @@ return {
       local clangd_bin = tools_bin .. "/clangd/bin"
       local texlab_bin = tools_bin .. "/texlab"
 
-      vim.env.PATH = vim.env.PATH .. sep .. luals_bin
-      vim.env.PATH = vim.env.PATH .. sep .. jdtls_bin .. sep
-      vim.env.PATH = vim.env.PATH .. sep .. clangd_bin .. sep
-      vim.env.PATH = vim.env.PATH .. sep .. texlab_bin .. sep
+      vim.env.PATH = luals_bin .. sep .. vim.env.PATH
+      vim.env.PATH = jdtls_bin .. sep .. vim.env.PATH
+      vim.env.PATH = clangd_bin .. sep .. vim.env.PATH
+      vim.env.PATH = texlab_bin .. sep .. vim.env.PATH
 
       local function lsp_attach(client, bufnr)
         local function map(modes, keys, func, desc)
