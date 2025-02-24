@@ -1,12 +1,10 @@
 local ui = require("common.ui")
 local utils = require("common.utils")
 local icons = ui.icons
-local colors = ui.colors
 
 return {
   "nvim-lualine/lualine.nvim",
   enabled = true,
-  dependencies = "arkav/lualine-lsp-progress",
   opts = {
     options = {
       theme = "catppuccin",
@@ -39,29 +37,6 @@ return {
         { "filetype", padding = { left = 1, right = 0 }, separator = " ", icon_only = true },
         { "filename", padding = { left = 0, right = 1 } },
         { "diagnostics", symbols = icons.diagnostics },
-        {
-          "lsp_progress",
-          display_components = { "lsp_client_name", "spinner", { "title", "percentage", "message" } },
-          colors = {
-            percentage = colors.cyan,
-            title = colors.cyan,
-            message = colors.cyan,
-            spinner = colors.cyan,
-            lsp_client_name = colors.magenta,
-            use = true,
-          },
-          separators = {
-            component = " ",
-            progress = " | ",
-            percentage = { pre = "", post = "%% " },
-            title = { pre = "", post = ": " },
-            lsp_client_name = { pre = "[", post = "]" },
-            spinner = { pre = "", post = "" },
-            message = { commenced = "In Progress", completed = "Completed" },
-          },
-          timer = { progress_enddelay = 1000, spinner = 100, lsp_client_name_enddelay = 3000 },
-          spinner_symbols = ui.spinner
-        },
       },
 
       lualine_x = {
