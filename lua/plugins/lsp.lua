@@ -26,6 +26,7 @@ return {
       local jdtls_bin = tools_bin .. "/jdtls/bin"
       local clangd_bin = tools_bin .. "/clangd/bin"
       local texlab_bin = tools_bin .. "/texlab"
+      local powershell_es_bundle = tools_bin .. "/PowerShellEditorServices"
 
       vim.env.PATH = luals_bin .. sep .. vim.env.PATH
       vim.env.PATH = jdtls_bin .. sep .. vim.env.PATH
@@ -393,7 +394,7 @@ return {
         lspconfig.powershell_es.setup({
           on_attach = lsp_attach,
           capabilities = capabilities,
-          bundle_path = "~/.local/PowerShellEditorServices",
+          bundle_path = powershell_es_bundle,
           settings = { powershell = { codeFormatting = { Preset = "OTBS" } } },
         })
       end
