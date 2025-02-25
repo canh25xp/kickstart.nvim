@@ -395,6 +395,7 @@ return {
           on_attach = lsp_attach,
           capabilities = capabilities,
           bundle_path = powershell_es_bundle,
+          shell = vim.o.shell,
           settings = { powershell = { codeFormatting = { Preset = "OTBS" } } },
         })
       end
