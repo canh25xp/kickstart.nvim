@@ -9,6 +9,7 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-buffer",
+    "p00f/clangd_extensions.nvim",
   },
   config = function()
     local cmp = require("cmp")
