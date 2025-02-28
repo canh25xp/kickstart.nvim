@@ -106,21 +106,6 @@ return {
         end
 
         if client.name == "clangd" then
-          require("clangd_extensions.inlay_hints").setup_autocmd()
-          require("clangd_extensions.inlay_hints").set_inlay_hints()
-          local group = vim.api.nvim_create_augroup("clangd_no_inlay_hints_in_insert", { clear = true })
-          vim.api.nvim_create_autocmd("InsertEnter", { group = group, buffer = bufnr, callback = require("clangd_extensions.inlay_hints").disable_inlay_hints })
-          vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, { group = group, buffer = bufnr, callback = require("clangd_extensions.inlay_hints").set_inlay_hints })
-
-          map("n", "<leader>uh", function()
-            if require("clangd_extensions.inlay_hints").toggle_inlay_hints() then
-              vim.api.nvim_create_autocmd("InsertEnter", { group = group, buffer = bufnr, callback = require("clangd_extensions.inlay_hints").disable_inlay_hints })
-              vim.api.nvim_create_autocmd({ "TextChanged", "InsertLeave" }, { group = group, buffer = bufnr, callback = require("clangd_extensions.inlay_hints").set_inlay_hints })
-            else
-              vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
-            end
-          end, "Clangd Inlay Hints toggle")
-
           map("n", "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", "Clangd Switch Source/Header")
         end
       end
@@ -465,9 +450,6 @@ return {
     "p00f/clangd_extensions.nvim",
     lazy = true,
     opts = {
-      inlay_hints = {
-        inline = true,
-      },
       ast = require("common.ui").icons.ast,
       memory_usage = {
         border = "rounded",
