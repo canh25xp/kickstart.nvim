@@ -12,6 +12,154 @@ return {
         enabled = false,
         exclude = { "vue" }, -- filetypes for which you don't want to enable inlay hints
       },
+      servers = {
+        lua_ls = {
+          executable = "lua-language-server",
+          settings = {
+            Lua = {
+              completion = {
+                callSnippet = "Replace",
+              },
+              diagnostics = { disable = { "missing-fields" } },
+              runtime = {
+                version = "LuaJIT",
+              },
+            },
+          },
+        },
+        jsonls = {
+          executable = "vscode-json-language-server",
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+          end,
+          settings = {
+            json = {
+              format = {
+                enable = true,
+              },
+              validate = { enable = true },
+            },
+          },
+        },
+        eslint = {
+          executable = "vscode-eslint-language-server",
+        },
+        cssls = {
+          executable = "vscode-css-language-server",
+        },
+        html = {
+          executable = "vscode-html-language-server",
+        },
+        yamlls = {
+          executable = "yaml-language-server",
+          settings = {
+            yaml = {
+              format = {
+                enable = true,
+              },
+              validate = true,
+              schemaStore = {
+                -- You must disable built-in schemaStore support if you want to use
+                -- this plugin and its advanced options like `ignore`.
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "",
+              },
+              schemas = require("schemastore").yaml.schemas(),
+            },
+          },
+        },
+        clangd = {
+          filetypes = { "c", "cpp", "cc" },
+          flags = {
+            debounce_text_changes = 500,
+          },
+          cmd = { "clangd", "--background-index", "--clang-tidy", "--log=verbose" },
+          init_options = {
+            fallback_flags = { "-std=c++17" },
+          },
+          on_new_config = function(new_config, new_cwd)
+            local status, cmake = pcall(require, "cmake-tools")
+            if status then
+              cmake.clangd_on_new_config(new_config)
+            end
+          end,
+        },
+        neocmake = {},
+        pyright = {
+          settings = {
+            pyright = {
+              disableOrganizeImports = true, -- Using Ruff's import organizer
+            },
+            python = {
+              analysis = {
+                ignore = { "*" }, -- Ignore all files for analysis to exclusively use Ruff for linting
+              },
+            },
+          },
+        },
+        ruff = {},
+        jdtls = {},
+        texlab = {
+          settings = {
+            texlab = {
+              bibtexFormatter = "texlab",
+              build = {
+                args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+                executable = "latexmk",
+                forwardSearchAfter = false,
+                onSave = false,
+              },
+              chktex = {
+                onEdit = false,
+                onOpenAndSave = false,
+              },
+              diagnostics = {
+                ignoredPatterns = { "Unused label", "Undefined reference" },
+              },
+              experimental = {
+                labelReferenceCommands = { "asmref", "goalref" },
+                labelDefinitionCommands = { "asm", "goal" },
+                labelReferencePrefixes = { { "asmref", "asm:" }, { "goalref", "goal:" } },
+                labelDefinitionPrefixes = { { "asm", "asm:" }, { "goal", "goal:" } },
+              },
+              diagnosticsDelay = 300,
+              formatterLineLength = 80,
+              forwardSearch = {
+                args = {},
+              },
+              latexFormatter = "latexindent",
+              latexindent = {
+                modifyLineBreaks = true,
+              },
+            },
+          },
+        },
+        ltex = {
+          executable = "ltex-ls",
+          cmd = { "ltex-ls" },
+          filetypes = { "text", "plaintex", "tex", "markdown" },
+          settings = {
+            ltex = {
+              language = "en",
+            },
+          },
+          flags = { debounce_text_changes = 300 },
+        },
+        powershell_es = {
+          executable = "pwsh", -- work around to detect if windows
+          bundle_path = vim.fn.stdpath("data") .. "/tools" .. "/PowerShellEditorServices",
+          shell = vim.o.shell,
+          settings = { powershell = { codeFormatting = { Preset = "OTBS" } } },
+        },
+        bashls = {
+          executable = "bash-language-server",
+        },
+        vimls = {},
+        taplo = {},
+      },
     },
     config = function(_, opts)
       local api = vim.api
@@ -130,278 +278,6 @@ return {
         }
       end
 
-      if utils.executable("vscode-json-language-server") then
-        require("lspconfig").jsonls.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-          -- lazy-load schemastore when needed
-          on_new_config = function(new_config)
-            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
-          end,
-          settings = {
-            json = {
-              format = {
-                enable = true,
-              },
-              validate = { enable = true },
-            },
-          },
-        })
-      end
-      if utils.executable("vscode-eslint-language-server") then
-        require("lspconfig").eslint.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-        })
-      end
-      if utils.executable("vscode-css-language-server") then
-        require("lspconfig").cssls.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-        })
-      end
-      if utils.executable("vscode-html-language-server") then
-        require("lspconfig").html.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-        })
-      end
-
-      if utils.executable("yaml-language-server") then
-        lspconfig.yamlls.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-          settings = {
-            yaml = {
-              format = {
-                enable = true,
-              },
-              validate = true,
-              schemaStore = {
-                -- You must disable built-in schemaStore support if you want to use
-                -- this plugin and its advanced options like `ignore`.
-                enable = false,
-                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                url = "",
-              },
-              schemas = require("schemastore").yaml.schemas(),
-            },
-          },
-        })
-      end
-
-      if utils.executable("jdtls") then
-        lspconfig.jdtls.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-        })
-      end
-
-      if utils.executable("lua-language-server") then
-        lspconfig.lua_ls.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = "Replace",
-              },
-              diagnostics = { disable = { "missing-fields" } },
-              runtime = {
-                version = "LuaJIT",
-              },
-            },
-          },
-        })
-      end
-
-      if utils.executable("clangd") then
-        lspconfig.clangd.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-          filetypes = { "c", "cpp", "cc" },
-          flags = {
-            debounce_text_changes = 500,
-          },
-          cmd = { "clangd", "--background-index", "--clang-tidy", "--log=verbose" },
-          init_options = {
-            fallback_flags = { "-std=c++17" },
-          },
-          on_new_config = function(new_config, new_cwd)
-            local status, cmake = pcall(require, "cmake-tools")
-            if status then
-              cmake.clangd_on_new_config(new_config)
-            end
-          end,
-        })
-      end
-
-      if utils.executable("neocmakelsp") then
-        lspconfig.neocmake.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-        })
-      end
-
-      if utils.executable("ruff") then
-        lspconfig.ruff.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-        })
-      end
-
-      if utils.executable("pyright") then
-        lspconfig.pyright.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-          settings = {
-            pyright = {
-              disableOrganizeImports = true, -- Using Ruff's import organizer
-            },
-            python = {
-              analysis = {
-                ignore = { "*" }, -- Ignore all files for analysis to exclusively use Ruff for linting
-              },
-            },
-          },
-        })
-      end
-
-      if utils.executable("pylsp") then
-        local venv_path = os.getenv("VIRTUAL_ENV")
-        local py_path = nil
-        -- decide which python executable to use for mypy
-        if venv_path ~= nil then
-          py_path = venv_path .. "/bin/python3"
-        else
-          py_path = vim.g.python3_host_prog
-        end
-
-        lspconfig.pylsp.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-          settings = {
-            pylsp = {
-              plugins = {
-                -- formatter options
-                black = { enabled = true },
-                autopep8 = { enabled = false },
-                yapf = { enabled = false },
-                -- linter options
-                pylint = { enabled = true, executable = "pylint" },
-                ruff = { enabled = false },
-                pyflakes = { enabled = false },
-                pycodestyle = { enabled = false },
-                -- type checker
-                pylsp_mypy = {
-                  enabled = true,
-                  overrides = { "--python-executable", py_path, true },
-                  report_progress = true,
-                  live_mode = false,
-                },
-                -- auto-completion options
-                jedi_completion = { fuzzy = true },
-                -- import sorting
-                isort = { enabled = true },
-              },
-            },
-          },
-          flags = {
-            debounce_text_changes = 200,
-          },
-        })
-      end
-
-      if utils.executable("texlab") then
-        lspconfig.texlab.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-          settings = {
-            texlab = {
-              bibtexFormatter = "texlab",
-              build = {
-                args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
-                executable = "latexmk",
-                forwardSearchAfter = false,
-                onSave = false,
-              },
-              chktex = {
-                onEdit = false,
-                onOpenAndSave = false,
-              },
-              diagnostics = {
-                ignoredPatterns = { "Unused label", "Undefined reference" },
-              },
-              experimental = {
-                labelReferenceCommands = { "asmref", "goalref" },
-                labelDefinitionCommands = { "asm", "goal" },
-                labelReferencePrefixes = { { "asmref", "asm:" }, { "goalref", "goal:" } },
-                labelDefinitionPrefixes = { { "asm", "asm:" }, { "goal", "goal:" } },
-              },
-              diagnosticsDelay = 300,
-              formatterLineLength = 80,
-              forwardSearch = {
-                args = {},
-              },
-              latexFormatter = "latexindent",
-              latexindent = {
-                modifyLineBreaks = true,
-              },
-            },
-          },
-        })
-      end
-
-      if utils.executable("ltex-ls") then
-        lspconfig.ltex.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-          cmd = { "ltex-ls" },
-          filetypes = { "text", "plaintex", "tex", "markdown" },
-          settings = {
-            ltex = {
-              language = "en",
-            },
-          },
-          flags = { debounce_text_changes = 300 },
-        })
-      end
-
-      if utils.executable("bash-language-server") then
-        lspconfig.bashls.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-        })
-      end
-
-      if vim.g.is_windows then
-        lspconfig.powershell_es.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-          bundle_path = powershell_es_bundle,
-          shell = vim.o.shell,
-          settings = { powershell = { codeFormatting = { Preset = "OTBS" } } },
-        })
-      end
-
-      if utils.executable("vim-language-server") then
-        lspconfig.vimls.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-          flags = {
-            debounce_text_changes = 500,
-          },
-        })
-      end
-
-      if utils.executable("taplo") then
-        lspconfig.taplo.setup({
-          on_attach = lsp_attach,
-          capabilities = capabilities,
-        })
-      end
-
       diagnostic.config({
         signs = {
           text = {
@@ -426,6 +302,16 @@ return {
 
       utils.set_lsp_border("rounded")
       utils.signcolumn_single_sign()
+
+      for server, config in pairs(opts.servers) do
+        local executable = config.executable or server
+        if utils.executable(executable) then
+          lspconfig[server].setup(vim.tbl_deep_extend("force", {
+            on_attach = lsp_attach,
+            capabilities = capabilities,
+          }, config))
+        end
+      end
     end,
   },
   {
