@@ -105,7 +105,13 @@ return {
             },
           },
         },
-        ruff = {},
+        ruff = {
+          init_options = {
+            settings = {
+              lineLength = 120,
+            },
+          },
+        },
         jdtls = {},
         texlab = {
           settings = {
