@@ -23,7 +23,7 @@ return {
         reveal = { "close" },
       },
       show_tab_indicators = true,
-      always_show_bufferline = false,
+      always_show_bufferline = true,
       offsets = {
         {
           filetype = "neo-tree",
