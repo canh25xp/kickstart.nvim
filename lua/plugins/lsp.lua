@@ -4,7 +4,7 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "hrsh7th/cmp-nvim-lsp",
-      "ray-x/lsp_signature.nvim",
+      { "ray-x/lsp_signature.nvim", version = false },
       "b0o/schemaStore.nvim",
     },
     event = { "BufRead", "BufNewFile" },
