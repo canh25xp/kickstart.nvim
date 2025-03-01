@@ -11,7 +11,7 @@ return {
     opts = {
       inlay_hints = {
         enabled = true,
-        exclude = { "lua" },
+        exclude = { "lua_ls" },
       },
       servers = {
         lua_ls = {
@@ -209,7 +209,9 @@ return {
         end
 
         if client.supports_method(lsp.protocol.Methods.textDocument_inlayHint) then
-          lsp.inlay_hint.enable(opts.inlay_hints.enabled)
+          if not vim.tbl_contains(opts.inlay_hints.exclude, client.name) then
+            lsp.inlay_hint.enable(opts.inlay_hints.enabled)
+          end
 
           map("n", "<leader>uh", function()
             lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled({}))
