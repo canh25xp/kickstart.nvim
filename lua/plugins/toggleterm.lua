@@ -1,6 +1,15 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
+  cmd = "ToggleTerm",
+  keys = {
+    { "<C-\\>" },
+    { "<leader>t1", "<Cmd>1ToggleTerm<Cr>", desc = "Terminal #1" },
+    { "<leader>t2", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
+    { "<leader>tt", "<Cmd>ToggleTerm direction=tab<Cr>", desc = "ToggleTerm in new tab" },
+    { "<leader>gg", "<cmd>lua _LazygitToggle()<CR>", desc = "Lazygit" },
+    { "<leader>gl", "<cmd>lua _LazygitLogToggle()<CR>", desc = "Lazygit Log" },
+  },
   opts = {
     size = function(term)
       if term.direction == "horizontal" then
@@ -69,13 +78,4 @@ return {
       lazygit:toggle()
     end
   end,
-  cmd = "ToggleTerm",
-  keys = {
-    { "<C-\\>" },
-    { "<leader>t1", "<Cmd>1ToggleTerm<Cr>", desc = "Terminal #1" },
-    { "<leader>t2", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
-    { "<leader>tt", "<Cmd>ToggleTerm direction=tab<Cr>", desc = "ToggleTerm in new tab" },
-    { "<leader>gg", "<cmd>lua _LazygitToggle()<CR>", desc = "Lazygit" },
-    { "<leader>gl", "<cmd>lua _LazygitLogToggle()<CR>", desc = "Lazygit Log" },
-  },
 }
