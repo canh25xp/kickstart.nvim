@@ -100,6 +100,7 @@ return {
             },
             python = {
               analysis = {
+                -- TODO: onlny ignore if ruff is attached
                 ignore = { "*" }, -- Ignore all files for analysis to exclusively use Ruff for linting
               },
             },
