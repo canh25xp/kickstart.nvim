@@ -55,11 +55,11 @@ return {
           end, "Format")
         end
 
-        if client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-          vim.lsp.inlay_hint.enable(opts.inlay_hints.enabled)
+        if client.supports_method(lsp.protocol.Methods.textDocument_inlayHint) then
+          lsp.inlay_hint.enable(opts.inlay_hints.enabled)
 
           map("n", "<leader>uh", function()
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
+            lsp.inlay_hint.enable(not lsp.inlay_hint.is_enabled({}))
           end, "Inlay Hints Toggle")
         end
 
