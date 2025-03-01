@@ -10,8 +10,8 @@ return {
     event = { "BufRead", "BufNewFile" },
     opts = {
       inlay_hints = {
-        enabled = false,
-        exclude = { "vue" }, -- filetypes for which you don't want to enable inlay hints
+        enabled = true,
+        exclude = { "lua" },
       },
       servers = {
         lua_ls = {
