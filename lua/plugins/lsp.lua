@@ -5,6 +5,7 @@ return {
       "williamboman/mason.nvim",
       "hrsh7th/cmp-nvim-lsp",
       "ray-x/lsp_signature.nvim",
+      "b0o/schemaStore.nvim",
     },
     event = { "BufRead", "BufNewFile" },
     opts = {
@@ -54,6 +55,11 @@ return {
         },
         yamlls = {
           executable = "yaml-language-server",
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").yaml.schemas())
+          end,
           settings = {
             yaml = {
               format = {
@@ -67,7 +73,6 @@ return {
                 -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
                 url = "",
               },
-              schemas = require("schemastore").yaml.schemas(),
             },
           },
         },
