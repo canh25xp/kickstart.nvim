@@ -7,6 +7,8 @@ return {
     { "<leader>t1", "<Cmd>1ToggleTerm<Cr>", desc = "Terminal #1" },
     { "<leader>t2", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
     { "<leader>tt", "<Cmd>ToggleTerm direction=tab<Cr>", desc = "ToggleTerm in new tab" },
+    { "<leader>t-", "<Cmd>ToggleTerm direction=horizontal<Cr>", desc = "ToggleTerm horizontal split" },
+    { "<leader>t\\", "<Cmd>ToggleTerm direction=vertical<Cr>", desc = "ToggleTerm vertical split" },
     { "<leader>gg", "<cmd>lua _LazygitToggle()<CR>", desc = "Lazygit" },
     { "<leader>gl", "<cmd>lua _LazygitLogToggle()<CR>", desc = "Lazygit Log" },
   },
