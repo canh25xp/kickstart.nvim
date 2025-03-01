@@ -1,5 +1,5 @@
 vim.opt.cmdheight = vim.g.dynamic_cmdheight and 0 or 1
-vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+vim.opt.sessionoptions:append({ "globals", "skiprtp" })
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.termguicolors = true -- True color support
 vim.opt.number = true
