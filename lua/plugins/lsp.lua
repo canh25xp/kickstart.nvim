@@ -244,7 +244,7 @@ return {
           })
 
           -- clear highlights when cursor moves.
-          api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+          api.nvim_create_autocmd({ "CursorMoved" }, {
             buffer = bufnr,
             group = gid,
             callback = lsp.buf.clear_references,
