@@ -200,16 +200,18 @@ return {
           vim.keymap.set(modes, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
         end
 
-        map("n", "K", lsp.buf.hover, "Hover")
-        map("n", "gd", lsp.buf.definition, "Goto Definition")
-        map("n", "gD", lsp.buf.declaration, "Goto Declaration")
-        map("n", "gI", lsp.buf.implementation, "Goto Implementation")
-        map("n", "gY", lsp.buf.type_definition, "Goto Type Definition")
-        map("n", "gr", lsp.buf.references, "Goto References")
-        map("n", "gs", lsp.buf.signature_help, "Signature help")
-        map("i", "<C-k>", lsp.buf.signature_help, "Signature help")
-        map("n", "<leader>cr", lsp.buf.rename, "Rename")
-        map("n", "<leader>ca", lsp.buf.code_action, "Code Action")
+        -- stylua: ignore start
+        map("n", "K", function() lsp.buf.hover() end, "Hover")
+        map("n", "gd", function() lsp.buf.definition({ reuse_win = true }) end, "Goto Definition")
+        map("n", "gD", function() lsp.buf.declaration({ reuse_win = true }) end, "Goto Declaration")
+        map("n", "gI", function() lsp.buf.implementation({ reuse_win = true }) end, "Goto Implementation")
+        map("n", "gY", function() lsp.buf.type_definition({ reuse_win = true }) end, "Goto Type Definition")
+        map("n", "gr", function() lsp.buf.references() end, "Goto References")
+        map("n", "gs", function() lsp.buf.signature_help() end, "Signature help")
+        map("i", "<C-k>", function() lsp.buf.signature_help() end, "Signature help")
+        map("n", "<leader>cr", function() lsp.buf.rename() end, "Rename")
+        map("n", "<leader>ca", function() lsp.buf.code_action() end, "Code Action")
+        -- stylua: ignore stop
 
         if client.server_capabilities.documentFormattingProvider then
           map({ "n", "x" }, "<leader>cF", function()
