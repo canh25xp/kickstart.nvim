@@ -1,11 +1,15 @@
 return {
   "mfussenegger/nvim-lint",
   event = { "BufReadPre", "BufNewFile" },
-  config = function()
+  opts = {
+    events = { "BufWritePost", "BufReadPost", "InsertLeave" },
+    linters_by_ft = {
+      markdown = { "markdownlint" },
+    },
+  },
+  config = function(_, opts)
     local lint = require("lint")
-    lint.linters_by_ft = {
-      -- markdown = { "markdownlint" },
-    }
+    lint.linters_by_ft = opts.linters_by_ft
 
     -- To allow other plugins to add linters to require('lint').linters_by_ft,
     -- instead set linters_by_ft like this:
@@ -39,10 +43,9 @@ return {
     -- lint.linters_by_ft['terraform'] = nil
     -- lint.linters_by_ft['text'] = nil
 
-    -- Create autocommand which carries out the actual linting
-    -- on the specified events.
+    -- Create autocommand which carries out the actual linting on the specified events.
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+    vim.api.nvim_create_autocmd(opts.events, {
       group = lint_augroup,
       callback = function()
         lint.try_lint()
