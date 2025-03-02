@@ -169,7 +169,9 @@ return {
         bashls = {
           executable = "bash-language-server",
         },
-        vimls = {},
+        vimls = {
+          executable = "vim-language-server",
+        },
         taplo = {},
       },
     },
