@@ -149,6 +149,7 @@ return {
             },
           },
         },
+        marksman = {},
         ltex = {
           executable = "ltex-ls",
           cmd = { "ltex-ls" },
