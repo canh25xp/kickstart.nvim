@@ -8,6 +8,10 @@ function M.macro_recording()
   return "recording @" .. reg
 end
 
+function M.get_diagnostic_status()
+  return vim.diagnostic.is_enabled() and "" or "disabled"
+end
+
 function M.get_env_path()
   local path = vim.env.PATH
   local pattern = "([^" .. vim.g.path_sep .. "]+)"
