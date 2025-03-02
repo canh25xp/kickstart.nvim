@@ -207,7 +207,7 @@ return {
         map("n", "gY", lsp.buf.type_definition, "Goto Type Definition")
         map("n", "gr", lsp.buf.references, "Goto References")
         map("n", "gs", lsp.buf.signature_help, "Signature help")
-        -- map("i", "<C-k>", lsp.buf.signature_help, "Signature help")
+        map("i", "<C-k>", lsp.buf.signature_help, "Signature help")
         map("n", "<leader>cr", lsp.buf.rename, "Rename")
         map("n", "<leader>ca", lsp.buf.code_action, "Code Action")
 
@@ -255,15 +255,15 @@ return {
               api.nvim_clear_autocmds({ group = "kickstart-lsp-highlight", buffer = event2.buf })
             end,
           })
-
-          require("lsp_signature").on_attach({
-            bind = true,
-            handler_opts = {
-              border = "rounded",
-            },
-            toggle_key = "<C-k>",
-          }, bufnr)
         end
+
+        require("lsp_signature").on_attach({
+          bind = true,
+          handler_opts = {
+            border = "rounded",
+          },
+          toggle_key = "<C-k>",
+        }, bufnr)
 
         if client.name == "ruff" then
           client.server_capabilities.hoverProvider = false -- Disable hover in favor of Pyright
