@@ -51,6 +51,7 @@ map("n", "<leader>ur", "<cmd>nohlsearch|diffupdate|normal! <C-l><cr>", { desc = 
 -- Diagnostic
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Code Diagnostics" })
 map("n", "<leader>cq", vim.diagnostic.setloclist, { desc = "Code Quickfix list" })
+map("n", "<leader>cD", utils.toggle_diagnostic, { desc = "Toggle Diagnostics" })
 map("n", "]d", utils.diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "[d", utils.diagnostic_goto(false), { desc = "Prev Diagnostic" })
 map("n", "]e", utils.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })

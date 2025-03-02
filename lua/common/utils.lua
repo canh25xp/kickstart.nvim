@@ -83,6 +83,10 @@ function M.toggle_signcolmn()
   vim.wo.signcolumn = vim.wo.signcolumn == "yes:2" and "no" or "yes:2"
 end
 
+function M.toggle_diagnostic()
+  vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end
+
 function M.tab_terminal()
   vim.cmd("tab terminal")
 end
