@@ -178,10 +178,8 @@ return {
     config = function(_, opts)
       local api = vim.api
       local lsp = vim.lsp
-      local diagnostic = vim.diagnostic
       local sep = vim.g.path_sep
       local utils = require("common.utils")
-      local icons = require("common.ui").icons
 
       local tools_bin = vim.fn.stdpath("data") .. "/tools"
       local luals_bin = tools_bin .. "/lua-language-server/bin"
@@ -292,28 +290,6 @@ return {
           lineFoldingOnly = true,
         }
       end
-
-      diagnostic.config({
-        signs = {
-          text = {
-            [diagnostic.severity.ERROR] = icons.diagnostics.Error,
-            [diagnostic.severity.WARN] = icons.diagnostics.Warn,
-            [diagnostic.severity.HINT] = icons.diagnostics.Hint,
-            [diagnostic.severity.INFO] = icons.diagnostics.Info,
-          },
-        },
-        virtual_text = true,
-        update_in_insert = false,
-        underline = true,
-        severity_sort = true,
-        float = {
-          focusable = true,
-          style = "minimal",
-          border = "rounded",
-          prefix = "",
-          header = "",
-        },
-      })
 
       utils.set_lsp_border("rounded")
       utils.signcolumn_single_sign()
