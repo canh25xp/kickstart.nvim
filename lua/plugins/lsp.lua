@@ -231,9 +231,6 @@ return {
 
         -- Highlight the current variable and its usages in the buffer.
         if client.server_capabilities.documentHighlightProvider then
-          api.nvim_set_hl(0, "LspReferenceRead", { link = "Visual" })
-          api.nvim_set_hl(0, "LspReferenceText", { link = "Visual" })
-          api.nvim_set_hl(0, "LspReferenceWrite", { link = "Visual" })
           local gid = api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
 
           -- highlight references of the word under cursor.
