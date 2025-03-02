@@ -211,7 +211,7 @@ return {
         map("i", "<C-k>", function() lsp.buf.signature_help() end, "Signature help")
         map("n", "<leader>cr", function() lsp.buf.rename() end, "Rename")
         map("n", "<leader>ca", function() lsp.buf.code_action() end, "Code Action")
-        -- stylua: ignore stop
+        -- stylua: ignore end
 
         if client.server_capabilities.documentFormattingProvider then
           map({ "n", "x" }, "<leader>cF", function()
