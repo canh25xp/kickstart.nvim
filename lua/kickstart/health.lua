@@ -27,11 +27,43 @@ local check_version = function()
 end
 
 local check_external_reqs = function()
-  for _, exe in ipairs({ "git", "lazygit", "make", "unzip", "rg", "fd" }) do
+  local reqs = {
+    "git",
+    "lazygit",
+    "make",
+    "unzip",
+    "rg",
+    "fd",
+  }
+
+  local servers = {
+    "ruff",
+    "pyright",
+    "clangd",
+    "texlab",
+    "jdtls",
+    "taplo",
+    "marksman",
+    "lua-language-server",
+    "yaml-language-server",
+    "vscode-json-language-server",
+    "vscode-css-language-server",
+    "vscode-html-language-server",
+  }
+
+  for _, exe in ipairs(reqs) do
     if executable(exe) then
       ok(string.format("Found executable: '%s'", exe))
     else
       warn(string.format("Could not find executable: '%s'", exe))
+    end
+  end
+
+  for _, exe in ipairs(servers) do
+    if executable(exe) then
+      ok(string.format("Found language server: '%s'", exe))
+    else
+      warn(string.format("Could not find language server: '%s'", exe))
     end
   end
 
