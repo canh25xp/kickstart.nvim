@@ -20,6 +20,7 @@ vim.g.path_sep = vim.g.is_windows and ";" or ":"
 vim.g.loaded_perl_provider = 0 -- Disable perl provider
 vim.g.loaded_ruby_provider = 0 -- Disable ruby provider
 vim.g.loaded_node_provider = 0 -- Disable node provider
+vim.g.loaded_python3_provider = 0 -- Disable python provider
 
 require("config.options")
 require("config.keymaps")
