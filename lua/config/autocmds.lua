@@ -21,9 +21,9 @@ if vim.g.dynamic_cmdheight then
   })
 end
 
-autocmd("TermOpen", { pattern = "term://*", command = "setlocal nonumber norelativenumber signcolumn=no" })
-autocmd("TermClose", { pattern = "term://*", command = "bdelete" })
-autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert", desc = "Auto insert in terminal" })
+-- autocmd("TermOpen", { pattern = "term://*", command = "setlocal nonumber norelativenumber signcolumn=no" })
+-- autocmd("TermClose", { pattern = "term://*", command = "bdelete" })
+-- autocmd({ "TermOpen", "WinEnter" }, { pattern = "term://*", command = "startinsert", desc = "Auto insert in terminal" })
 
 autocmd("BufEnter", {
   pattern = "",
