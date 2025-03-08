@@ -200,7 +200,6 @@ return {
         end
 
         -- stylua: ignore start
-        map("n", "K", function() lsp.buf.hover() end, "Hover")
         map("n", "gd", function() lsp.buf.definition({ reuse_win = true }) end, "Goto Definition")
         map("n", "gD", function() lsp.buf.declaration({ reuse_win = true }) end, "Goto Declaration")
         map("n", "gI", function() lsp.buf.implementation({ reuse_win = true }) end, "Goto Implementation")
