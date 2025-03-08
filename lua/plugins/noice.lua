@@ -2,7 +2,7 @@ return {
   {
     "folke/noice.nvim",
     enabled = true,
-    cond = not vim.g.dynamic_cmdheight,
+    cond = not vim.g.is_work,
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
@@ -52,11 +52,15 @@ return {
         -- lsp_doc_border = true, -- add a border to hover docs and signature help
       },
     },
+    config = function(_, opts)
+      vim.api.nvim_del_augroup_by_name("Dynamic cmdheight")
+      require("noice").setup(opts)
+    end,
   },
   {
     "rcarriga/nvim-notify",
     enabled = true,
-    cond = not vim.g.dynamic_cmdheight,
+    cond = not vim.g.is_work,
     keys = {
       {
         "<leader>ua",
