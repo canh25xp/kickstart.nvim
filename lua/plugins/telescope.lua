@@ -12,7 +12,7 @@ return {
     },
     { "nvim-lua/plenary.nvim" },
     { "nvim-telescope/telescope-ui-select.nvim" },
-    { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+    { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font, version = false },
   },
   config = function()
     -- Shows all keymaps for the current Telescope picker.
