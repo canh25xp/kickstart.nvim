@@ -10,35 +10,36 @@ return {
       end,
       build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
     },
-    { "nvim-lua/plenary.nvim", version = false},
+    { "nvim-lua/plenary.nvim", version = false },
     { "nvim-telescope/telescope-ui-select.nvim" },
     { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font, version = false },
   },
-  config = function()
+  opts = {
+    defaults = {
+      sorting_strategy = "ascending",
+      layout_config = {
+        prompt_position = "top",
+      },
+      mappings = {
+        i = {
+          ["<c-enter>"] = "to_fuzzy_refine",
+          ["<C-j>"] = require("telescope.actions").cycle_history_next,
+          ["<C-k>"] = require("telescope.actions").cycle_history_prev,
+        },
+      },
+    },
+    -- pickers = {}
+    extensions = {
+      ["ui-select"] = {
+        require("telescope.themes").get_dropdown(),
+      },
+    },
+  },
+  config = function(_, opts)
     -- Shows all keymaps for the current Telescope picker.
     -- Insert mode: <c-/>
     -- Normal mode: ?
-    require("telescope").setup({
-      defaults = {
-        sorting_strategy = "ascending",
-        layout_config = {
-          prompt_position = "top",
-        },
-        mappings = {
-          i = {
-            ["<c-enter>"] = "to_fuzzy_refine",
-            ["<C-j>"] = require("telescope.actions").cycle_history_next,
-            ["<C-k>"] = require("telescope.actions").cycle_history_prev,
-          },
-        },
-      },
-      -- pickers = {}
-      extensions = {
-        ["ui-select"] = {
-          require("telescope.themes").get_dropdown(),
-        },
-      },
-    })
+    require("telescope").setup(opts)
 
     -- Enable Telescope extensions if they are installed
     pcall(require("telescope").load_extension, "fzf")
@@ -48,7 +49,7 @@ return {
     local map = vim.keymap.set
     local selected = require("common.utils").get_visual_selection
     local builtin = require("telescope.builtin")
-    local opts = { noremap = true, silent = true }
+    local map_opts = { noremap = true, silent = true }
 
     map("n", "<leader>sh", builtin.help_tags, { desc = "Search Help" })
     map("n", "<leader>sk", builtin.keymaps, { desc = "Search Keymaps" })
@@ -86,11 +87,11 @@ return {
     map("v", "<space>sz", function()
       local text = selected()
       builtin.current_buffer_fuzzy_find({ default_text = text })
-    end, opts)
+    end, map_opts)
 
     map("v", "<space>sg", function()
       local text = selected()
       builtin.live_grep({ default_text = text })
-    end, opts)
+    end, map_opts)
   end,
 }
