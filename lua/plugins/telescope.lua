@@ -10,7 +10,7 @@ return {
       end,
       build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
     },
-    { "nvim-lua/plenary.nvim" },
+    { "nvim-lua/plenary.nvim", version = false},
     { "nvim-telescope/telescope-ui-select.nvim" },
     { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font, version = false },
   },
