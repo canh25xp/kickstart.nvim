@@ -28,11 +28,7 @@ return {
         },
       },
     },
-    pickers = {
-      find_files = {
-        theme = "dropdown",
-      },
-    },
+    pickers = {},
     extensions = {
       ["ui-select"] = {
         require("telescope.themes").get_cursor(),
