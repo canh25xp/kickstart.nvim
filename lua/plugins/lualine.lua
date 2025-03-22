@@ -36,6 +36,7 @@ return {
       lualine_c = {
         { "filetype", padding = { left = 1, right = 0 }, separator = " ", icon_only = true },
         { "filename", padding = { left = 0, right = 1 } },
+        { "lsp_status" },
         { "diagnostics", symbols = icons.diagnostics, separator = " ", cond = vim.diagnostic.is_enabled },
         { utils.get_diagnostic_status, color = { fg = "#ff9e64" } },
       },
