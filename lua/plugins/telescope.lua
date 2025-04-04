@@ -7,6 +7,7 @@ return {
       cond = function()
         return vim.fn.executable("cmake") == 1
       end,
+      -- BUG: `&&` token does not works in legacy powershell
       build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
     },
     { "nvim-lua/plenary.nvim", version = false },
