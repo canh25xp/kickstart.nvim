@@ -31,9 +31,10 @@ local check_external_reqs = function()
     "git",
     "lazygit",
     "make",
-    "unzip",
+    "7z",
     "rg",
     "fd",
+    "fzf",
   }
 
   local servers = {
