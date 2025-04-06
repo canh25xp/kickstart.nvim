@@ -163,7 +163,7 @@ return {
         },
         powershell_es = {
           executable = "pwsh", -- work around to detect if windows
-          bundle_path = vim.fn.stdpath("data") .. "/tools" .. "/PowerShellEditorServices",
+          bundle_path = vim.fn.stdpath("data") .. "/mason/packages/powershell-editor-services",
           shell = vim.o.shell,
           settings = { powershell = { codeFormatting = { Preset = "OTBS" } } },
         },
@@ -187,7 +187,6 @@ return {
       local jdtls_bin = tools_bin .. "/jdtls/bin"
       local clangd_bin = tools_bin .. "/clangd/bin"
       local texlab_bin = tools_bin .. "/texlab"
-      local powershell_es_bundle = tools_bin .. "/PowerShellEditorServices"
 
       vim.env.PATH = luals_bin .. sep .. vim.env.PATH
       vim.env.PATH = jdtls_bin .. sep .. vim.env.PATH
