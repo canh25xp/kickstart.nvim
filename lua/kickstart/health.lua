@@ -30,6 +30,7 @@ local check_external_reqs = function()
   local reqs = {
     "git",
     "lazygit",
+    "python",
     "make",
     "7z",
     "rg",
